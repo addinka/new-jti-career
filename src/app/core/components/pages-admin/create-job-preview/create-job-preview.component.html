@@ -1,0 +1,58 @@
+<div *ngIf="!isNotFound; else notFound" class="wrapper">
+  <div class="row wrapper-inside">
+    <div class="col-md-5">
+      <app-job-detail-short [job]="job" [isApplied]="false" [isPreview]="true"></app-job-detail-short>
+      <div class="row margin-auth-collab" *ngIf="!isPreview">
+        <div class="job-label col-md-7">AUTHOR</div>
+        <button type="button" class="col-auto button-edit-margin button-primary" (click)="editAuthor()" [ngClass]="{
+            'enable-button':
+              this.currentID === this.job.author ||
+              this.isSuperAdmin === 'true',
+            'disable-button':
+              this.currentID !== this.job.author &&
+              this.isSuperAdmin === 'false'
+          }" [disabled]="
+            this.currentID !== this.job.author && this.isSuperAdmin === 'false'
+          ">
+          Edit Author
+        </button>
+      </div>
+      <div class="row" *ngIf="!isPreview">
+        <mat-card class="md-elevation-z0 col-sm-4 m-1">
+          <mat-card-content>
+            <img [src]="this.authorAvatar" id="img-author" />
+          </mat-card-content>
+          <mat-card-subtitle>
+            {{ this.authorName }}
+          </mat-card-subtitle>
+        </mat-card>
+      </div>
+      <div class="row margin-auth-collab" *ngIf="!isPreview">
+        <div class="job-label col-md-7">COLLABORATORS</div>
+        <button type="button" class="col-auto button-edit-margin button-primary" (click)="editCollaborators()" [ngClass]="{
+          'enable-button': this.currentID === this.job.author, 'disable-button': this.currentID !== this.job.author}"
+          [disabled]="this.currentID !== this.job.author">
+          Edit Collaborators
+        </button>
+      </div>
+      <div class="row" *ngIf="!isPreview">
+        <mat-card class="md-elevation-z0 col-4 m-2" *ngFor="let collaborator of collaboratorProfile">
+          <mat-card-content>
+            <img [src]="collaborator.profpic" id="img-author" />
+          </mat-card-content>
+          <mat-card-subtitle>
+            {{ collaborator.name }}
+          </mat-card-subtitle>
+        </mat-card>
+      </div>
+    </div>
+
+    <app-job-detail-long class="col-md-7" [job]="job"></app-job-detail-long>
+
+    <img *ngIf="!isNotFound && isPreview" src="../../../assets/images/bg_preview.svg" id="img-preview" />
+  </div>
+</div>
+
+<ng-template #notFound>
+  <app-not-found [message]="message"></app-not-found>
+</ng-template>

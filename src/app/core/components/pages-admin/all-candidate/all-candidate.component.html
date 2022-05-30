@@ -1,0 +1,160 @@
+<div class="row jobs-search">
+  <div class="col-md">
+      <form class="card card-sm" style="margin-right: 0px;">
+          <div class="row no-gutters align-items-center">
+              <div class="col">
+                  <input class="form-control form-control-borderless search-input" type="search" placeholder="Search Candidate" autocomplete="off" [(value)]=search name="search" [(ngModel)]="search" (keyup.enter)="onSearch()">
+              </div>
+              <div class="dropdown dropdown-search">
+                  <button class="form-control form-control-borderless dropdown-text text-capitalize">By {{searchMode}}</button>
+                  <div id="myDropdown" class="dropdown-content">
+                    <ng-container *ngFor="let mode of searchTypes; let i = index">
+                        <a *ngIf="mode!==searchMode" (click)="changeSearchMode(i)" 
+                        class="text-capitalize">By {{mode}}</a>
+                    </ng-container>
+                  </div>
+              </div>
+              <div class="col-auto">
+                  <button class="btn button-search" type="button" (click)="onSearch()">Search</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
+<div class="jobs-container">
+  <div class="jobs-container-detail">
+      <div class="row">
+          <div class="col-md-6" style="margin-top: 1.5rem!important">
+              <div id="job-title">{{ showText }}</div>
+              <div id="job-title-detail">{{ dataCount }} Candidates found</div>
+          </div>
+      </div>
+
+      <div class="row">
+          <!-- TODO: Filter feature start here -->
+          <div class="col d-flex flex-column">
+
+              <div class="row d-flex mt-4">
+                  <div class="col-md-2 filter-wrapper">
+                      &nbsp;
+                      <app-filter-all-candidate [counter]="filterCounter" (filterValue)='getFilterInput($event)'></app-filter-all-candidate>
+                  </div>
+                  <div class="col-md-10 result-wrapper">
+                      <div *ngIf="!isNoData" class="row justify-content-between">
+                          <div class="col-auto margin-bottom-375 jobs-default-text">
+                              Showing
+                              <span class="applicants-select-background">
+                <select class="applicants-select-value" [formControl]="entriesInput">
+                  <option *ngFor="let select of entItems" [value]="select">{{ select }}</option>
+                </select>
+              </span> Entries
+                          </div>
+                      
+                      </div>
+                      <ng-container *ngIf="isSearching; else starting">
+                          <div class="side-by-side-table">
+                                  <div class="scrollable row-table" *ngIf="!isNoData;">
+                                      <table>
+                                          <tr>
+                                              <th class="th-custom th-radius-left"></th>
+                                              <th class="th-custom cursor-pointer" style="text-align:center;" (click)="sortTable('reg-number')">REGISTERED NO.<img *ngIf="currentSort==='reg-number'" [src]="arrowDown" alt="" [class.flip-vertical]="sortTypeAsc" class=mb-1 style="width: 15px; height: 15px;" ></th>
+                                              <th class="th-custom"></th>
+                                              <th class="th-custom cursor-pointer text-left" (click)="sortTable('name')">NAME <img *ngIf="currentSort==='name'" [src]="arrowDown" alt="" [class.flip-vertical]="sortTypeAsc" class=mb-1 style="width: 15px; height: 15px;"></th>
+                                              <th class="th-custom cursor-pointer text-left" (click)="sortTable('education')">EDUCATION <img *ngIf="currentSort==='education'" [src]="arrowDown" alt="" [class.flip-vertical]="sortTypeAsc" class=mb-1 style="width: 15px; height: 15px;"></th>
+                                              <th class="th-custom cursor-pointer text-left" (click)="sortTable('experience')">EXPERIENCE<img *ngIf="currentSort==='experience'" [src]="arrowDown" alt="" [class.flip-vertical]="sortTypeAsc" class=mb-1 style="width: 15px; height: 15px;"></th>
+                                              <th class="th-custom th-radius-right">MY ACTION</th>
+                                          </tr>
+                                          <tbody *ngFor="let candidate of data; let i = index;">
+                                              <tr class="tr-pointer" [ngClass]="{'tr-odd': i % 2 === 1, 'tr-even': i % 2 === 0}" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="true">
+                                                  <td class="td-first">
+                                                    <!-- <span class="cv-indicator" [ngStyle]="{'background-color': cvColor[candidate.color]}"></span> -->
+                                                    <cv-indicator [color]="candidate.color"></cv-indicator>
+                                                  </td>
+                                                  <td class="td-bold" style="text-align:center;">
+                                                    {{ candidate.registeredNumber }}
+                                                  </td>
+                                                  <td class="d-flex align-items-center">
+                                                      <!-- <img class="rounded-circle profile" [src]="candidate.user.profpic" height="53" width="53" onerror="this.src='../../../../../assets/images/ic_user.svg'"> -->
+                                                      <!-- <div class="candidate align-self-center ml-3">
+                                                          <div class="comment"></div>
+                                                          <span id="candidate-comment">{{ candidate.comments }}</span>
+                                                      </div> -->
+                                                  </td>
+                                                  <td class="td-bold text-capitalize">{{ candidate.name.toLowerCase() }}</td>
+                                                  <td>{{ candidate.degree }}</td>
+                                                  <td>{{ candidate.experience }}</td>
+                                                  <td *ngIf="true; else tableFill" class="td-action text-center">
+                                                    <span class="show" [id]="'collapse' + i" >
+                                                        <img class="button-primary-outlined mr-3 px-1" src="../../../../../assets/images/ic_blueform.svg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="onInvite(candidate)">
+                                                        <img *ngIf="candidate.status !== 'POTENTIAL'" class="p-0" src="assets/images/ic_star_grey.svg" height="25" width="27" (click)="onSelectPotential(candidate); $event.stopPropagation()">
+                                                        <img *ngIf="candidate.status === 'POTENTIAL'" class="p-0" src="assets/images/ic_star_on.svg" height="25" width="27" (click)="onSelectPotential(candidate); $event.stopPropagation()">
+                                                    </span>
+                                                  </td>
+
+                                              </tr>
+                                              <tr [ngClass]="{'tr-odd': i % 2 === 1, 'tr-even': i % 2 === 0}" class="collapse" [id]="'collapse' + i">
+                                                  <td colspan="100%" class="p-0">
+                                                      <app-applicant-detail class="col-xs-12" (potentialChange)="onSelectPotential($event)" [isCandidate]="true" (inviteOn)="onInvite(candidate)"
+                                                      [applicant]="candidate" [inheritBackground]="true"></app-applicant-detail>
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+
+                                  </div>
+                              <div class="row mt-4 pb-5 justify-content-between">
+                                  <div class="col-auto jobs-default-text" style="line-height: 40px" *ngIf="data.length>0; else noentry">
+                                      Showing {{ currentLowerCount }} to {{ currentUpperCount }} of {{ dataCount }} entries
+                                  </div>
+                                  <!-- [page]=page -->
+                                  <app-pagination class="col-auto jobs-default-text" [pagesCount]=pagesCount (pagesJob)="onChangePage($event)" style="margin-top: 10px;">
+                                  </app-pagination>
+                              </div>
+                          </div>
+                      </ng-container>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #starting>
+  <div class="no-list-margin">
+      <app-not-found [message]="'Search Candidates Above'"></app-not-found>
+  </div>
+</ng-template>
+
+<!-- <ng-template #searchImage>
+<div class="jobs-search-container">
+  <div class="row justify-content-center">
+    <img class="searchImage" src="../../../assets/images/bg_search.svg" alt="Search Your Desired Job">
+  </div>
+  <div class="jobs-search-text">
+    {{ searchImageText }}
+  </div>
+</div>
+</ng-template> -->
+
+<ng-template #arrowAsc>
+  <img *ngIf="sorts[0] === 'default'; else arrowAsc" class="jobs-sort-arrow-asc">
+</ng-template>
+
+<ng-template #f>
+  <td *ngIf="job?.onBoardStart !== 'F'; else i" class="jobs-td">Anytime</td>
+</ng-template>
+
+<ng-template #i>
+  <td class="jobs-td">Immediately</td>
+</ng-template>
+
+<ng-template #tableFill>
+  <td></td>
+</ng-template>
+
+<ng-template #noentry>
+    <div class="col-auto jobs-default-text" style="line-height: 40px">
+        Not Found any match
+    </div>
+</ng-template>

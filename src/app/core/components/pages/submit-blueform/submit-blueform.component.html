@@ -1,0 +1,939 @@
+<div class="row jobs-search">
+    <div class="job-title">Blue Form</div>
+</div>
+
+<div class="step-container">
+    <mat-horizontal-stepper #stepper>
+        <mat-step label="Personal Data" [stepControl]="personalFormGroup">
+            <form [formGroup]="personalFormGroup" (keydown.enter)="$event.preventDefault()">
+                <p class="form-title">Personal Data</p>
+
+                <div class="field-section">
+                    <div class="form-label">FULL NAME<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <div class="col-md-4 p-1">
+                            <input class="form-bg" [ngClass]="{'input-error': personalFormGroup.controls.firstName.errors?.required}" formControlName="firstName" placeholder="First (*)" required>
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <input class="form-bg" formControlName="middleName" placeholder="Middle">
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <input class="form-bg" [ngClass]="{'input-error': personalFormGroup.controls.lastName.errors?.required}" formControlName="lastName" placeholder="Last (*)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="row m-0">
+                        <div class="col-md-8 p-1">
+                            <div class="form-label">BIRTH PLACE<span class="ml-1" style="color:red">*</span></div>
+                            <div class="mt-2">
+                                <input class="form-bg" [ngClass]="{'input-error': personalFormGroup.controls.birthPlace.errors?.required}" type="text" formControlName="birthPlace" placeholder="e.g Jakarta">
+                            </div>
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <div class="form-label">BIRTH DATE<span class="ml-1" style="color:red">*</span></div>
+                            <div class="row m-0 mt-2">
+                                <mat-form-field class="form-bg" [floatLabel]="'never'" (click)="birthDate.open()">
+                                    <input [ngClass]="{'input-error': personalFormGroup.controls.birthDate.errors?.required}" matInput [matDatepicker]="birthDate" formControlName="birthDate">
+                                    <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #birthDate disabled="false"></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="row m-0">
+                        <div class="col-md-4 p-1">
+                            <div class="form-label">EMAIL<span class="ml-1" style="color:red">*</span></div>
+                            <div class="mt-2">
+                                <input [ngClass]="{'input-error': personalFormGroup.controls.email.errors?.required}" class="form-bg" type="text" formControlName="email" placeholder="e.g example@mail.com">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">PRESENT/MAILING ADDRESS<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2 p-1">
+                        <textarea [ngClass]="{'input-error': personalFormGroup.controls.address.errors?.required}" rows="3" class="form-bg" formControlName="address" placeholder="e.g Jalan Merdeka No. 7 RT 001/RW 001"></textarea>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="col-md-4 p-1">
+                            <input [ngClass]="{'input-error': personalFormGroup.controls.province.errors?.required}" class="form-bg" formControlName="province" placeholder="Province  (*)">
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <input [ngClass]="{'input-error': personalFormGroup.controls.city.errors?.required}" class="form-bg" formControlName="city" placeholder="City  (*)">
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <input [ngClass]="{'input-error': personalFormGroup.controls.postalCode.errors?.required}" class="form-bg" type="number" formControlName="postalCode" placeholder="Postal Code (Only input number without any character) (*)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">PERMANENT ADDRESS<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2 p-1">
+                        <textarea [ngClass]="{'input-error': personalFormGroup.controls.permanentAddress.errors?.required}" rows="3" class="form-bg" formControlName="permanentAddress" placeholder="e.g Jalan Merdeka No. 7 RT 001/RW 001"></textarea>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="col-md-4 p-1">
+                            <input [ngClass]="{'input-error': personalFormGroup.controls.permanentProvince.errors?.required}" class="form-bg" formControlName="permanentProvince" placeholder="Province  (*)">
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <input [ngClass]="{'input-error': personalFormGroup.controls.permanentCity.errors?.required}" class="form-bg" formControlName="permanentCity" placeholder="City  (*)">
+                        </div>
+                        <div class="col-md-4 p-1">
+                            <input [ngClass]="{'input-error': personalFormGroup.controls.permanentPostalCode.errors?.required}" class="form-bg" type="number" formControlName="permanentPostalCode" placeholder="Postal Code (Only input number without any character)  (*)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="row m-0">
+                        <div class="col-md-6 p-1">
+                            <div class="form-label">PRESENT TELEPHONE<span class="ml-1" style="color:red">*</span></div>
+                            <div class="mt-2">
+                                <input [ngClass]="{'input-error': personalFormGroup.controls.presentTelephone.errors?.required}" class="form-bg" type="number" formControlName="presentTelephone" placeholder="08xxx (Only input number without any character)">
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-1">
+                            <div class="form-label">PERMANENT TELEPHONE<span class="ml-1" style="color:red">*</span></div>
+                            <div class="mt-2">
+                                <input [ngClass]="{'input-error': personalFormGroup.controls.permanentTelephone.errors?.required}" class="form-bg" type="number" formControlName="permanentTelephone" placeholder="08xxx (Only input number without any character)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="row  m-0 mt-2">
+                        <div class="col-md-6 p-0 py-2 radio-container">
+                            <label class="form-radio-label-big m-0">
+                <input type="checkbox" class="mr-2" formControlName="isUnderAge" (change)="setForm()">Please check if you are 18 years or under and indicate age
+              </label>
+                        </div>
+                        <div class="col-md-4 p-0 px-1" *ngIf="personalFormGroup.value.isUnderAge">
+                            <input class="form-bg" type="number" formControlName="underAge" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row  m-0 mt-2">
+                        <div class="col-md-6 p-0 py-2 radio-container">
+                            <label class="form-radio-label-big m-0">
+              <input type="checkbox" class="mr-2" formControlName="isOverAge" (change)="setForm()">Please check, if you are 55 years of age or over, and indicate age
+            </label>
+                        </div>
+                        <div class="col-md-4 p-0 px-1" *ngIf="personalFormGroup.value.isOverAge">
+                            <input class="form-bg" type="number" formControlName="overAge" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row  m-0 mt-2">
+                        <div class="col-md-6 p-0 py-2 radio-container">
+                            <label class="form-radio-label-big m-0">
+              <input type="checkbox" class="mr-2" formControlName="isForeigner" (change)="setForm()">Please check, If you are not an Indonesian Citizen, what type of visa do you hold ?
+            </label>
+                        </div>
+                        <div class="col-md-4 p-0 px-1" *ngIf="personalFormGroup.value.isForeigner">
+                            <input class="form-bg" type="text" formControlName="visa" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="field-section mt-3">
+        <div class="form-label">FAMILY MEMBER<span class="ml-1"style="color:red">*</span></div>
+        <div formArrayName="families" *ngFor="let field of familyList.controls; let i = index;">
+          <div [formGroupName]="i">
+            <div class="field-section mt-3">
+              <div class="row align-items-center m-0 mt-2">
+                <div class="col-md-2 p-1">
+                  <mat-select class="form-bg" placeholder="Relation" formControlName="relationStatus">
+                    <mat-option *ngFor="let item of familyTypes; let i = index" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+                <div class="col-md-2 p-1">
+                  <input class="form-bg" formControlName="name" placeholder="Name"> 
+                </div>
+                <div class="col-md-3 p-1">
+                  <input class="form-bg" formControlName="address" placeholder="Address"> 
+                </div>
+                <div class="col-md-2 p-1">
+                  <input class="form-bg" type="number" formControlName="telephoneNumber" placeholder="Phone Number"> 
+                </div>
+                <div class="col-md-2 p-1">
+                  <input class="form-bg" formControlName="occupation" placeholder="Occupation"> 
+                </div>
+                <div class="col-md-1 p-1">
+                  <img class="icon-action ml-2" (click)="removeFamily(i)" src="../../../../../assets/images/ic_delete_bin.svg">
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn-invisible" (click)="addFamily()">
+            <img height="25" src="../../../../../assets/images/ic_add_btn.svg">
+            <p class="m-0 ml-2">Add Family Member</p>
+          </button>
+        </div>
+      </div> -->
+
+
+                <div class="row mt-4 m-0 justify-content-end">
+                    <button type="button" class="button-next" matStepperNext (click)="formCheckPersonal()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step label="Job Description" [stepControl]="jobFormGroup">
+            <form [formGroup]="jobFormGroup" (keydown.enter)="$event.preventDefault()">
+                <p class="form-title">Your Job Requirements</p>
+
+                <div class="field-section">
+                    <div class="form-label">Type of Work Desired <span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <input [ngClass]="{'input-error': jobFormGroup.controls.position.errors?.required}" class="form-bg" formControlName="position" placeholder="e.g Marketing Manager">
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Work Location Desired<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <input [ngClass]="{'input-error': jobFormGroup.controls.workLocation.errors?.required}" class="form-bg" formControlName="workLocation" placeholder="e.g Jakarta, Bandung">
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">If you were asked to consider employment at another JTI-IBM location, do you have a geographic preference? <span class="ml-1" style="color:red">*</span></div>
+
+                    <div class="row col-md-6 m-0 mt-2">
+                        <div class="col-md-4 p-0 py-2">
+                            <div class="custom-control custom-radio">
+                                <input id="placement1" type="radio" class="custom-control-input" value="Yes" name="placement" formControlName="placement">
+                                <label class="custom-control-label" for="placement1">Yes</label>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="jobFormGroup.value.placement === 'Yes'">
+                            <div class="col-md-4 p-0 px-1">
+                                <input class="form-bg" formControlName="placementLoc1" placeholder="Location 1">
+                            </div>
+                            <div class="col-md-4 p-0 px-1">
+                                <input class="form-bg" formControlName="placementLoc2" placeholder="Location 2">
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <div class="row col-md-6 m-0 py-2">
+                        <div class="custom-control custom-radio">
+                            <input [ngClass]="{'input-error': jobFormGroup.controls.startWorking.errors?.required}" id="placement2" type="radio" class="custom-control-input" value="No" name="placement" formControlName="placement">
+                            <label class="custom-control-label" for="placement2">No</label>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-6 m-0 py-2">
+                        <div class="custom-control custom-radio">
+                            <input id="placement3" type="radio" class="custom-control-input" value="Does not have preferred location" name="placement" formControlName="placement">
+                            <label class="custom-control-label" for="placement3">Does not have preferred location</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Salary Desired<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <label class="sr-only" for="inlineFormInputGroup"></label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text form-pretend">Rp</div>
+                            </div>
+                            <input [ngClass]="{'input-error': jobFormGroup.controls.expectedSalary.errors?.required}" type="number" class="form-control form-pretend ml-1" formControlName="expectedSalary" id="inlineFormInputGroup" placeholder="0 (Only input number without any character)">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text form-pretend">Per Nett</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">The following conditions may be required at some point in a job assignment. Are you able to satisfy the following work schedule<span class="ml-1" style="color:red">*</span></div>
+                    <div class="" *ngFor="let item of assignments; let i=index;">
+                        <label class="form-radio-label my-1">
+            <input class="mr-1" type="checkbox" [value]="item.name" 
+            (change)="$event.target.checked? (item.isActive = true) : item.isActive = false; selectAssignment($event, item.isActive, 'assignment')">{{item.name}}
+          </label>
+                    </div>
+                </div>
+
+                <div class="field-section  mt-3">
+                    <div class="form-label">When could you be available to begin work ?<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <input [ngClass]="{'input-error': jobFormGroup.controls.startWorking.errors?.required}" class="form-bg" formControlName="startWorking" placeholder="e.g January 2022">
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Check appropriate box for type of employment<span class="ml-1" style="color:red">*</span></div>
+                    <div class="" *ngFor="let item of employments; let i=index;">
+                        <label class="form-radio-label my-1">
+            <input class="mr-1" type="checkbox" [value]="item.name" 
+            (change)="$event.target.checked? (item.isActive = true) : item.isActive = false; selectAssignment($event, item.isActive, 'employment')">{{item.name}}
+          </label>
+                    </div>
+                </div>
+
+                <div class="row mt-4 m-0 justify-content-between">
+                    <button class="button-back" matStepperPrevious>Back</button>
+                    <button class="button-next" matStepperNext (click)="formCheckJob()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step label="Job Experience" [stepControl]="experienceFormGroup">
+            <form [formGroup]="experienceFormGroup" (keydown.enter)="$event.preventDefault()">
+                <p class="form-title">Employment Experience</p>
+
+                <ng-container *ngIf="!isJobDetail">
+                    <div class="w-100" *ngFor="let item of experienceFormGroup.value.jobs">
+                        <div class="form-array-container mb-2" style="cursor: pointer;" (click)="isJobDetail = true; onSelectForm('job')">
+                            <div class="row mx-0 form-array-title">{{item?.companyName || "-"}}</div>
+                            <div class="row mx-0 mt-2 d-flex align-items-center">
+                                <img src="../../../../../assets/images/ic_location.svg">
+                                <div class="form-array-label">{{item?.companyLocation || "-"}}</div>
+                            </div>
+                            <div class="row mx-0 mt-2 d-flex align-items-center">
+                                <img src="../../../../../assets/images/ic_calendar.svg">
+                                <div class="form-array-label">
+                                    {{item?.startPeriod | date:'MMMM d, y' || "unset"}} -
+                                    <span *ngIf="item.endPeriod !== null ">{{ item.endPeriod | date:'MMMM d, y' || "unset"}}</span>
+                                    <span *ngIf="item.endPeriod === null "> Present </span> </div>
+                            </div>
+
+                            <div class="row mx-0 mt-2 d-flex align-items-center">
+                                <img src="../../../../../assets/images/ic_money.svg">
+                                <!-- | number:'':'id_ID' -->
+                                <div class="form-array-label">Rp {{item?.startSalary || "0"}} - Rp {{item?.endSalary || "0"}}</div>
+                            </div>
+
+                            <div class="mt-2">
+                                <div class="row mx-0 d-flex align-items-center form-array-label">Description of Duties</div>
+                                <div class="row mx-0 d-flex align-items-center form-description">{{item?.jobDescription || "-"}}</div>
+                            </div>
+
+                            <div class="mt-2">
+                                <div class="row mx-0 d-flex align-items-center form-array-label">Reason for Leaving</div>
+                                <div class="row mx-0 d-flex align-items-center form-description">{{item?.reasonOfQuit || "-"}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mx-0">
+                        <button class="btn-add-array px-3" (click)="isJobDetail = true; onSelectForm('job')">
+              <img height="25" src="../../../../../assets/images/ic_add_btn.svg">
+              <p class="m-0 ml-2">Add Employment Experience</p>
+            </button>
+                    </div>
+
+                    <p class="form-description">Do you have any objections to our contacting your present employer to verify the above?<span class="ml-1" style="color:red">*</span></p>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="anytime" type="radio" class="custom-control-input" value="No, you may contact anytime" name="contactAnytime" formControlName="contactAnytime">
+                            <label class="custom-control-label" for="anytime">No, you may contact anytime</label>
+                        </div>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">CONTACT NUMBER<span class="ml-1" style="color:red">*</span></div>
+                        <div class="row m-0 mt-2">
+                            <input [ngClass]="{'input-error': experienceFormGroup.controls.contactNumber.errors?.required}" class="form-bg" type="number" formControlName="contactNumber" placeholder="08xxx (Only input number without any character)">
+                        </div>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">EMAIL<span class="ml-1" style="color:red">*</span></div>
+                        <div class="row m-0 mt-2">
+                            <input [ngClass]="{'input-error': experienceFormGroup.controls.contactEmail.errors?.required}" class="form-bg" formControlName="contactEmail" placeholder="e.g example@mail.com">
+                        </div>
+                    </div>
+
+                    <div class="row m-0 mt-4">
+                        <div class="custom-control custom-radio">
+                            <input id="later" type="radio" class="custom-control-input" value="Do not contact now; you may contact at a later date." name="contactAnytime" formControlName="contactAnytime">
+                            <label class="custom-control-label" for="later">Do not contact now; you may contact at a later date.</label>
+                        </div>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">Please specify; e.g. after acceptance of offer or a specific date if appropriate)<span class="ml-1" style="color:red" *ngIf="experienceFormGroup.value.contactAnytime === 'Do not contact now; you may contact at a later date.'">*</span></div>
+                        <div class="row m-0 mt-2">
+                            <input class="form-bg" formControlName="contactDate" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 m-0 justify-content-between">
+                        <button class="button-back" matStepperPrevious>Back</button>
+                        <button class="button-next" matStepperNext (click)="formCheckExperience()">Next</button>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="isJobDetail">
+                    <div class="row mt-4 m-0 justify-content-end">
+                        <button class="button-next" (click)="addJob()">Add</button>
+                    </div>
+
+                    <div formArrayName="jobs" *ngFor="let field of jobList.controls; let i = index;">
+                        <div [formGroupName]="i">
+                            <div class="row mt-4 m-0 justify-content-end">
+                                <button class="button-warning mt-2 button-large" (click)="removeJob(i)">Delete</button>
+                            </div>
+                            <div class="field-section mt-3">
+                                <div class="form-label">COMPANY NAME<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <input class="form-bg" formControlName="companyName" placeholder="e.g IBM">
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">ADDRESS<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <input class="form-bg" formControlName="companyLocation" placeholder="e.g Jakarta">
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">POSITION<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <input class="form-bg" formControlName="position" placeholder="e.g Manager">
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">DATE EMPLOYED<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0">
+                                    <div class="col-md-6 p-0 pr-1">
+                                        <div class="mt-2">
+                                            <mat-form-field class="mr-2 form-bg" [floatLabel]="'never'" (click)="jobStartPeriod.open()">
+                                                <input matInput [matDatepicker]="jobStartPeriod" formControlName="startPeriod">
+                                                <mat-datepicker-toggle matSuffix [for]="jobStartPeriod"></mat-datepicker-toggle>
+                                                <mat-datepicker #jobStartPeriod disabled="false"></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-0 pl-1">
+                                        <div class="mt-2">
+                                            <mat-form-field class="mr-2 form-bg" [floatLabel]="'never'" (click)="jobEndPeriod.open()">
+                                                <input matInput [matDatepicker]="jobEndPeriod" formControlName="endPeriod">
+                                                <mat-datepicker-toggle matSuffix [for]="jobEndPeriod"></mat-datepicker-toggle>
+                                                <mat-datepicker #jobEndPeriod disabled="false"></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="mt-2 d-flex align-items-center">
+                                            <input type="checkbox" formControlName="curr" (change)="selectCurrentDate(i)">
+                                            <label class="ml-1 mb-0 form-description">
+                         I'm currently work here
+                      </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">BASE RATE OF PAY (START - END)<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0">
+                                    <div class="col-md-6 p-0 pr-1">
+                                        <div class="row m-0 mt-2">
+                                            <label class="sr-only" for="inlineFormInputGroup"></label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text form-pretend">Rp</div>
+                                                </div>
+                                                <input type="number" class="form-control form-pretend ml-1" formControlName="startSalary" id="inlineFormInputGroup" placeholder="0 (Only input number without any character)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-0 pl-1">
+                                        <!-- <div class="form-label">END SALARY<span class="ml-1"style="color:red">*</span></div> -->
+                                        <div class="row m-0 mt-2">
+                                            <label class="sr-only" for="inlineFormInputGroup"></label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text form-pretend">Rp</div>
+                                                </div>
+                                                <input type="number" class="form-control form-pretend ml-1" formControlName="endSalary" id="inlineFormInputGroup" placeholder="0 (Only input number without any character)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">Description of Duties<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <textarea rows="3" class="form-bg" formControlName="jobDescription" placeholder="Explain position and job description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">REASON FOR LEAVING<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <textarea rows="3" class="form-bg" formControlName="reasonOfQuit" placeholder="Explain reason for leaving"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 m-0 justify-content-end">
+                        <!-- <button class="button-back" (click)="isJobDetail = false;">Cancel</button> -->
+                        <button class="button-next ml-2" (click)="isJobDetail = false;">Save</button>
+                    </div>
+
+                </ng-container>
+
+            </form>
+        </mat-step>
+
+        <mat-step label="Education and Training" [stepControl]="educationFormGroup">
+            <form [formGroup]="educationFormGroup" (keydown.enter)="$event.preventDefault()">
+                <p class="form-title">Education and Training</p>
+
+                <ng-container *ngIf="!isEducationDetail">
+                    <div class="w-100" *ngFor="let item of educationFormGroup.value.educations">
+                        <div class="form-array-container mb-2" style="cursor: pointer;" (click)="isEducationDetail = true; onSelectForm('edu')">
+                            <div class="row mx-0 form-array-title">{{item?.school || "-"}}</div>
+                            <div class="row mx-0 mt-2 d-flex align-items-center">
+                                <img src="../../../../../assets/images/ic_calendar.svg">
+                                <div class="form-array-label">{{item?.startPeriod | date:'MMMM d, y' || "unset"}} - {{item?.endPeriod| date:'MMMM d, y' || "unset"}} </div>
+                            </div>
+
+                            <div class="row mx-0 mt-2 d-flex align-items-center">
+                                <img src="../../../../../assets/images/ic_building.svg">
+                                <div class="form-array-label">{{item?.degree || "-"}} </div>
+                            </div>
+
+                            <div class="row mx-0 mt-2 d-flex align-items-center">
+                                <img src="../../../../../assets/images/ic_graduate.svg">
+                                <div class="form-array-label">{{item?.grade || "0"}} / 4.0</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mx-0">
+                        <button class="btn-add-array px-3" (click)="isEducationDetail = true; onSelectForm('edu')">
+              <img height="25" src="../../../../../assets/images/ic_add_btn.svg">
+              <p class="m-0 ml-2">Add Education Record</p>
+            </button>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">Academic Achievements and Activities:</div>
+                        <div class="row m-0 mt-2">
+                            <textarea rows="5" class="form-bg" formControlName="activitiesSocietiesAchievement" placeholder="Please list academic honors, scholarships, or fellowships; memberships in academic honorary societies; or participation in or offices held in extraculicular activities you consider significant. You may exclude all information indicate of age, sex, race, religion, color, national religion, and handicap."></textarea>
+                        </div>
+                    </div>
+
+                    <p class="form-description mt-3">Complete if applicable:</p>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">Last thesis or Significant Research</div>
+                        <div class="row m-0 mt-2">
+                            <input class="form-bg" formControlName="scientificPaperTitle" placeholder="Title of scientific work">
+                        </div>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">RESEARCH</div>
+                        <div class="row m-0 mt-2">
+                            <input class="form-bg" formControlName="researchTitle" placeholder="Research title">
+                        </div>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">Papers/Books Published</div>
+                        <div class="row m-0 mt-2">
+                            <input class="form-bg" formControlName="publicationTitle" placeholder="Published book title">
+                        </div>
+                    </div>
+
+                    <div class="field-section mt-3">
+                        <div class="form-label">Patents Issued</div>
+                        <div class="row m-0 mt-2">
+                            <input class="form-bg" formControlName="patent" placeholder="Patent">
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 m-0 justify-content-between">
+                        <button class="button-back" matStepperPrevious>Back</button>
+                        <button class="button-next" matStepperNext (click)="formCheck()">Next</button>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="isEducationDetail">
+                    <div class="row mt-4 m-0 justify-content-end">
+                        <button class="button-next" (click)="addEducation()">Add</button>
+                    </div>
+
+                    <div formArrayName="educations" *ngFor="let field of educationList.controls; let i = index;">
+                        <div [formGroupName]="i">
+                            <div class="row mt-4 m-0 justify-content-end">
+                                <button class="button-warning mt-2 button-large" (click)="removeEducation(i)">Delete</button>
+                            </div>
+                            <div class="field-section mt-3">
+                                <div class="form-label">TYPE OF SCHOOL<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <mat-select class="form-bg" placeholder="Choose type" formControlName="degree">
+                                        <mat-option *ngFor="let item of types; let i = index" [value]="item">
+                                            {{ item }}
+                                        </mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">NAME OF EDUCATION INSTITUTION<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <input class="form-bg" formControlName="school" placeholder="e.g Universitas Indonesia">
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">Date Attended<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0">
+                                    <div class="col-md-6 p-0 pr-1">
+                                        <div class="mt-2">
+                                            <mat-form-field class="mr-2 form-bg" [floatLabel]="'never'" (click)="eduStartPeriod.open()">
+                                                <input matInput [matDatepicker]="eduStartPeriod" formControlName="startPeriod">
+                                                <mat-datepicker-toggle matSuffix [for]="eduStartPeriod"></mat-datepicker-toggle>
+                                                <mat-datepicker #eduStartPeriod disabled="false"></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-0 pl-1">
+                                        <!-- <div class="form-label">END PERIOD<span class="ml-1"style="color:red">*</span></div> -->
+                                        <div class="mt-2">
+                                            <mat-form-field class="mr-2 form-bg" [floatLabel]="'never'" (click)="eduEndPeriod.open()">
+                                                <input matInput [matDatepicker]="eduEndPeriod" formControlName="endPeriod">
+                                                <mat-datepicker-toggle matSuffix [for]="eduEndPeriod"></mat-datepicker-toggle>
+                                                <mat-datepicker #eduEndPeriod disabled="false"></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="form-label">Type of Degree, Diploma Certificate and Major/Minor Fields of Study<span class="ml-1" style="color:red">*</span></div>
+                                <div class="row m-0 mt-2">
+                                    <input class="form-bg" formControlName="fieldOfStudy" placeholder="e.g Computer Science">
+                                </div>
+                            </div>
+
+                            <div class="field-section mt-3">
+                                <div class="row m-0">
+                                    <div class="col-md-6 p-0 pr-1">
+                                        <div class="form-label">Academic Standing (GRADE AVERAGE OUT OF BASE (e.g.: 3.2/4.0)<span class="ml-1" style="color:red">*</span></div>
+                                        <div class="row m-0 mt-2">
+                                            <label class="sr-only" for="inlineFormInputGroup"></label>
+                                            <div class="input-group mb-2">
+                                                <input type="number" class="form-control form-pretend ml-1" formControlName="grade" id="inlineFormInputGroup" placeholder="0">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text form-pretend">/4.0</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 m-0 justify-content-end">
+                        <!-- <button class="button-back" (click)="isEducationDetail = false;">Cancel</button> -->
+                        <button class="button-next ml-2" (click)="isEducationDetail = false;">Save</button>
+                    </div>
+                </ng-container>
+            </form>
+        </mat-step>
+
+        <mat-step label="Skill" [stepControl]="skillFormGroup">
+            <form [formGroup]="skillFormGroup" (keydown.enter)="$event.preventDefault()">
+
+                <p class="form-title">Skill</p>
+
+                <div class="form-label mt-3">OTHER SKILL<span class="ml-1" style="color:red">*</span></div>
+                <div formArrayName="skills" *ngFor="let field of skillList.controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <div class="field-section mt-3">
+                            <div class="d-flex align-items-center m-0 mt-2">
+                                <div class="col-md-11 p-1">
+                                    <input class="form-bg" formControlName="skillName" placeholder="e.g.: Certified Barista, Certified Yoga instructor, Certified Financial Planner,  etc">
+                                </div>
+                                <img class="icon-action ml-2" (click)="removeSkill(i)" src="../../../../../assets/images/ic_delete_bin.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button class="btn-invisible" (click)="addSkill()">
+            <img height="25" src="../../../../../assets/images/ic_add_btn.svg">
+            <p class="m-0 ml-2">Add Skill</p>
+          </button>
+                </div>
+
+                <div class="row mt-4 m-0 justify-content-between">
+                    <button class="button-back" matStepperPrevious>Back</button>
+                    <button class="button-next" matStepperNext (click)="formCheckSkill()">Next</button>
+                </div>
+
+            </form>
+        </mat-step>
+
+        <mat-step label="General Information" [stepControl]="generalFormGroup">
+            <form [formGroup]="generalFormGroup" (keydown.enter)="$event.preventDefault()">
+                <p class="form-title">General Information</p>
+
+                <div class="field-section mt-3">
+                    <div class="row m-0 d-flex align-items-center">
+                        <div class="form-label">HAVE YOU EVER</div>
+                        <div class="custom-control custom-radio ml-2">
+                            <input id="employed" type="radio" class="custom-control-input" value="Been employed" name="previouslyWorked" formControlName="previouslyWorked">
+                            <label class="custom-control-label custom-control-label-general mb-0" for="employed">been employed by or</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2">
+                            <input id="applied" type="radio" class="custom-control-input" value="Previously applied" name="previouslyWorked" formControlName="previouslyWorked">
+                            <label class="custom-control-label custom-control-label-general  mb-0" for="applied">previously applied to jti/ibm or any of its subsidiaries?<span class="ml-1"style="color:red">*</span></label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2">
+                            <input id="haventApplied" type="radio" class="custom-control-input" value="No, I haven't" name="previouslyWorked" formControlName="previouslyWorked">
+                            <label class="custom-control-label custom-control-label-general  mb-0" for="haventApplied">No, I haven't</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="field-section mt-1">
+                    <div class="form-label">if so, please choose the appropriate box and specify location(s) and date(s)</div>
+                    <div class="row m-0 mt-2">
+                        <input class="form-bg" formControlName="previouslyWorkedDetail" placeholder="">
+                    </div>
+                </div>
+
+                <div class="field-section mt-4">
+                    <div class="form-label">Do you have any family members or close relatives that work for IBM or IBM JTI?<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="ya5" type="radio" class="custom-control-input" value="Yes" name="anyRelatives" formControlName="anyRelatives" (change)=selectRelative()>
+                            <label class="custom-control-label" for="ya5">Yes</label>
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="tidak5" type="radio" class="custom-control-input" value="No" name="anyRelatives" formControlName="anyRelatives" (change)=selectRelative()>
+                            <label class="custom-control-label" for="tidak5">No</label>
+                        </div>
+                    </div>
+
+                    <ng-container *ngIf="generalFormGroup.value.anyRelatives === 'Yes'">
+                        <div formArrayName="relatives" *ngFor="let field of relativeList.controls; let i = index;">
+                            <div [formGroupName]="i">
+                                <div class="field-section mt-3">
+                                    <div class="row align-items-center m-0 mt-2">
+                                        <div class="col-md-3 p-1">
+                                            <input class="form-bg" formControlName="name" placeholder="Name">
+                                        </div>
+                                        <div class="col-md-4 p-1">
+                                            <input class="form-bg" formControlName="position" placeholder="Position">
+                                        </div>
+                                        <div class="col-md-1 p-1">
+                                            <img class="icon-action ml-2" (click)="removeRelative(i)" src="../../../../../assets/images/ic_delete_bin.svg">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 mb-2">
+                            <button class="btn-invisible" (click)="addRelative()">
+                <img height="25" src="../../../../../assets/images/ic_add_btn.svg">
+                <p class="m-0 ml-2">Add Relative</p>
+              </button>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">If you were referred to JTI by any of the following, please specify :<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row  m-0 mt-2">
+                        <div class="col-md-5 p-0 py-2 radio-container">
+                            <label class="form-radio-label-big m-0">
+                  <input type="checkbox" class="mr-2" formControlName="isAds" (change)="setForm()">Employment Advertisement (Name of Publication)
+                </label>
+                        </div>
+                        <div class="col-md-4 p-0 px-1" *ngIf="generalFormGroup.value.isAds">
+                            <input class="form-bg" formControlName="ads" placeholder="Mention source of information">
+                        </div>
+                    </div>
+
+                    <div class="row  m-0 mt-2">
+                        <div class="col-md-5 p-0 py-2 radio-container">
+                            <label class="form-radio-label-big m-0">
+                <input type="checkbox" class="mr-2" formControlName="isAgency" (change)="setForm()">Employment Agency (Name of Agency)
+              </label>
+                        </div>
+                        <div class="col-md-4 p-0 px-1" *ngIf="generalFormGroup.value.isAgency">
+                            <input class="form-bg" formControlName="agency" placeholder="Mention agency name">
+                        </div>
+                    </div>
+
+                    <div class="row  m-0 mt-2">
+                        <div class="col-md-5 p-0 py-2 radio-container">
+                            <label class="form-radio-label-big m-0">
+                <input type="checkbox" class="mr-2" formControlName="isOther" (change)="setForm()">Other (e.g. State Employment Service, Placement Office, etc.)
+              </label>
+                        </div>
+                        <div class="col-md-4 p-0 px-1" *ngIf="generalFormGroup.value.isOther">
+                            <input class="form-bg" formControlName="other" placeholder="e.g DEPNAKER, Info Pegawai">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Have an employment agreement with a company or organization that could affect your employment with us? (Service ties, compulsory government work, such as: military service, civil servants, etc.)<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="ya1" type="radio" class="custom-control-input" value="Yes" name="otherWorkAgreement" formControlName="otherWorkAgreement">
+                            <label class="custom-control-label" for="ya1">Yes</label>
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="tidak1" type="radio" class="custom-control-input" value="No" name="otherWorkAgreement" formControlName="otherWorkAgreement">
+                            <label class="custom-control-label" for="tidak1">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Please include any other information you think would be helpful to us in considering your for employment, such as additional work experience, activities, accomplishments, voluntary work experience, etc. (If additional space is needed
+                        attach extra sheet)</div>
+                    <div class="row m-0 mt-2">
+                        <textarea rows="5" class="form-bg" formControlName="additionalInformation" placeholder=""></textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-4 m-0 justify-content-between">
+                    <button class="button-back" matStepperPrevious>Back</button>
+                    <button class="button-next" matStepperNext (click)="formCheckGeneral()">Next</button>
+                </div>
+
+            </form>
+        </mat-step>
+
+        <mat-step label="Lembar Keterangan" [stepControl]="crimeFormGroup">
+            <form [formGroup]="crimeFormGroup" (keydown.enter)="$event.preventDefault()">
+                <p class="form-title">Security Data Sheet</p>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">In the last five years, have you been convicted or pleaded guilty to a crime (including any crimes committed during military service)?<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="ya2" type="radio" class="custom-control-input" value="Yes" name="criminalHistory" formControlName="criminalHistory">
+                            <label class="custom-control-label" for="ya2">Yes</label>
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="tidak2" type="radio" class="custom-control-input" value="No" name="criminalHistory" formControlName="criminalHistory">
+                            <label class="custom-control-label" for="tidak2">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Do not include arrests without convictions, speeding or minor traffic violations.</div>
+                    <div class="form-label">Are you at this present time, under indictments or otherwise formally charged with a felony?<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="ya3" type="radio" class="custom-control-input" value="Yes" name="underIndictmentsOrCharged" formControlName="underIndictmentsOrCharged">
+                            <label class="custom-control-label" for="ya3">Yes</label>
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="tidak3" type="radio" class="custom-control-input" value="No" name="underIndictmentsOrCharged" formControlName="underIndictmentsOrCharged">
+                            <label class="custom-control-label" for="tidak3">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-label">Was your discharge as a Indonesia Veteran dishonorable?<span class="ml-1" style="color:red">*</span></div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="ya4" type="radio" class="custom-control-input" value="Yes" name="honoredAsIndonesiaVeteran" formControlName="honoredAsIndonesiaVeteran">
+                            <label class="custom-control-label" for="ya4">Yes</label>
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-2">
+                        <div class="custom-control custom-radio">
+                            <input id="tidak4" type="radio" class="custom-control-input" value="No" name="honoredAsIndonesiaVeteran" formControlName="honoredAsIndonesiaVeteran">
+                            <label class="custom-control-label" for="tidak4">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-section mt-3">
+                    <div class="form-description">If you answered yes to any of the above question, please briefly describe the circumstances indicating the date, nature and place of the offense, the sentence and its disposition, I.e.. Incarceration, probation, suspended sentences,etc.
+                        Your answer is looked upon only as one of the factors considered in the employment decision and is evaluated in terms of the nature, severity and date of the offense.</div>
+                    <div class="row m-0 mt-2">
+                        <textarea rows="5" class="form-bg" formControlName="description" placeholder=""></textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-4 m-0 justify-content-between">
+                    <button class="button-back" matStepperPrevious>Back</button>
+                    <button class="button-next" matStepperNext (click)="formCheckCrime()">Next</button>
+                </div>
+
+            </form>
+        </mat-step>
+
+        <mat-step label="Finish">
+            <p class="form-title">Terms and Condition</p>
+            <p class="form-description">Please read the following statements carefully; they constitute the conditions for employment with JTI.</p>
+            <p class="form-description">I understand and agree that:</p>
+            <ol>
+                <li class="form-description">Any falsification provided by me to this company will be sufficient cause for cancellation of this application and or separation from the company's service without severance payment regardless of how long I have been employed.</li>
+                <li class="form-description">The information that I have provided on this application is accurate to the best of my knowledge.</li>
+                <li class="form-description">To give authorization to the person, schools, past employers, organizations, current employer (if approved by me in the 'Employment Experience' section) named in this application to verify the information I have provided and to provide
+                    relevant information to JTI that may be required for the decition of my employment.</li>
+                <li class="form-description">Although management makes every effort to accommodate individual preferences, business needs may at times make the following conditions mandatory: overtime, shift work, a rotating work schedule. Or a work schedule that includes Saturday
+                    and Sunday. I understand and accept these as conditions of my continuing employment.</li>
+                <li class="form-description">Upon employment, I will sign JTI and IBM’s Agreement regarding Confidential Information and Intellectual Property, in which I will agree to protect JTI/IBM’s confidential information and not to disclose to this confidential information
+                    to other party. This agreement also sets forth the conditions under which I assign to JTI the entire right, title and interest in certain ideas, inventions and other intellectual property developed while I'm under JTI’s employment.
+                    (I understand that I may obtain now or at any time before my employment, upon request, a blank copy of this agreement).</li>
+                <li class="form-description">I will provide Indonesia Government security clearance (SKCK).</li>
+                <li class="form-description">My former employer did not have a clause prohibiting me from applying to JTI/IBM.</li>
+                <li class="form-description">I am not a Government Employee.</li>
+            </ol>
+
+            <div class="row mt-4 m-0 justify-content-between">
+                <button class="button-back" matStepperPrevious>Back</button>
+                <button class="button-next" (click)="submitBlueForm()">Agree and Submit Form</button>
+            </div>
+        </mat-step>
+
+    </mat-horizontal-stepper>
+</div>

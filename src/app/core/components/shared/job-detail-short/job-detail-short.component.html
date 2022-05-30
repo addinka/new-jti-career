@@ -1,0 +1,49 @@
+<div>
+  <div class="job-title">{{job?.title}}</div>
+  <div class="job-categories mt-2">{{job?.categories}}</div>
+
+  <div class="row mt-5">
+    <div class="col-md-5 job-label d-flex align-items-center">EMPLOYMENT</div>
+    <div class="col-md-7 job-content">{{job?.employment}}</div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-5 job-label d-flex align-items-center">LOCATION</div>
+    <div class="col-md-7 job-content">{{job?.location}}</div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-5 job-label d-flex align-items-center">EXPECTED JOIN DATE</div>
+    <div class="col-md-7 job-content">
+      <div *ngIf="job?.onBoardStart !== 'F' && job?.onBoardStart !== 'I'; else f">
+        {{job?.onBoardStart | date:'dd MMMM yyyy'}}
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-5 job-label d-flex align-items-center">LANGUAGE</div>
+    <div class="col-md-7 job-content">{{job?.language}}</div>
+  </div>
+  <div *ngIf="job?.employment !== 'Intern'">
+    <div class="row mt-3">
+      <div class="col-md-5 job-label d-flex align-items-center">EDUCATION</div>
+      <div class="col-md-7 job-content">{{job?.education}}</div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-5 job-label d-flex align-items-center">EXPERIENCE</div>
+      <div class="col-md-7 job-content">{{job?.experience}}</div>
+    </div>
+  </div>
+</div>
+
+<button class="col-10 mt-5 py-3 custom-button"
+        [ngClass]="{'button-primary': !isApplied, 'button-warning': isApplied && !isWithdraw && !isOnBoard && !isRejected, 'button-disable': isWithdraw || isPreview || isOnBoard || isRejected}"
+        (click)="onApply(job?._id)" [disabled]="isWithdraw || isPreview || isOnBoard || isRejected">
+        {{isApplied? (isWithdraw ? 'Apply Now': 'Withdraw Application'): 'Apply Now'}}
+</button>
+
+<ng-template #f>
+  <div *ngIf="job?.onBoardStart === 'F'; else i">Anytime</div>
+</ng-template>
+
+<ng-template #i>
+  Immediately
+</ng-template>

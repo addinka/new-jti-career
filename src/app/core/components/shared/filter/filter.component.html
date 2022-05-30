@@ -1,0 +1,4 @@
+<div class="filter-container row align-items-center" (click)="onSelectFilter()">
+  <span [ngClass]="{'filter-dot': !item.selected, 'filter-dot-selected': item.selected}"></span>
+  <span class="filter-text" [ngStyle]="{'font-family': item.selected ? 'IBM-Plex-Sans-Bold' : 'IBM-Plex-Sans-Regular'}">{{ item.name }}</span>
+</div>

@@ -1,0 +1,158 @@
+<div [ngClass]="{'applicant-container': true, 'no-bg': inheritBackground}" style="width: 945px;">
+    <div class="left-container col-md-6">
+        <span class="profile">
+      <div class="col-md-4">
+        <img class="rounded-circle"[src]="applicant.user.profpic" onerror="this.src='../../../../../../assets/images/ic_user.svg'">
+      </div>
+      <div class="applicant-name text-capitalize col-md-8">{{applicant['user']['name'].toLowerCase()}}</div>
+    </span>
+        <span>
+      <span class="col-md-4 label">EMAIL</span>
+        <span class="col-md-8 content">{{applicant['user']['email'] || '-'}}</span>
+        </span>
+        <span>
+      <span class="col-md-4 label">CONTACT NO.</span>
+        <span class="col-md-8 content">{{applicant['user']['contact'] || '-'}}</span>
+        </span>
+        <span>
+      <span class="col-md-4 label">LINKEDIN URL</span>
+      <span class="col-md-8 content"><a href="{{applicant.user.linkedinURL}}" target="_blank" rel="noopener noreferrer">{{applicant['user']['linkedinURL'] || '-'}}</a></span>
+      </span>
+          <span>
+      <span class="col-md-4 label">DOMICILE</span>
+        <span class="col-md-8 content">{{applicant['user']['domicile'] || '-'}}</span>
+        </span>
+        <span>
+      <span class="col-md-4 label">UNIVERSITY</span>
+        <span class="col-md-8 content">{{applicant['user']['university'] || '-'}}</span>
+        </span>
+        <span>
+      <span class="col-md-4 label">MAJOR</span>
+        <span class="col-md-8 content">{{applicant['user']['majorField'] || '-'}}</span>
+        </span>
+        <span>
+      <span class="col-md-4 label">LANGUAGE</span>
+        <span class="col-md-8 content">{{applicant['user']['language'] || '-'}}</span>
+        </span>
+        <span>
+      <span class="col-md-4 label">EDUCATION</span>
+        <span class="col-md-8 content">{{applicant['user']['degree'] || '-'}}</span>
+        </span>
+        <span>
+          <span class="col-md-4 label">EXPERIENCE</span>
+            <span class="col-md-8 content">{{applicant['user']['experience'] || '-'}}</span>
+        </span>
+        <ng-container *ngIf="applicant.user.workExperience && applicant.user.workExperience.length > 0">
+
+          <span>
+            <span class="col-md-8 label">WORK EXPERIENCE</span>
+          </span>
+            <ng-container *ngFor="let work of applicant.user.workExperience; let j = index;">
+              <span class="col-md-4 label">  Job {{j + 1}}</span>
+              <span>
+                <span class="col-md-4 label">COMPANY</span>
+                <span class="col-md-8 content">{{work?.companyName}}</span>
+              </span>
+              <span>
+                <span class="col-md-4 label">POSITION</span>
+                <span class="col-md-8 content"> {{work?.position}}</span>
+            </span>
+            <span>
+              <span class="col-md-4 label">JOB DESK</span>
+              <span class="col-md-8 content">{{work?.jobdesk}}</span>
+            </span>
+            <span>
+              <span class="col-md-4 label">START PERIOD</span>
+              <span class="col-md-8 content">{{work?.startPeriod}}</span>
+            </span>
+            <span>
+              <span class="col-md-4 label">END PERIOD</span>
+              <span class="col-md-8 content">{{work?.endPeriod}}</span>
+            </span>
+          </ng-container>
+          <span>
+            <span class="col-md-8 label">END OF WORK EXPERIENCE HISTORY</span>
+          </span>
+        </ng-container>
+
+      <span class="col-md-12 label mb-2" *ngIf="!isCandidate && applicant.expSalary">EXPECTATION SALARY</span>
+      <span class="col-md-12 applicant-salary mb-0" *ngIf="!isCandidate && applicant.expSalary">{{ applicant.expSalary | currency : 'Rp ' : '' : '1.0-0' }}</span>
+      <div class="col-md-12 applicant-negotiable mt-1" *ngIf="!isCandidate && applicant.isNegotiable">{{applicant['isNegotiable'] == true ? 'Negotiable' : ''}}</div>
+      <span class="col-md-12 label mb-2" *ngIf="!isCandidate && applicant.comments">WHY HIRE ME</span>
+      <span class="col-md-12 content" *ngIf="!isCandidate && applicant.comments">{{applicant['comments']}}</span>
+      <!-- <span class="col-md-8 label mb-2">APPLICATION HISTORY</span>
+
+      <div class="col">
+          <div class="row mt-3" *ngFor="let history of applicant.user.applicationRecords">
+              <div class="col-md-3" style="margin-top: -2px;">
+                  {{ history.timestamp | date: 'dd/MM/yyyy' }}
+              </div>
+              <div class="col-md-3 applicant-label-bold">
+                  {{ history.status }}
+              </div>
+              <div class="col-md-5 applicant-history-role">
+                  {{ history?.jobTitle }} <br>
+                  <span class="mt-2" id="applicant-recruiter-name" *ngIf="history['recruiterName']">by
+            {{ history.recruiterName }}</span>
+              </div>
+          </div>
+      </div> -->
+    </div>
+    <div class="right-container col-md-6">
+        <div class="action-button-container" *ngIf="isCandidate">
+          <button class="btn button-primary-outlined text-primary" (click)="onInvite('blueform')">
+            <img style="width: initial;" class="mr-2" src="../../../../../assets/images/ic_blueform.svg">
+            Send Blue Form
+          </button>
+
+          <img [src]="getShortListIcon()" alt="" (click)="setPotential()">
+        </div>
+
+        <div class="action-button-container" *ngIf="showApplicantAction(applicant) && !isCandidate">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="inviteButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Invite
+        </button>
+                <div class="dropdown-menu" aria-labelledby="inviteButton">
+                    <span class="dropdown-item" *ngFor="let type of invItems" (click)="onInvite(type)">{{ type }}</span>
+                </div>
+            </div>
+            <button class="reject-button mx-2" (click)="rejectApplicant()">Reject</button>
+            <img [src]="getShortListIcon()" alt="" (click)="setPotential()">
+        </div>
+        <div class="applicant-documents" style="display: flex; flex-wrap: wrap">
+            <span class="col-md-12 label">Documents</span>
+            <div class="px-2 position-relative" *ngFor="let doc of applicant.user.attachments; let i = index">
+                <app-document [document]="doc" [applicantID]=applicant.user._id [editable]="false" [saveChanges]="false" [applyForm]="false" [onboardForm]="applicant.user.onboardForm" ></app-document>
+                <span class="position-absolute" style="top:0.25rem;right:0.75rem" *ngIf="doc.name==='CV'" ><cv-indicator [color]="applicant.user.color"></cv-indicator></span>
+                <span class="position-absolute onboard-status" style="top:0.25rem;right:0.75rem" *ngIf="doc.type ==='onboardForm'" >{{applicant.user.onboardForm?.status || 'not filled yet'}}</span>
+            </div>
+        </div>
+        <span class="col-md-12 label mb-2">SELF DESCRIPTION</span>
+        <span class="col-md-12 content mb-5">{{applicant['user']['selfDesc']}}</span>
+        <span class="col-md-12 label mb-2">QUALIFICATIONS</span>
+        <span class="col-md-12 content mb-5">{{applicant['user']['qualification']}}</span>
+    </div>
+
+    <div class="w-100" *ngIf="applicant.user.applicationRecords && applicant.user.applicationRecords.length > 0">
+      <span class="col-md-8 label mb-2">APPLICATION HISTORY</span>
+      <div class="col">
+          <div class="row mt-3" *ngFor="let history of applicant.user.applicationRecords">
+              <div class="col-md-2" style="margin-top: -2px;">
+                  {{ history.timestamp | date: 'dd/MM/yyyy' }}
+              </div>
+              <div class="col-md-3 applicant-label-bold d-flex">
+                  {{ history.status }}
+                  <span *ngIf="history.remarks" class="history-remarks ml-2" tabindex="0">
+                    <span>{{history.remarks}}</span>
+                  </span>
+              </div>
+              <div class="col-md-5 applicant-history-role">
+                  {{ history?.jobTitle }} <br>
+                  <span class="mt-2" id="applicant-recruiter-name" *ngIf="history['recruiterName']">by
+            {{ history.recruiterName }}</span>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+# App Manifest
+applications:
+- name: jti-career-new
+  buildpacks: 
+   - https://github.com/cloudfoundry/staticfile-buildpack
+  path: ./dist/jti-career
+  command: "$HOME/boot.sh"
+  routes:
+    - route: career.ibm-jti.com
+  memory: 256M

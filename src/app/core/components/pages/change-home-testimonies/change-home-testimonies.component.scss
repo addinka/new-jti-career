@@ -1,0 +1,136 @@
+@import '../../../../../variables';
+
+/* Container needed to position the button. Adjust the width as needed */
+.container {
+    position: relative;
+    width: 50%;
+  }
+  
+/* Style the button and place it in the middle of the container/image */
+.container .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px; 
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  font-size: 10px;
+}
+
+.card {
+  width: 230px; 
+  height: 380px; 
+  margin-right: 20px; 
+  margin-bottom: 100px;
+  border-radius: 10px;
+  @media screen and (max-width: 1024px){
+    width: 300px;
+  }
+}
+
+.testimonial{
+  font-family: $font-regular;
+  font-size: 12px;
+  margin: 0px 10px 20px 10px;
+  height: 100px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep input.mat-input-element {
+  font-family: $font-regular;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+::ng-deep textarea.mat-input-element {
+  font-family: $font-regular;
+  font-size: 12px;
+  margin: 2px 0;
+}
+
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 13px;
+}
+
+.applicants{
+  font-family: $font-bold;
+  font-size: 10px;
+  line-height: 15px; 
+  align-items: center;
+  &-name{
+    margin-bottom: 5px;
+    height: 20px;
+  }
+  &-role{
+    margin-bottom: 10px;
+    height: 20px;
+  }
+}
+
+.btn-edit{
+  color: white;
+  background-color: #598CF5;
+  font-family: $font-bold;
+  font-size: 10px;
+  border-radius: 5px;
+  width: 80%;
+  height: 35px;
+  margin-bottom: 10px;
+}
+
+.btn-delete{
+  color: #598CF5;
+  background-color: white;
+  border: 2px solid #598CF5;
+  font-family: $font-bold;
+  font-size: 10px;
+  border-radius: 5px;
+  width: 80%;
+  height: 35px;
+  margin-bottom: 10px;
+}
+
+.img-size{
+  border-radius: 50%;
+  margin-top: -30px; 
+  height: 120px;
+  width: 120px;
+  @media screen and (max-width: 1024px){
+    height: 80px;
+    width: 80px;
+  }
+  @media screen and (max-width: 768px){
+    height: 50px;
+    width: 50px;
+  }
+  @media screen and (max-width: 425px){
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.card-content{
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.label-content{
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.mat-form-field-infix{
+  width: 100%;
+}
+
+:host ::ng-deep .mat-form-field-infix{
+  border-top: 0px;
+}
+
+textarea.mat-input-element{
+  margin:0;
+  padding:3px;
+}

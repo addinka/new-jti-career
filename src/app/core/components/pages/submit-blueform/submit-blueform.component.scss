@@ -1,0 +1,286 @@
+@import '../../../../../variables';
+.job-title {
+    font-family: $font-medium;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 33px;
+    font-size: 30px;
+    color: $color-white;
+    @media screen and (max-width: 768px) {
+        font-size: 20px;
+    }
+    @media screen and (max-width: 425px) {
+        font-size: 18px;
+    }
+}
+
+.step-container {
+    padding: 25px 50px;
+    @media screen and (max-width: 425px) {
+        padding: 25px 20px;
+    }
+}
+
+.form-title {
+    font-family: $font-bold;
+    font-size: 24px;
+    color: black;
+    @media screen and (max-width: 425px) {
+        font-size: 18px;
+    }
+}
+
+.form-label {
+    font-family: $font-medium;
+    font-size: 14px;
+    color: black;
+    text-transform: uppercase;
+    @media screen and (max-width: 425px) {
+        font-size: 12px;
+    }
+}
+
+.form-description {
+    font-family: $font-regular;
+    font-size: 14px;
+    color: black;
+    text-align: justify;
+    @media screen and (max-width: 425px) {
+        font-size: 12px;
+    }
+}
+
+.form-radio-label {
+    font-family: $font-regular;
+    font-size: 14px;
+    color: black;
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: 425px) {
+        font-size: 12px;
+    }
+}
+
+.form-radio-label-big {
+    font-family: $font-regular;
+    font-size: 14px;
+    color: black;
+    text-align: justify;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    @media screen and (max-width: 425px) {
+        font-size: 12px;
+    }
+}
+
+.form-array-container {
+    border-radius: 10px;
+    padding: 20px;
+    border: #979797 solid 1px;
+}
+
+.form-array-title {
+    font-family: $font-bold;
+    color: black;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.form-array-label {
+    font-family: $font-regular;
+    color: #4C617C;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.form-array-value {
+    font-family: $font-regular;
+    color: black;
+    font-size: 14px;
+    word-wrap: break-word;
+    margin-top: 5px;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-form-field-infix {
+    padding: 0 !important;
+    border-top: 0 !important;
+    width: 100% !important;
+}
+
+::ng-deep .mat-focused .placeholder {
+    color: $color-light-slate-gray-v2;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    overflow-x: auto;
+}
+
+::ng-deep .mat-horizontal-stepper-header {
+    @media screen and (min-width: 768px) {
+        min-width: fit-content;
+    }
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+    background-color: #fafafa;
+    color: #588cf5;
+    border: #588cf5 solid 1px;
+    font-size: 10px;
+}
+
+.radio-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.button-next {
+    border: none;
+    border-radius: 5px;
+    color: $color-white;
+    text-align: center;
+    font-family: $font-medium;
+    background: $color-corn-flower-blue;
+    font-size: 14px;
+    padding: 5px 20px
+}
+
+.button-back {
+    border: $color-corn-flower-blue solid 2px;
+    border-radius: 5px;
+    color: $color-corn-flower-blue;
+    ;
+    text-align: center;
+    font-family: $font-medium;
+    background: $color-white;
+    font-size: 14px;
+    padding: 5px 20px
+}
+
+.button-large {
+    font-size: 14px;
+    padding: 5px 20px
+}
+
+.form-pretend {
+    background: #F6F8FB;
+    border: none;
+    border-radius: 5px;
+    color: #4C617C;
+    font-family: "IBM-Plex-Sans-Regular";
+    font-size: 15px;
+    outline: none;
+}
+
+.assignment-container {
+    padding: 20px 10px;
+    border-radius: 10px;
+    border: grey dashed 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.assignment-container-active {
+    border: #598CF5 dashed 1px;
+}
+
+.mat-chip.mat-standard-chip {
+    background-color: white;
+    color: rgba(0, 0, 0, .87);
+    width: 100%;
+    padding: 30px 20px;
+    justify-content: center;
+    border: grey dashed 1px;
+    &.mat-chip-selected {
+        border: #598CF5 dashed 1px;
+    }
+}
+
+::ng-deep .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    border: #598CF5 dashed 1px;
+    background: white;
+}
+
+.icon-action {
+    cursor: pointer;
+    height: 30px;
+}
+
+.btn-invisible {
+    border: none;
+    border-radius: 5px;
+    color: #588cf5;
+    background: transparent;
+    text-align: center;
+    display: flex;
+    font-size: 13px;
+    font-family: $font-medium;
+    align-items: center;
+}
+
+.btn-add-array {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 15px 0px;
+    background: white;
+    border: #588cf5 solid 2px;
+    color: #588cf5;
+    font-size: 13px;
+    font-family: $font-medium;
+}
+
+.custom-control-label {
+    font-family: $font-regular;
+    font-size: 14px;
+    @media screen and (max-width: 425px) {
+        font-size: 12px;
+    }
+}
+
+.custom-control-label-general {
+    font-family: $font-medium;
+    font-size: 14px;
+    text-transform: uppercase;
+    @media screen and (max-width: 425px) {
+        font-size: 12px;
+    }
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: #598CF5;
+    color: #fff;
+}
+
+::ng-deep .mat-step-text-label {
+    font-family: $font-medium;
+}
+
+.button-transparant-blue {
+    @media screen and (max-width: 768px) {
+        height: 100%;
+    }
+}
+
+.input-error {
+    border: red 2px solid;
+}

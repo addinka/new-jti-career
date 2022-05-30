@@ -1,0 +1,234 @@
+<div class="wrapper">
+    <div class="wrapper-inside">
+
+        <!-- Edit Form -->
+        <form [formGroup]="editForm" (keydown.enter)="$event.preventDefault()">
+
+            <!-- Page title with action button -->
+            <div class="row justify-content-between">
+                <div class="col-auto align-self-center page-title">Edit Profile</div>
+                <button (click)="onSubmit()" [disabled]="!editForm.valid" class="page-action-button" [ngClass]="{'button-primary': editForm.valid, 'button-disable': !editForm.valid}">
+                  Update Profile
+                </button>
+            </div>
+
+            <div class="row mt-4">
+
+                <!-- Section: Display Picture -->
+                <div class="col-lg-auto mr-lg-4 mr-0 mb-lg-0 mb-4">
+                    <div class="section-title">Display Picture</div>
+
+                    <div class="mt-4">
+                        <div class="row justify-content-center">
+                            <div class="section-display-picture">
+                                <img [src]="hasChanged ? myPic : profileURL" onerror="this.src='../../../../../assets/images/ic_user.svg'" alt="Profile Picture">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 justify-content-center">
+                            <input type="file" id="photo" hidden (change)="onSelectedImage($event)" accept="image/*" />
+                            <button class="col button-transparant-blue" type="button" (click)="onSelectPhoto()">Select Photo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Personal Information -->
+                <div class="col-lg-6 offset-xl-1 mr-lg-4 mr-0 mb-lg-0 mb-4">
+                    <div class="section-title">Personal Information</div>
+
+                    <div class="mt-4">
+
+                        <!-- Field: Full Name -->
+                        <div class="row">
+                            <div class="col-xl-3 align-self-center section-label">Full Name</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="name" placeholder="Full Name">
+                            </div>
+                        </div>
+
+                        <!-- Field: Contact No. -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">Contact No.</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="contact" placeholder="Contact Number">
+                            </div>
+                        </div>
+
+                         <!-- Field: LinkedIn URL -->
+                         <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">LinkedIn URL</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="linkedinURL" placeholder="linkedIn URL">
+                            </div>
+                        </div>
+
+                        <!-- Field: Domicile -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">Domicile</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <mat-select class="form-bg" formControlName="domicile" placeholder="Domicile">
+                                    <ng-container *ngFor="let item of domiciles">
+                                        <mat-option [value]="item">{{ item }}</mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                        <div class="row margin-top" *ngIf="this.editForm.controls.domicile.value === 'Other'">
+                            <div class="col-xl-3 align-self-center section-label"></div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="otherDomicile" placeholder="Other Domicile">
+                            </div>
+                        </div>
+
+                        <!-- Field: University -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">University</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="university" placeholder="University">
+                            </div>
+                        </div>
+
+                        <!-- Field: Major Field -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">Major</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="majorField" placeholder="Major">
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="section-title">Work Experience History</div>
+
+                        <!-- Work Experience History -->
+
+                        <form [formGroup]="workExperienceForm" style="width:100%">
+                            <div formArrayName="workExperience" *ngFor="let field of workExperienceList.controls; let i = index;">
+                                <div [formGroupName]="i">
+                                    <div class="row margin-top">
+                                        <div class="col-xl-3 align-self-center section-label">Company Name</div>
+                                        <div class="col-xl-9 mt-xl-0 mt-2">
+                                            <input class="form-bg" formControlName="companyName" placeholder="Company Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="row margin-top">
+                                        <div class="col-xl-3 align-self-center section-label">Position</div>
+                                        <div class="col-xl-9 mt-xl-0 mt-2">
+                                            <input class="form-bg" formControlName="position" placeholder="Position">
+                                        </div>
+                                    </div>
+
+                                    <div class="row margin-top">
+                                        <div class="col-xl-3 align-self-center section-label">Job Desk</div>
+                                        <div class="col-xl-9 mt-xl-0 mt-2">
+                                            <input class="form-bg" formControlName="jobdesk" placeholder="Job Desk">
+                                        </div>
+                                    </div>
+
+                                    <div class="row margin-top">
+                                        <div class="col-xl-3 align-self-center section-label">Start Period</div>
+                                        <div class="col-xl-9 mt-xl-0 mt-2">
+                                            <input class="form-bg" formControlName="startPeriod" placeholder="Start Period (e.g: June 2020)">
+                                        </div>
+                                    </div>
+
+                                    <div class="row margin-top">
+                                        <div class="col-xl-3 align-self-center section-label">End Period</div>
+                                        <div class="col-xl-9 mt-xl-0 mt-2">
+                                            <input class="form-bg" formControlName="endPeriod" placeholder="End Period (e.g: Present)">
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 d-flex" style="width: 100%; display:flex; justify-content: flex-end;">
+                                        <button *ngIf="!isDisabled" class="dialog-button button-warning" (click)="removeWorkExperience(i)" style="width: 240px; font-size:14px;">Remove Work Experience</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="mt-3 d-flex" style="width: 100%; display:flex; justify-content: flex-end;">
+                            <button class="dialog-button button-primary" (click)="addWorkExperience()" style="width: 240px; font-size:14px;">Add New Work Experience</button>
+                        </div>
+
+                        <!-- <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">University</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <input class="form-bg" formControlName="university" placeholder="University">
+                            </div>
+                        </div> -->
+
+                        <!-- Field: Language -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">Language</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <mat-select class="form-bg" formControlName="languageTemp" placeholder="Language" [(ngModel)]="myLanguage" multiple>
+                                    <ng-container *ngFor="let language of languages">
+                                        <mat-option [value]="language">{{ language }}</mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                        <!-- Field: Experiece -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">Experience</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <mat-select class="form-bg" formControlName="experience" placeholder="Experience">
+                                    <ng-container *ngFor="let experience of experiences">
+                                        <mat-option [value]="experience">{{ experience }}</mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                        <!-- Field: Education -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 align-self-center section-label">Education</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <mat-select class="form-bg" formControlName="degree" placeholder="Educational Degree">
+                                    <ng-container *ngFor="let education of educations">
+                                        <mat-option [value]="education">{{ education }}</mat-option>
+                                    </ng-container>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                        <!-- Field: Self Desc. -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 section-label">Self Desc.</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <textarea rows="5" class="form-bg" formControlName="selfDesc" placeholder="Self Description (cover letter)"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Field: Qualifications -->
+                        <div class="row margin-top">
+                            <div class="col-xl-3 section-label">Qualifications</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2">
+                                <textarea rows="5" class="form-bg" formControlName="qualification" placeholder="Qualifications (skill)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Account -->
+                <div class="col">
+                    <div class="section-title">Account</div>
+
+                    <div class="mt-4">
+                        <div class="row" style="line-height: 38px;">
+                            <div class="col-xl-3 align-self-center section-label">Email</div>
+                            <div class="col-xl-9 mt-xl-0 mt-2 profile-text">{{ email }}</div>
+                        </div>
+                        <div class="row mt-2">
+                            <button type="button" class="col offset-xl-3 button-transparant-blue" (click)="onChangePass()">
+                Change Password
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

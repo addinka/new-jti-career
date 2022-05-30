@@ -1,0 +1,14 @@
+<div id="container-fluid">
+  <div class="row no-gutters p-3 mt-4 ml-2 mr-2 justify-content-between" id="progress-title"
+    [ngClass]="{'bg-red': index === 0, 'bg-yellow-dark': index === 1, 'bg-yellow': index === 2, 'bg-green': index === 3}">
+    <div class="col-auto">
+        {{ progressItem.name }}
+    </div>
+    <div class="col-auto text-white">
+        {{ progressItem.count }}
+    </div>
+  </div>
+  <div *ngFor="let item of progressItem.detail; let i = index">
+    <app-progress-detail [detail]=item [index]=i></app-progress-detail>
+  </div>
+</div>

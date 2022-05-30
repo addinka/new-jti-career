@@ -1,0 +1,222 @@
+@import '../../../../../variables';
+
+.custom-background {
+  background-color: $color-primary;
+  padding: 18px 50px 32px;
+  @media screen and (max-width: 425px){
+    padding: 18px 30px 32px;
+  }
+}
+
+#text-greeting {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 26px;
+  color: $color-dim-gray;
+  @media screen and (max-width: 768px){
+    font-size: 16px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 14px;
+  }
+}
+
+#text-name {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 26px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+    font-size: 16px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 14px;
+  }
+}
+
+.text-title {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 32px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+}
+
+.text-event {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+    font-size: 9px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 8px;
+  }
+}
+
+.text-event-zero {
+  color: $color-dark-cyan;
+}
+
+.custom-event {
+  width: 80px;
+  height: 60px;
+  background-color: $color-turquoise;
+  border-radius: 5px;
+  text-align: center;
+  @media screen and (max-width: 768px){
+    width: 70px;
+    margin-bottom: 5px;
+  }
+  @media screen and (max-width: 425px){
+    width: 60px;
+  }
+}
+
+.custom-event-zero {
+  background-color: $color-dark-turtle-turquoise;
+}
+
+.text-event-count {
+  font-family: $font-regular;
+  font-size: 28px;
+  margin-top: -15px;
+  line-height: 35px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+    font-size: 20px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 16px;
+  }
+}
+
+.text-event-count-zero {
+  color: $color-dark-cyan;
+}
+
+.custom-button {
+    width: 100%;
+    height: 60px;
+    padding: 10px 0;
+    font-family: $font-medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+    @media screen and (max-width: 768px){
+      font-size: 13px;
+    }
+    @media screen and (max-width: 425px){
+      font-size: 12px;
+    }
+}
+
+#text-current-date {
+  color: $color-dim-gray;
+  font-family: $font-medium;
+  font-size: 33px;
+  @media screen and (max-width: 768px){
+    font-size: 18px;
+  }
+  @media screen and (max-width: 425px){
+   
+  }
+}
+
+.text-member {
+  color: $color-dim-gray;
+  font-family: $font-medium;
+  font-size: 14px;
+  line-height: 18px;
+  padding-left: 10px;
+  cursor: pointer;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+   
+  }
+}
+
+.text-member-active {
+  color: $color-corn-flower-blue;
+}
+
+.display-custom{
+  display: flex;
+  @media screen and (max-width: 425px){
+    display: block;
+  }
+}
+
+.pic-style{
+  height: 100px;
+  width: 100px;
+  @media screen and (max-width: 768px){
+    
+  }
+  @media screen and (max-width: 425px){
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+}
+
+.welcome-align{
+  @media screen and (max-width: 768px){
+    justify-content: center;
+  }
+  @media screen and (max-width: 425px){
+    margin-bottom: 10px;
+  }
+}
+
+.potential-candidates-btn{
+  padding-left: 0.25rem;
+  @media screen and (max-width: 768px){
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  @media screen and (max-width: 425px){
+    padding-left: 0.25rem;
+    margin-top: 0px;
+  }
+}
+
+.no-gutters{
+  display: flex;
+  @media screen and (max-width: 425px){
+    display: block;
+  }
+
+}
+
+.current-date-padding{
+  padding: 1.25rem;
+  @media screen and (max-width: 425px){
+    padding: 0.75rem;
+  }
+
+}
+
+.col-cal{
+  max-width: 33.3%;
+  @media screen and (max-width: 425px){
+    max-width: 100%;
+  }
+
+}

@@ -1,0 +1,349 @@
+@import '../../../../../variables';
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.timeline-wrapper {
+  margin: 0;
+  background: $color-primary;
+  box-shadow: 0px 0px 11px rgba(66, 116, 180, 0.0483752);
+  padding: 40px 100px;
+  @media screen and (max-width: 768px){
+    padding: 20px 30px;
+  }
+  @media screen and (max-width: 425px){
+    padding: 20px 20px;
+  }
+}
+
+#job-title {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33px;
+  font-size: 15px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+}
+
+#job-title span {
+  color: $color-dim-gray;
+  line-height: 21px;
+  font-size: 17px;
+  @media screen and (max-width: 768px){
+    font-size: 15px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 14px;
+  }
+}
+
+.job-desc {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+#form-title {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 39px;
+  font-size: 22px;
+  color: $color-black;
+  @media screen and (max-width: 768px){
+    font-size: 20px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 18px;
+  }
+}
+
+.form-section {
+  font-family: $font-bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-dim-gray;
+  @media screen and (max-width: 768px){
+    font-size: 15px;
+    padding: 7px 1px 7px 10px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 14px;
+    padding: 5px 3px 5px 10px;
+  }
+}
+
+.form-section-info {
+  font-weight: normal;
+  font-size: 11px;
+  color: $color-dim-gray;
+  @media screen and (max-width: 768px){
+    margin-bottom: 8.5px;
+    margin-top: 0px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+    margin-bottom: 7px;
+  }
+}
+
+.button-select {
+  width: 100%;
+  border: 2px solid $color-corn-flower-blue;
+  font-size: 12px;
+  color: $color-corn-flower-blue;
+  background-color: white;
+  @media screen and (max-width: 768px){
+    width: 30%;
+    margin-left: 35%;
+  }
+  @media screen and (max-width: 425px){
+    width: 30%;
+    margin-left: 35%;
+  }
+}
+
+.image-select {
+  min-width: 93px;
+  min-height: 93px;
+  max-width: 93px;
+  max-height: 93px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.text-label {
+  color: $color-black;
+  font-family: $font-regular;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-dim-gray;
+  @media screen and (max-width: 768px){
+    font-size: 14px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+ 
+}
+
+.button-apply {
+  font-family: $font-medium;
+  font-size: 14px;
+  padding: 16px 0;
+}
+
+.login-card {
+  background: #F6F8FB;
+  background-image: url('/src/assets/images/bg_dialog.svg');
+  background-repeat: no-repeat;
+  height: fit-content;
+  max-width: 400px;
+  border-radius: 5px;
+  @media screen and (max-width: 768px){
+    margin-left: 34%;
+  }
+  @media screen and (max-width: 768px){
+    margin-left: 0;
+  }
+}
+
+.login-card img {
+  width: 100%;
+}
+
+.login-card-title {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 39px;
+  font-size: 19px;
+  text-align: center;
+  color: $color-black;
+}
+
+.login-card-desc {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-dim-gray;
+  padding: 0 40px;
+}
+
+.login-card-button {
+  min-width: 245px;
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  padding: 12px 0;
+}
+
+#cancelButton {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-dim-gray;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+#password-visibility {
+  background: $color-ghost-white;
+  border-radius: 0 5px 5px 0;
+}
+
+.img-hidden{
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  @media screen and (max-width: 768px){
+    width: 18px;
+    height: 18px;
+  }
+  @media screen and (max-width: 425px){
+    width: 15px;
+    height: 15px;
+  }
+}
+.pad-img-hidden{
+  padding: 6px 8px 0 4px;
+  @media screen and (max-width: 768px){
+    padding: 5px 7px 0 7px;
+  }
+  @media screen and (max-width: 425px){
+    padding: 6px 7px 0 5px;
+  }
+}
+
+.class-flex{
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: 768px){
+    display: grid;
+    padding-left: 0px;
+  }
+  @media screen and (max-width: 425px){
+    display: grid;
+    padding-left: 0px;
+  }
+
+}
+
+.display-pic{
+  @media screen and (max-width: 768px){
+    max-width: 100% !important;
+  }
+  @media screen and (max-width: 425px){
+    max-width: 100% !important;
+  }
+}
+
+.grid-form{
+  @media screen and (max-width: 768px){
+    padding-top: 20px;
+    max-width: 90% !important;
+  }
+  @media screen and (max-width: 425px){
+    padding-top: 20px;
+    max-width: 90% !important;
+  }
+}
+
+.col-grid {
+  @media screen and (max-width: 768px){
+    padding-right: 0px;
+  }
+  @media screen and (max-width: 425px){
+    padding-right: 0px;
+  }
+}
+
+.wrapper-inside {
+  @media screen and (max-width: 425px){
+    padding: 20px 20px 30px 40px !important;
+  }
+  
+}
+
+.select-buttons {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-corn-flower-blue;
+  border: 2px solid $color-corn-flower-blue;
+  border-radius: 5px;
+  /* margin-bottom: 15px; */
+  /* width: 100%; */
+  background: $color-white;
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+    border: 1px solid $color-corn-flower-blue;
+    width: 100%;
+  }
+}
+
+.form-section{
+  @media screen and (max-width: 768px){
+    padding: 5px 3px 5px 0px;
+  }
+  @media screen and (max-width: 425px){
+    padding: 5px 3px 5px 0px;
+  }
+}
+
+.form-section-info{
+  margin-top: 1rem;
+  @media screen and (max-width: 768px){
+    margin-top: 7px;
+  }
+  @media screen and (max-width: 425px){
+    margin-top: 5px;
+  }
+}
+
+.doc-grid{
+  @media screen and (max-width: 768px){
+    width: 50%;
+  }
+  @media screen and (max-width: 425px){
+    width: 50%;
+  }
+}

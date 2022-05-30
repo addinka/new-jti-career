@@ -1,0 +1,31 @@
+<div *ngIf="!isNotFound; else notFound" class="wrapper">
+  <div *ngIf="!isLoading" class="row wrapper-inside">
+    <div class="col-md-5">
+      <app-job-detail-short [job]=job [isApplied]=isApplied [id]=id [isPreview]=false (applyAction)=onApply($event) [isWithdraw]=isWithdraw [isOnBoard]=isOnBoard [isRejected]=isRejected></app-job-detail-short>
+
+      <!-- <app-job-detail-short [job]=job [isApplied]=isApplied [isPreview]=false [isWithdraw]=isWithdraw></app-job-detail-short> -->
+
+      <!-- TODO: Refactor -->
+      <div *ngIf="isApplied" id="job-extended-detail">
+
+        <div class="job-label">EXPECTED SALARY</div>
+        <div id="jobs-salary">{{ appl?.expSalary | currency : 'Rp ' : symbol : '1.0-0' : undefined }}</div>
+        <div id="jobs-is-negotiable">{{ appl?.isNegotiable ? 'Negotiable': 'Not Negotiable' }}</div>
+        <div class="job-label" style="margin-top: 35px;">WHY HIRE ME</div>
+        <div class="job-content" style="margin-top: 8px;">{{ appl?.comments }}</div>
+      </div>
+    </div>
+    <app-job-detail-long class="col-md-7" [job]=job [curStat]=curStat [isApplied]=isApplied></app-job-detail-long>
+    <!-- <div class="col-md-5">
+      <button class="col-10 mt-5 py-3 custom-button"
+        [ngClass]="{'button-primary': !isAppliedButton, 'button-warning': isAppliedButton && !isWithdrawButton && !isOnBoardButton && !isRejectedButton, 'button-disable': isWithdrawButton || isPreview || isOnBoardButton || isRejectedButton}"
+        (click)="onApplied(job?._id)" [disabled]="isWithdrawButton || isPreview || isOnBoardButton || isRejectedButton">
+        {{isAppliedButton ? (isWithdrawButton ? 'Apply Now': 'Withdraw Application'): 'Apply Now'}}
+    </button>
+    </div> -->
+  </div>
+</div>
+
+<ng-template #notFound>
+  <app-not-found [message]="message"></app-not-found>
+</ng-template>

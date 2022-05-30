@@ -1,0 +1,13 @@
+.job-content-margin {
+    margin-top: 1rem;
+    @media screen and (max-width: 768px) {
+        margin-top: .5rem;
+    }
+    @media screen and (max-width: 425px) {
+        margin-top: 0px;
+    }
+}
+
+.rich-text-editor {
+    z-index: 0;
+}

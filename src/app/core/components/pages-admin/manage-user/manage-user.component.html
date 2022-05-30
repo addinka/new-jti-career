@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div class="wrapper-inside">
+
+    <!-- Page title with action button -->
+    <div class="row justify-content-between">
+      <div class="col-auto align-self-center page-title">Manage Users</div>
+
+      <!-- Privilege to Super Admin and Admin -->
+      <button *ngIf="isCreateUsser" type="submit" class="button-primary page-action-button"
+        [routerLink]="['/admin/manage-user/create']">
+        Create New User
+      </button>
+    </div>
+
+    <!-- User card component -->
+    <div class="row mt-4">
+      <app-user-card class="col-auto mr-3 mb-3" [index]="i" (delete)="openRejectDialog($event)"
+        (toogleActive)="onToogleActive($event)" (toogleAdmin)="onToogleAdmin($event)"
+        *ngFor="let recruiter of recruiters; let i = index" [recruiter]="recruiter">
+      </app-user-card>
+    </div>
+  </div>
+</div>

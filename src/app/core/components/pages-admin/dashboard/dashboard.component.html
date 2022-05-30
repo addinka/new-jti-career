@@ -1,0 +1,65 @@
+<div class="justify-content-between custom-background display-custom">
+  <div class="row col welcome-align">
+    <img [src]="this.getImageURL + currentProfilePicture" class="rounded-circle pic-style" height="100" width="100">
+    <!-- <img src="../../../../../assets/images/bg_profile_2.svg" class="col-auto p-0 rounded-circle" height="100" width="100"> -->
+    <div class="d-flex flex-column ml-4 align-self-center">
+      <div id="text-greeting">Hello,</div>
+      <div id="text-name">{{currentName}}</div>
+    </div>
+  </div>
+  <div class="col d-flex flex-column">
+    <div class="text-title mx-1">EVENT SUMMARY</div>
+    <div class="row mx-1 mt-2">
+      <div class="custom-event mx-1" [ngClass]="{'custom-event-zero': progressItem.count === 0}" *ngFor="let progressItem of progressItems">
+        <div class="d-flex justify-content-end pt-2 pr-2">
+          <img [src]="progressItem.count === 0 ? '../../../../../assets/images/ic_event_zero.svg' : '../../../../../assets/images/ic_event.svg'" height="10" width="10">
+        </div>
+        <div class="text-event-count" [ngClass]="{'text-event-count-zero': progressItem.count === 0}">{{progressItem.count}}</div>
+        <div class="text-event" [ngClass]="{'text-event-zero': progressItem.count === 0}">{{progressItem.name | uppercase}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="text-title">QUICK LINKS</div>
+    <div class="row mt-2">
+      <div class="col">
+        <button class="button-transparant custom-button" routerLink="/admin/jobs-ads/create">CREATE NEW JOB</button>
+      </div>
+      <div class="col potential-candidates-btn" [routerLink]="['/admin/candidate-list/potential', true]" routerLinkActive="active">
+        <button class="d-flex flex-row button-primary custom-button justify-content-center">
+          <div class="align-self-center">
+            <img src="../../../../../assets/images/ic_star_on.svg" height="25" width="25">
+          </div>
+          <span style="width: 125px;">POTENTIAL CANDIDATES</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isError; else notFound" class="wrapper">
+  <div class="row no-gutters">
+    <div class="col-cal">
+      <app-calender [currentDate]=currentDate (selectDate)="onSelectDate($event)" [isoDate]=isoDate (error)=onError()></app-calender>
+    </div>
+    <div class="col wrapper-inside current-date-padding">
+      <div class="row justify-content-between">
+        <div class="col-auto" id="text-current-date">
+          {{currentDate | date:'dd MMMM yyyy'}}
+        </div>
+        <div class="col-auto align-self-end">
+          <span class="text-member" [ngClass]="{'text-member-active': isTeam}" (click)="onChangeTeam()">Team ({{countTeam}})</span>
+          <span class="text-member" [ngClass]="{'text-member-active': isMe}"  (click)="onChangeMe()">Me ({{countMe}})</span>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-md-6 col-lg-3" *ngFor="let item of progressItems; let i = index">
+          <app-progress [progressItem]=item [index]=i></app-progress>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <app-not-found [message]="message"></app-not-found>
+</ng-template>

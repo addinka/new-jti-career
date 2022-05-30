@@ -1,0 +1,20 @@
+<div class="dialog-content">
+    <p style="font-size: 14px;">To upload a profile picture, choose a picture from your file and then crop it.</p>
+    <input style="font-size: 12px;" #profPicInput type="file" (change)="fileChangeEvent($event)" accept="image/*"/>
+    <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    [resizeToWidth]="128"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    ></image-cropper> 
+</div>
+<div class="pt-0" style="padding: 30px" mat-dialog-actions>
+    <button class="btn-edit" (click)="cropIt()" mat-dialog-close>Crop</button>
+</div>
+
+

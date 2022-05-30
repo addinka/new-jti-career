@@ -1,0 +1,183 @@
+@import '../../../../../variables';
+
+// Haven't be used!
+.navbar-color-primary {
+  background-color: $color-primary;
+}
+
+// Haven't be used!
+.navbar-color-secondary {
+  background-color: $color-corn-flower-blue;
+}
+
+.navbar {
+  min-height: 75px;
+}
+
+.navbar-brand {
+  color: $color-white !important;
+  font-family: $font-semi-bold;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.242857px;
+}
+
+.navbar-brand:hover {
+  color: $color-white;
+}
+
+.navbar-brand:focus {
+  color: $color-white;
+}
+
+.navbar-brand span {
+  font-size: 12px;
+}
+
+.color-white {
+  color: $color-white;
+}
+
+.color-gray {
+  color: $color-dark-slate-gray-v2;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.nav-link {
+  color: $color-white;
+  font-size: 16px;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: $color-dark-slate-gray-v2;
+}
+
+.nav-item {
+  margin-top: 1.5px;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.navbar-nav li {
+  @media screen and (max-width: 768px){
+    padding: 0 180px 0 0;
+  }
+  @media screen and (max-width: 425px){
+    padding: 0 66px 0 0;
+  }
+  @media screen and (max-width: 375px){
+    padding: 0 50px 0 0;
+  }
+}
+
+.navbar-nav .dropdown-menu {
+  @media screen and (max-width: 768px){
+    position: absolute;
+    float: none;
+  }
+}
+
+#button-login {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  outline: none;
+  padding: 8px 25px;
+}
+
+.sticky-top {
+  z-index: 2;
+}
+
+.dropdown-item {
+  background-color: transparent;
+  color: $color-dim-gray !important;
+  cursor: pointer;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 38px;
+  &:hover {
+    background-color: $color-grey-white;
+  }
+}
+
+.custom-dropdown-item {
+  cursor: pointer;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  min-width: 180px;
+  max-width: 180px;
+  white-space: normal !important;
+  @media screen and (max-width: 425px){
+    font-size: 9px;
+    line-height: 12px;
+    min-width: 120px;
+  }
+  
+}
+
+.dropdown-menu {
+  left: 50%;
+  transform: translateX(-50%) !important;
+  top: 100%;
+  max-height: 80vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  @media screen and (max-width: 768px){
+    left: 20%;
+  }
+  @media screen and (max-width: 425px){
+    left: 0%;
+  }
+  // @media screen and (max-width: 375px){
+  //   left: 50%;
+  // }
+}
+
+.custom-padding {
+  margin-left: 42px;
+}
+
+.custom-notification-date {
+  color: $color-dark-gray;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  line-height: 11px;
+  @media screen and (max-width: 425px){
+    font-size: 7px;
+  }
+}
+
+.notification-img{
+  height: 10px;
+  width: 10px;
+  @media screen and (max-width: 425px){
+    height: 7px;
+    width: 7px;
+  }
+}
+
+.profile {
+  object-fit: cover;
+  object-position: center;
+}

@@ -1,0 +1,149 @@
+.title {
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 16px;
+  color: #FFFFFF;
+  height: 40px;
+  text-align: center;
+}
+
+.timeline {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin-top: 35px;
+}
+
+.li {
+  transition: all 200ms ease-in;
+  padding: 0;
+}
+
+.status {
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transition: all 200ms ease-in;
+  left: calc(-50% + 12.5px);
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-style: normal;
+  font-weight: normal;
+  /* line-height: normal; */
+  font-size: 10px;
+  text-align: center;
+  color: #598CF5;
+  height: 20px;
+}
+
+.desc {
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 15px;
+  text-align: center;
+  color: #3D526D;
+}
+
+.status:before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  background-color: #AFBECC;
+  border-radius: 25px;
+  border: none;
+  position: absolute;
+  top: -15px;
+  right: 0;
+  transition: all 200ms ease-in;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: content-box;
+  background-size: 100%;
+  padding: 5px;
+  border: none;
+  transition: all 200ms ease-in;
+}
+
+.status span {
+  margin-right: 25px;
+}
+
+.li.ongoing .status:before {
+  background-color: #598CF5;
+  border: 5px solid #FFFFFF;
+  transition: all 200ms ease-in;
+}
+
+.li.complete .status:before {
+  background-image: url(/src/assets/images/ic_checklist.svg);
+  background-color: #66DC71;
+}
+
+li.withdrawn .status:before {
+  background-image: url(/src/assets/images/ic_close_white.svg);
+  background-color: #E16685;
+  padding: 7px;
+}
+
+li.eliminated .status:before {
+  background-image: url(/src/assets/images/ic_close_white.svg);
+  background-color: #3D526D;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.solid-line {
+  border-top: 3px solid #AFBECC;
+}
+
+.solid-blue-line {
+  border-top: 3px solid #598CF5;
+}
+
+.dashed-line {
+  border-top: 3px dashed #AFBECC;
+}
+
+.dashed-blue-line {
+  border-top: 3px dashed #598CF5;
+}
+
+.no-line {
+  border-top: 3px solid transparent;
+}
+
+/* @media (min-width: 320px) and (max-width: 700px) {
+  .timeline {
+    list-style-type: none;
+    display: flex;
+  }
+
+  .li {
+    transition: all 200ms ease-in;
+    display: flex;
+    width: inherit;
+  }
+
+  .status:before {
+    left: -8%;
+    top: 30%;
+    transition: all 200ms ease-in;
+  }
+} */
+
+button {
+  position: absolute;
+  width: 100px;
+  min-width: 100px;
+  padding: 20px;
+  margin: 20px;
+  font-family: "Titillium Web", sans serif;
+  border: none;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}

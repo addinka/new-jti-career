@@ -1,0 +1,51 @@
+<div class="wrapper">
+  <div class="wrapper-inside">
+    <div class="mb-3" id="title">Create New User</div>
+    <form class="col-md-8 offset-md-2" [formGroup]="createUserForm" (ngSubmit)="onSubmit()"
+      (keydown.enter)="$event.preventDefault()">
+      <div class="row">
+        <div class="col-md-3 form-label">SELECT AVATAR</div>
+        <div class="col-md-9 avatar-list">
+          <img [src]="avatar.path" *ngFor="let avatar of avatarOptions; let i = index"
+            [ngClass]="{'isSelected': avatar.selected, 'isNotSelected': !avatar.selected}" (click)="activateAvatar(i)"
+            class="col-md-2">
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3 form-label">FULL NAME</div>
+        <input
+          class="col-md-9 form-control"
+          formControlName="name"
+          placeholder="Full Name"
+        />
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3 form-label">EMAIL</div>
+        <input class="col-md-9 form-control" formControlName="email" placeholder="Email" (blur)="validateEmail()" />
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-3 form-label">ROLE</div>
+        <mat-select
+          class="col-md-9 form-control"
+          formControlName="title"
+          placeholder="Role"
+        >
+          <ng-container *ngFor="let role of roles">
+            <mat-option [value]="role">{{ role }}</mat-option>
+          </ng-container>
+        </mat-select>
+      </div>
+      <div class="row">
+        <mat-error class="col-md-9 offset-md-3">{{ errorMessage }}</mat-error>
+      </div>
+      <div class="row">
+        <button type="submit" [disabled]="!createUserForm.valid" [ngClass]="{
+            'button-primary': createUserForm.valid,
+            'button-disable': !createUserForm.valid
+          }" class="submit-button col-md-9 offset-md-3">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

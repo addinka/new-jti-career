@@ -1,0 +1,31 @@
+@import '../../../../../variables';
+
+.withdraw-wrapper {
+  // background-image: url('/src/assets/images/bg_dialog.svg');
+  background-image: url('https://jti-career-uat.au-syd.mybluemix.net/assets/images/bg_dialog.svg');
+  background-repeat: no-repeat;
+  background-size: 105%;
+  background-position-x: -10px;
+  background-position-y: -10px;
+}
+
+.button-custom {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 18px;
+  padding: 10px;
+  text-align: center;
+  color: $color-white;
+}
+
+.class-margin{
+  margin: 3rem;
+  @media screen and (max-width: 768px){
+    margin: 25px 3rem 3rem;
+  }
+  @media screen and (max-width: 425px){
+    margin: 2rem;
+  }
+}

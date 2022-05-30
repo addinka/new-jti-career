@@ -1,0 +1,81 @@
+@import "src/_variables.scss";
+
+button {
+  outline: none;
+}
+
+.doc-wrapper {
+  padding: 0;
+}
+
+.doc-uploaded {
+  padding-right: 0;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 13px;
+  text-align: center;
+  color: $color-dim-gray;
+}
+
+.doc-file {
+  border-radius: 5px;
+  background-color: $color-grey-white;
+  border: 2px solid $color-grey-white;
+  padding: 1% !important;
+}
+
+.doc-not-selected {
+  padding-top: 35%;
+  padding-bottom: 35%;
+}
+
+.mark-delete {
+  border: 2px solid $color-pale-violet-red;
+}
+
+.mark-reupload {
+  border: 2px solid $color-corn-flower-blue;
+}
+
+#docActionButton {
+  position: absolute;
+  padding: 5%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#docActionButton img {
+  cursor: pointer;
+}
+
+#iconFolder {
+  padding: 30px;
+  min-height: 100px;
+  min-width: 100px;
+  max-height: 100px;
+  max-width: 100px;
+  cursor: pointer;
+}
+
+#iconReupload {
+  float: left;
+}
+
+#iconDelete {
+  float: right;
+}
+
+.doc-id {
+  font-family: $font-bold;
+  font-size: 13px;
+  text-align: center;
+  color: $color-dim-gray;
+  margin: 10px 0;
+}
+
+.cursor-disable {
+  cursor: not-allowed !important;
+}

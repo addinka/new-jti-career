@@ -1,0 +1,149 @@
+<div class="landing-top" id="top">
+  <div class="row">
+    <div class="col-md-5 landing-top-content margin-auto">
+      <div class="landing-top-title">
+        Looking for IT Career in <span class="landing-top-title-helper"><br>IBM JTI?</span>
+      </div>
+
+      <div class="landing-top-search">
+        <form class="card card-sm">
+          <div class="row no-gutters align-items-center">
+            <div class="col-auto search-icon">
+              <img src="../../../assets/images/ic_search.svg" alt="Search">
+            </div>
+            <div class="col">
+              <input class="form-control form-control-borderless search-input" type="search"
+                placeholder="Search available jobs" #search (keyup)="0" (keyup.enter)="onSearchFromHeader(search.value)"
+                id="search" autocomplete="off">
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-lg button-search" type="button"
+                (click)="onSearchFromHeader(search.value)">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="landing-top-detail">
+        IBM-JTI is wholly owned subsidiary of one of the renowned and distinguished IT company in the world, IBM. We
+        provide total IT solution services to our valuable customers.
+        <br />
+        <a href="" style="color: white;" [routerLink]="['/jobs']">View All Jobs >></a>
+      </div>
+    </div>
+    <div class="col-md-7" id="landing-left">
+      <img class="img-fluid float-right" src="../../../assets/images/bg_landing_top_2.svg"
+        alt="Looking for IT Career in IBM?">
+    </div>
+    <div class="landing-wave-white">
+      <img class="img-fluid landing-wave-white-helper" src="../../../assets/images/bg_wave_white.svg">
+    </div>
+  </div>
+</div>
+
+<div class="white">
+<div class="container-full">
+  <div class="landing-why-title">
+    Why Join IBM-JTI?
+  </div>
+  <div class="row">
+    <div class="col-md-6 ">
+      <span id="dot-big-purple" [@animationDotBig]=dotPurpleState></span>
+      <span id="dot-small-purple" [@animationDotSmall]=dotPurpleState></span>
+      <img class="img-fluid landing-why-image-left" src="../../../assets/images/bg_landing_why_1.svg"
+        alt="People is our #1 Asset">
+    </div>
+    <div class="col-md-6 padding-why-right">
+      <div class="landing-why-title-right">
+        People is our #1 Assets
+      </div>
+      <div class="landing-why-detail">
+        IBM-JTI values their people most; People is The Company’s #1 Assets! People are not only seen as resources or
+        merely the tools to support company’s operations. You are worth much more than that! You will represent the
+        brand image, determine company performances, and influence clients to succeed in their business. The
+        organization believes that You and every single individual plays significant role and will become key
+        contributor to the success of the company and its clients.
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-6 padding-why-left">
+      <div class="landing-why-title-left">
+        Challenging & Friendly Working Environment
+      </div>
+      <div class="landing-why-detail">
+        In IBM-JTI, you will feel like you have a whole new family. You can learn how to be a professional while at the
+        same time learn to have good social skills. IBM-JTI has several employee activities each year that are actively
+        engaging most of the employees and their family members. There is no doubt that most of the employees are loyal
+        to the company due to the healthy working atmosphere that have been established and maintained.
+      </div>
+    </div>
+    <div class="col-md-6 landing-why-image-right">
+      <span id="dot-big-light-blue" [@animationDotBigInverse]=dotLightBlueState></span>
+      <span id="dot-small-light-blue" [@animationDotSmallInverse]=dotLightBlueState></span>
+      <img class="img-fluid float-right" src="../../../assets/images/bg_landing_why_2.svg"
+        alt="Challenging & Friendly Working Environment" style="position: relative;">
+    </div>
+  </div>
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-6 landing-why-image-left">
+      <span id="dot-big-yellow" [@animationDotBig]=dotYellowState></span>
+      <span id="dot-small-yellow" [@animationDotSmall]=dotYellowState></span>
+      <img class="img-fluid" src="../../../assets/images/bg_landing_why_3.svg"
+        alt="Work with IBM World Class Proven Process" style="position: relative;">
+    </div>
+    <div class="col-md-6 padding-why-right">
+      <div class="landing-why-title-right">
+        Work with IBM World Class Proven Process
+      </div>
+      <div class="landing-why-detail">
+        As an IBM company, we apply IBM processes in almost all of our daily operational activities. IBM’s verified
+        methods prepare us to be ready to face future challenges to support our sustainable growth annually. Becoming
+        preferred IT Service provider company is our aim, and with that objective in our heart, we will never stop
+        inventing, innovating and improving , and it has been the norm for the employees. There is no reason for us to
+        stop coping with the rapid changes of technology and the business environment.
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="landing-wave-light-blue" style="padding-top: 50px;">
+  <img class="img-fluid landing-wave-light-blue-helper" src="../../../assets/images/bg_wave_light_blue.svg">
+</div>
+
+
+
+<div class="row landing-testimonial">
+  <app-testimonial class="col-md-3" *ngFor="let testimonial of testimonials" [testimonial]=testimonial></app-testimonial>
+</div>
+
+<div class="landing-wave-blue">
+  <img class="img-fluid landing-wave-blue-helper" src="../../../assets/images/bg_wave_blue.svg">
+</div>
+
+<div class="landing-hot-roles row">
+  <div class="col-md-7  padding-hot-roles margin-auto">
+    <div class="landing-hot-roles-title">
+      Hiring Now
+    </div>
+    <span *ngFor="let hotRole of hotRoles; let i = index" class="hot-role hot-role-text"
+      (click)="onJobDetail(hotRole.id)">
+      {{ hotRole.name }}
+    </span>
+    <div class="row">
+      <div class="col-md-3 custom-padding-left">
+        <button class="btn button-search-jobs" type="button" (click)="onScrollTop()">Search Jobs</button>
+      </div>
+      <div *ngIf="currentToken === null" class="col-md-3 custom-padding-right">
+        <button class="btn button-search-jobs" type="button" (click)="openLogin()">Login</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 offset-md-1">
+    <!-- <span id="dot-big-blue" [@animationDotBigInverse]=dotBlueState></span>
+    <span id="dot-small-blue" [@animationDotSmallInverse]=dotBlueState></span> -->
+    <img class="img-fluid landing-hot-roles-image" src="../../../assets/images/bg_landing_hot_roles.svg"
+      alt="Hot Roles">
+  </div>
+</div>

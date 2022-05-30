@@ -1,0 +1,188 @@
+<div class="invite-wrapper p-3">
+  <div class="d-flex justify-content-end">
+    <img src="assets/images/ic_close.svg" (click)="close(false)" height="20" width="20" style="cursor: pointer">
+  </div>
+
+  <div class="row justify-content-center">
+    <img src="assets/images/invite.png" width="80%">
+  </div>
+
+  <div class="overflow-containter">
+    <div class="dialog-title">Invite to {{ data.type }}</div>
+
+    <div class="dialog-subtitle">This invitation will sent to Candidate's Email & Notifications</div>
+
+    <div class="d-flex flex-row mt-3 mx-4">
+      <img class="rounded-circle profile" [src]="data.profpic" onerror="this.src='../../../../../assets/images/ic_user.svg'" height="50" width="50">
+      <div class="align-self-center ml-3" id="applicant-name">{{ data.name }}</div>
+    </div>
+
+  <!-- Invite Form -->
+    <form (keydown.enter)="$event.preventDefault()" (ngSubmit)="onSubmit()" [formGroup]="inviteForm">
+      <div class="row mt-3 mx-4">
+  
+        <!-- Date Picker Input -->
+        <mat-form-field class="col form-bg" [floatLabel]="'never'" (click)="pickerInvite.open()">
+          <input matInput [matDatepicker]="pickerInvite" [min]="minInviteDate" [value]="minInviteDate"
+            formControlName="inviteTime">
+          <mat-datepicker-toggle matSuffix [for]="pickerInvite"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInvite disabled="false"></mat-datepicker>
+        </mat-form-field>
+  
+        <!-- Time Picker Input -->
+        <!-- <mat-select class="col form-bg ml-2" placeholder="00.00" [(value)]="selectedInviteHour">
+          <mat-option *ngFor="let hour of hours" [value]="hour.value">{{ hour.viewValue }}</mat-option>
+        </mat-select> -->
+        <mat-form-field class="col-5 form-bg ml-2" >
+          <input matInput type="time" [value]="selectedInviteHour" (change)="setInviteHour($event.target.value)">
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-1 mx-4 px-2 dialog-subtitle" *ngIf="type==='test' && this.inviteForm.get('inviteType').value === 'Online'">
+        Until
+      </div>
+
+      <div class="row mt-1 mx-4" *ngIf="type==='test' && this.inviteForm.get('inviteType').value === 'Online'">
+        
+        <!-- Date Picker Input -->
+        <mat-form-field class="col form-bg" [floatLabel]="'never'" (click)="pickerEnd.open()">
+          <input matInput [matDatepicker]="pickerEnd" [min]="minInviteDate" [value]="minInviteDate"
+            formControlName="endTime">
+          <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+          <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
+        </mat-form-field>
+  
+        <!-- Time Picker Input -->
+        <mat-form-field class="col-5 form-bg ml-2" >
+          <input matInput type="time" [value]="selectedEndHour" (change)="setEndHour($event.target.value)">
+        </mat-form-field>
+      </div>
+  
+      <div class="row mx-4 mt-3">
+        <!-- Type Input -->
+        <mat-select class="form-bg" placeholder="Select type of invitation" formControlName="inviteType"  (selectionChange)="onSelectType($event.value)">
+        <mat-option *ngFor="let item of types; let i = index" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+      </div>
+  
+      <ng-container *ngIf="this.inviteForm.get('inviteType').value === 'Offline'">
+        <div class="row mx-4 mt-3">
+          <!-- Room Input -->
+          <mat-select *ngIf="this.inviteForm.get('inviteRoom').value !== 'Add New'; else addNewRoom" class="col form-bg" placeholder="Room"
+            formControlName="inviteRoom" (selectionChange)="onSelectRoom($event.value)">
+            <mat-option *ngFor="let room of rooms; let i = index" [value]="room">
+              <div [ngClass]="{'add-new': i === rooms.length - 1}">
+                <span *ngIf="i === rooms.length - 1" class="mr-2">
+                  <img src="../../../../../assets/images/add_new.svg" alt="Add New" class="add-img">
+                </span>
+                {{ room }}
+              </div>
+            </mat-option>
+          </mat-select>
+        </div>
+    
+        <div class="row mx-4 mt-3">
+    
+          <!-- Address Input -->
+          <mat-select *ngIf="this.inviteForm.get('inviteAddress').value !== 'Add New'; else addNewAddress" class="col form-bg" placeholder="Address"
+            formControlName="inviteAddress" (selectionChange)="onSelectAddress($event.value)">
+            <mat-option *ngFor="let address of addresses; let i = index" [value]="address">
+              <div [ngClass]="{'add-new': i === addresses.length - 1}">
+                <span *ngIf="i === addresses.length - 1" class="mr-2">
+                  <img src="../../../../../assets/images/add_new.svg" alt="Add New" class="add-img">
+                </span>
+                {{ address }}
+              </div>
+            </mat-option>
+          </mat-select>
+        </div>
+      </ng-container>
+      
+      <ng-container *ngIf="this.inviteForm.get('inviteType').value === 'Online'">
+        <div class="row mx-4 my-3">
+          <input class="form-control form-control-borderless input-field" formControlName="inviteLink" placeholder="Link">
+        </div>
+
+        <ng-container *ngIf="type === 'test' || type === 'test_online'">
+          <div class="row mx-4 my-3">
+            <input class="form-control form-control-borderless input-field" formControlName="inviteCode" placeholder="Activation Code">
+          </div>
+        </ng-container>
+
+        <div class="row mx-4 my-3" *ngIf="type !== 'test' && type !== 'test_online'">
+          <textarea class="form-control form-control-borderless input-field" rows="3" formControlName="inviteNotes" placeholder="Notes"></textarea>
+        </div>
+      
+      </ng-container>
+      
+      <div class="row mx-4 mt-3 mb-2">
+        <div class="font-medium" style="color: #495057">Attachments</div>
+      </div>
+
+      <div class="row mx-4 mb-2 mt-2 d-flex flex-wrap">
+        <div class="document-item" *ngFor="let doc of attachments; let i = index;">
+          <div class="document-image">
+            <img src="assets/images/ic_folder.svg" alt="" />
+            <img class="remove-image" src="assets/images/ic_close_red.svg" alt="x" (click)="$event.preventDefault(); removeFile(i);" />
+          </div>
+          <div class="mt-1 text-truncate" style="max-width: 76px;">{{doc.name}}</div>
+        </div>
+
+        <div class="document-item" (click)="file.click()">
+          <input type="file" id=real-file (change)="handleFileInput($event.target.files)" hidden #file multiple>
+          <div class="document-image add-file">
+            <img src="assets/images/add_new.svg" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mx-4 my-3" *ngIf="!data.fromBlueForm">
+        <mat-checkbox [formControl]="sendBlueformCheck" style="color: #495057; font-size: 15px;" color="primary">
+          {{data.blueFormFilled ? 'Candidate has filled Blue Form for this job':'Include sending Blue Form for candidate'}}
+        </mat-checkbox>
+      </div>
+
+      <div class="row mx-4 my-3" *ngIf="!!type.match('onboard')">
+        <mat-checkbox [formControl]="sendOnboardformCheck" style="color: #495057; font-size: 15px;" color="primary">
+          Include sending Onboarding Form for candidate
+        </mat-checkbox>
+      </div>
+
+      <div class="row mx-4 mt-3 mb-4">
+        <button class="col button" type="submit" id="button-next" [ngClass]="{
+          'button-primary': inviteForm.valid,
+          'button-disable': inviteForm.invalid}" [disabled]="inviteForm.invalid">Next</button>
+      </div>
+  
+      <ng-template #addNewRoom>
+        <div class="w-100 d-flex">
+          <div class="col-md-11 p-0">
+            <input class="col form-bg-ghost pr-5" placeholder="Room" formControlName="inviteRoomCustom">
+          </div>
+          <div class="col-md-1 p-0 cancel-container">
+            <img class="cancel-new-room" src="../../../../../assets/images/cancel_blue.svg" alt="Cancel" height="18" width="10" (click)="onCancelRoom()">
+          </div>
+         
+          
+        </div>
+      
+      </ng-template>
+      
+      <ng-template #addNewAddress>
+        <div class="w-100 d-flex">
+          <div class="col-md-11 p-0">
+            <input class="col form-bg-ghost pr-5" placeholder="Address" formControlName="inviteAddressCustom">
+          </div>
+          <div class="col-md-1 p-0 cancel-container">
+            <img class="cancel-new-room" src="../../../../../assets/images/cancel_blue.svg" alt="Cancel" height="18" width="10" (click)="onCancelAddress()">
+          </div>
+          </div>
+      </ng-template>
+      
+    </form>
+  </div>
+ 
+</div>
+

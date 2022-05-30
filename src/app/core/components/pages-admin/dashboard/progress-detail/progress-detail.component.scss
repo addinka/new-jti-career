@@ -1,0 +1,89 @@
+@import '../../../../../../variables';
+
+#start-hour {
+  color: $color-dim-gray;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+  }
+    
+}
+
+#candidate-name {
+  color: $color-dim-gray;
+  font-family: $font-bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+  }
+}
+
+#candidate-role {
+  color: $color-dim-gray;
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  @media screen and (max-width: 768px){
+    font-size: 11px;
+  }
+  @media screen and (max-width: 425px){
+  }
+    
+}
+
+.recruiter-in-charge {
+  color: $color-dim-gray;
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 20px;
+  @media screen and (max-width: 768px){
+    font-size: 9px;
+  }
+  @media screen and (max-width: 425px){
+  }
+    
+}
+
+#no-event {
+  min-height: 112px;
+  color: $color-dim-gray;
+  font-family: $font-bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.8;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    
+  }
+}
+
+.bg-odd {
+  background-color: $color-ghost-white-v2;
+}
+
+.bg-even {
+  background-color: $color-snow;
+}
+
+.recruiter-is-me {
+  color: $color-corn-flower-blue;
+}

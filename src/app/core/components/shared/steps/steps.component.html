@@ -1,0 +1,26 @@
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<ul class="timeline" id="timeline">
+
+  <ng-container *ngFor="let step of steps; let i = index">
+    <li class="col-md-2 li " [ngClass]="
+    {
+      '': step.status === null,
+      'complete': step.status === 'complete',
+      'ongoing': step.status === 'ongoing'
+    }">
+      <div class="title-steps"><span *ngIf="i === 0">STEPS</span></div>
+      <div class="status solid-line" [ngClass]="
+      {
+        'dashed-line': step.name === 'Apply' || step.name === 'Applying',
+        'no-line': step.name === 'On Board'
+      }"></div>
+      <div class="desc-steps" [ngStyle]="{'color':step.status === 'ongoing' ? 'white' : '#3D526D'}">
+        {{step.name}}
+      </div>
+    </li>
+  </ng-container>
+</ul>

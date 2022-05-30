@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <div class="wrapper-inside">
+    <div class="row justify-content-between">
+      <div class="col-md-5">
+        <div class="col-md-12" id="title">Login</div>
+          <form (keydown.enter)="$event.preventDefault()" [formGroup]="loginForm" (ngSubmit)="doLogin()" class="col-pass-form offset-md-1">
+            <div class="row" id="inputField">
+              <input type="email" class="form-control form-control-borderless" required name="email" placeholder="Email" formControlName="email" (focusin)="showError = false" (focusout)="showError = true"/>
+            </div>
+            <div class="row" id="inputField">
+              <input [type]="isPasswordVisible ? 'text' : 'password'" class="col-10 form-control form-control-borderless"
+                ngModel required name="password" formControlName="password" placeholder="Password">
+              <div class="col-2 pass-visible-img" id="password-visibility">
+                <img [src]="isPasswordVisible ? 'assets/images/ic_visibility.svg' : 'assets/images/ic_visibility_hidden.svg'"
+                  (click)="isPasswordVisible = !isPasswordVisible" style="cursor: pointer">
+              </div>
+            </div>
+            <div class="row justify-content-center" id="errorMessage">
+              <ng-container *ngIf="loginForm.invalid && loginForm.errors !== null">
+                <mat-error
+                  *ngIf="loginForm.invalid && loginForm.controls.email.errors !== null &&loginForm.controls.email.errors.email &&showError">
+                  Please input valid email address</mat-error>
+                <mat-error *ngIf="loginFailed"
+                  >Email or password is invalid</mat-error>
+              </ng-container>
+            </div>
+            <div id="forgot-password" (click)="openDialogReset()">
+              Forgot Password
+            </div>
+            <button
+              class="col-md-12"
+              [ngClass]="{
+                'button-primary': loginForm.valid,
+                'button-disable': loginForm.invalid
+              }"
+              [disabled]="loginForm.invalid"
+              type="submit"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      <div class="col-md-6">
+        <img src="assets/images/login.png" />
+      </div>
+    </div>
+  </div>
+</div>

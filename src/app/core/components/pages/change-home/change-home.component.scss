@@ -1,0 +1,17 @@
+@import '../../../../../variables';
+
+::ng-deep .mat-tab-labels {
+    background-color: white;
+}
+
+.page-title{
+    font-family: $font-bold;
+    font-size: 22px;
+
+}
+
+:host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #4373b3;
+    height: 5px;
+    border-radius: 5px;
+}

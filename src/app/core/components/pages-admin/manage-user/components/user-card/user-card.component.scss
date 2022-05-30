@@ -1,0 +1,224 @@
+@import "src/_variables.scss";
+
+.card-container {
+  width: 300px;
+  background: $color-ghost-white;
+  border-radius: 5px;
+  padding: 17px;
+  
+  .super-admin-height {
+    min-height: 270px;
+    max-height: 270px;
+  }
+
+  @media screen and (max-width: 768px){
+    width: 180px;
+    min-height: 180px;
+    max-height: 210px;
+  }
+  @media screen and (max-width: 425px){
+    width: 150px;
+    max-height: 180px;
+    min-height: 150px;
+    padding: 10px;
+  }
+  @media screen and (max-width: 375px){
+    width: 130px;
+    min-height: 130px;
+    max-height: 170px;
+    padding: 10px;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+  @media screen and (max-width: 425px){
+    width: 15px;
+  }
+  @media screen and (max-width: 375px){
+    width: 13px;
+  }
+}
+
+.not-allowed {
+  cursor: not-allowed;
+  @media screen and (max-width: 425px){
+    width: 15px;
+  }
+  @media screen and (max-width: 375px){
+    width: 10px;
+  }
+}
+
+.profile-picture img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 16px;
+  @media screen and (max-width: 768px){
+    width: 50px;
+    height: 50px;
+    margin-top: 8px;
+  }
+  @media screen and (max-width: 425px){
+    width: 45px;
+    height: 45px;
+  }
+  @media screen and (max-width: 375px){
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.user-name {
+  font-family: $font-bold;
+  font-size: 19px;
+  text-align: center;
+  color: $color-dim-gray;
+  margin-top: 1.5rem;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+    margin-top: 1rem;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+.user-role {
+  font-family: $font-medium;
+  font-size: 15px;
+  text-align: center;
+  color: $color-dim-gray;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+  }
+}
+
+.user-email {
+  font-family: $font-regular;
+  font-size: 15px;
+  text-align: center;
+  color: $color-dim-gray;
+  @media screen and (max-width: 768px){
+    font-size: 10px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 9px;
+  }
+}
+
+.custom-button {
+  height: 30px;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+    height: 20px;
+  }
+}
+
+// TODO: Move this to global after all component implement
+
+.container,
+.col,
+.col-1,
+.col-10,
+.col-11,
+.col-12,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-auto,
+.col-lg,
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-auto,
+.col-md,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-auto,
+.col-sm,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-auto,
+.col-xl,
+.col-xl-1,
+.col-xl-10,
+.col-xl-11,
+.col-xl-12,
+.col-xl-2,
+.col-xl-3,
+.col-xl-4,
+.col-xl-5,
+.col-xl-6,
+.col-xl-7,
+.col-xl-8,
+.col-xl-9,
+.col-xl-auto {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.crown-img{
+  @media screen and (max-width: 375px){
+    width: 15px;
+  }
+
+}

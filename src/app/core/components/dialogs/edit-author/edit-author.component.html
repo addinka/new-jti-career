@@ -1,0 +1,29 @@
+<div class="large-dialog-wrapper">
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-end">
+      <img src="../../../../../assets/images/ic_close.svg" id="close" (click)="close()" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" id="title">
+      Edit Author
+    </div>
+  </div>
+  <div class="row margin-card author-list">
+    <app-author-card
+      class="col-xl-3 col-lg-3 col-md-4 col-sm-6 width-card-col"
+      [index]="i"
+      *ngFor="let author of authors; let i = index"
+      (click)="selectAuthor(i)"
+      [author]="author"
+    >
+    </app-author-card>
+  </div>
+  <div class="row">
+    <div class="col-md-6"></div>
+    <!-- [ngClass]="{'disable-button': this.currentId !== this.data.job.author}" [disabled]="this.currentId !== this.data.job.author" -->
+    <button class="col" id="update"  (click)="update()">
+      Update
+    </button>
+  </div>
+</div>

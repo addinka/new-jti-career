@@ -1,0 +1,20 @@
+<div *ngIf="detail.startHour !== undefined; else noEvent" class="ml-2 mr-2 p-3" [ngClass]="{'bg-even': index%2 !== 0, 'bg-odd': index%2 === 0}">
+  <div id="start-hour">
+    {{detail.startHour | date:'hh:mm'}}
+  </div>
+  <div id="candidate-name">
+    {{detail.candidateName}}
+  </div>
+  <div id="candidate-role">
+    {{detail.candidateRole}}
+  </div>
+  <div class="recruiter-in-charge" [ngClass]="{'recruiter-is-me': currentName === detail.recruiterInCharge}">
+    by {{detail.recruiterInCharge}} <span *ngIf="currentName === detail.recruiterInCharge">(You)</span>
+  </div>
+</div>
+
+<ng-template #noEvent>
+  <div class="row ml-2 mr-2 p-3 align-items-center bg-odd" id="no-event">
+    No Events
+  </div>
+</ng-template>

@@ -1,0 +1,63 @@
+<div class="invite-wrapper p-3">
+  <div class="d-flex justify-content-end">
+    <img src="assets/images/ic_close.svg" (click)="close(false)" height="20" width="20" style="cursor: pointer">
+  </div>
+
+  <div class="row justify-content-center">
+    <img src="assets/images/invite.png" width="80%">
+  </div>
+
+  <div class="">
+    <div class="dialog-title mb-2">Send Apply Job Invitation</div>
+
+    <div class="dialog-subtitle">This invitation will be sent to Candidate's Email</div>
+
+    <!-- <div class="d-flex flex-row mt-4 mx-4 form-control-borderless p-2">
+      <img class="rounded-circle profile" [src]="data.profpic" onerror="this.src='../../../../../assets/images/ic_user.svg'" height="50" width="50">
+      <div class="align-self-center ml-3" id="applicant-name">{{ data.name }}</div>
+    </div> -->
+
+  <!-- Invite Form -->
+    <form (keydown.enter)="$event.preventDefault()" (ngSubmit)="onSubmit()" [formGroup]="inviteForm">
+      
+      <div class="row mx-4 mt-3">
+        <!-- Job Input -->
+        <mat-select class="form-bg job-input" placeholder="Job opening" formControlName="jobID">
+        <mat-option *ngFor="let item of jobList; let i = index" [value]="item.id" class="job-option">
+          <span class="m-0 option-main">{{ item.value.title }} &nbsp;</span><br>
+          <span class="m-0 option-info">{{ item.value.location }} - {{ (dateString(item.value.onBoardStart) | date:'dd MMM yyyy') || notDateString(item.value.onBoardStart) }}</span>
+        </mat-option>
+      </mat-select>
+      </div>
+
+      <div class="row mx-4 mt-3">
+        <!-- Job Input -->
+        <div class="form-bg email-input">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let email of emails; let i = index" (removed)="removeEmail(i)" class="email-chip">
+              {{email}}
+              <button matChipRemove>
+                <mat-icon >cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="Email"
+              id="emailInput"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addEmail($event)">
+          </mat-chip-list>
+        </div>
+      </div>
+  
+      <div class="row mx-4 mt-4 mb-4">
+        <button class="col button" type="submit" id="button-next" [ngClass]="{
+          'button-primary': formValid,
+          'button-disable': !formValid}" [disabled]="!formValid">Send</button>
+      </div>
+  
+    </form>
+  </div>
+ 
+</div>
+

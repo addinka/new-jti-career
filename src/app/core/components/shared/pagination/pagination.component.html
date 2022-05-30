@@ -1,0 +1,32 @@
+<div class="jobs-pagination">
+  <span style="vertical-align: -1px; margin-right: 20px">Page</span>
+  <!-- <img *ngIf="!isLeft; else leftOn" src="../../../assets/images/ic_arrow_left_off.svg" class="jobs-arrow-left-off"
+    (click)="onPrevious()"> -->
+  <span class="jobs-pagination-arrow-off" *ngIf="!isLeft; else leftOn">
+    <i class="fas fa-chevron-left" (click)="onPrevious()"></i>
+  </span>
+  <span *ngFor="let pagination of pages; let i of index"
+    [ngClass]="{'jobs-pagination-on': i === page, 'jobs-pagination-off': i !== page}" (click)="onPage(pagination)">
+    {{ pagination }}
+  </span>
+  <span class="jobs-pagination-arrow-off" *ngIf="!isRight; else rightOn" >
+    <i class="fas fa-chevron-right" (click)="onNext()"></i>
+    <!-- <img *ngIf="!isRight; else rightOn" src="../../../assets/images/ic_arrow_right_off.svg" class="jobs-arrow-right-off"
+      (click)="onNext()"> -->
+  </span>
+
+</div>
+
+<ng-template #leftOn>
+  <!-- <img src="../../../assets/images/ic_arrow_left_on.svg" class="jobs-arrow-left-on" (click)="onPrevious()"> -->
+  <span class="jobs-pagination-arrow-on jobs-arrow-left-on" (click)="onPrevious()">
+    <i class="fas fa-chevron-left" ></i>
+  </span>
+</ng-template>
+
+<ng-template #rightOn>
+  <span class="jobs-pagination-arrow-on jobs-arrow-right-on" (click)="onNext()">
+    <i class="fas fa-chevron-right" ></i>
+  </span>
+  <!-- <img src="../../../assets/images/ic_arrow_right_on.svg" class="jobs-arrow-right-on" (click)="onNext()"> -->
+</ng-template>

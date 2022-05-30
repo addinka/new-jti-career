@@ -1,0 +1,71 @@
+<div class="row jobs-search">
+    <div class="col-md">
+        <form class="card card-sm" style="margin-right: 0px;">
+            <div class="row no-gutters align-items-center">
+                <div class="col">
+                    <input class="form-control form-control-borderless search-input" type="search" placeholder="Search Candidate" autocomplete="off" [(value)]=search name="search" [(ngModel)]="search" (keyup.enter)="onSearch()">
+                </div>
+                <div class="dropdown dropdown-search">
+                    <button class="form-control form-control-borderless dropdown-text">{{searchPlaceholder}}</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a (click)="changeSearchMode()">{{searchDropdown}}</a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="btn button-search" type="button" (click)="onSearch()">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="jobs-container">
+    <!-- <div *ngIf="!searchFromHeader; else searchImage" class="jobs-container-detail"> -->
+    <div class="jobs-container-detail">
+        <div class="row">
+            <div class="col-md-6" style="margin-top: 1.5rem!important">
+                <div id="job-title">{{ showText }}</div>
+                <div id="job-title-detail">{{ applicantList.dataCount }} Applicants found</div>
+                <!-- <div id="job-title-detail">{{ selectedStatusCount }} Applicants {{ selectedStatus }}</div> -->
+                <!-- <div class="jobs-count">{{jobsCount}} {{ jobsCount > 1? 'Posts' : 'Post' }}</div> -->
+            </div>
+        </div>
+
+        <app-applicant-list
+            [userStatus]="userStatus">
+        </app-applicant-list>
+    </div>
+</div>
+
+<ng-template #starting>
+    <div class="no-list-margin">
+        <app-not-found [message]="'Search Candidates Above'"></app-not-found>
+    </div>
+</ng-template>
+
+<!-- <ng-template #searchImage>
+  <div class="jobs-search-container">
+    <div class="row justify-content-center">
+      <img class="searchImage" src="../../../assets/images/bg_search.svg" alt="Search Your Desired Job">
+    </div>
+    <div class="jobs-search-text">
+      {{ searchImageText }}
+    </div>
+  </div>
+</ng-template> -->
+
+<ng-template #arrowAsc>
+    <img *ngIf="sorts[0] === 'default'; else arrowAsc" class="jobs-sort-arrow-asc">
+</ng-template>
+
+<ng-template #f>
+    <td *ngIf="job?.onBoardStart !== 'F'; else i" class="jobs-td">Anytime</td>
+</ng-template>
+
+<ng-template #i>
+    <td class="jobs-td">Immediately</td>
+</ng-template>
+
+<ng-template #tableFill>
+    <td></td>
+</ng-template>

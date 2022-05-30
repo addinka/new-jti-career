@@ -1,0 +1,749 @@
+@import '../../../../../variables';
+
+::ng-deep .mat-sort-header-stem {
+  background: none;
+  display: none !important;
+}
+
+::ng-deep .mat-sort-header-pointer-middle {
+  background: none;
+  display: none !important;
+}
+
+::ng-deep .mat-sort-header-indicator {
+  top: 5px !important;
+}
+
+::ng-deep .mat-sort-header-button, button:focus {
+  outline: none !important;
+}
+
+button {
+  outline: none;
+}
+
+.lite-wrapper {
+  min-height: -webkit-fill-available;
+  padding: 0 40px 65px 40px;
+  background: $color-white-smoke;
+}
+
+.profile-wrapper {
+  background: $color-white;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+}
+
+.profile-wrapper span {
+  align-self: baseline;
+}
+
+#title-app {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 39px;
+  font-size: 22px;
+  color: $color-black;
+  @media screen and (max-width: 768px){
+    font-size: 18px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 15px;
+  }
+}
+
+#applicationsCount {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 39px;
+  font-size: 22px;
+  color: $color-corn-flower-blue;
+  @media screen and (max-width: 768px){
+    font-size: 18px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 15px;
+  }
+}
+
+.profile-picture img {
+  width: 140px;
+  height:140px;
+  display: block;
+  margin-left: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-right: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  @media screen and (max-width: 425px){
+    width: 50%;
+    margin: 0 25%;
+  }
+}
+
+.profile-picture button {
+  border: 2px solid $color-corn-flower-blue;
+  background: $color-white;
+  border-radius: 5px;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  color: $color-corn-flower-blue;
+  line-height: 18px;
+  font-size: 14px;
+  padding: 11px;
+  margin-top: 10%;
+  @media screen and (max-width: 768px){
+    
+  }
+  @media screen and (max-width: 425px){
+    margin: 5% 30%;
+    padding: 4px;
+    max-width: 40%;
+  }
+}
+
+.profile-detail div {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.profile-detail section {
+  margin-top: 42px;
+  @media screen and (max-width: 768px){
+    margin-top: 15px;
+  }
+  @media screen and (max-width: 425px){
+    margin-top: 10px;
+  }
+}
+
+#name {
+  text-transform: capitalize;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 29px;
+  font-size: 22px;
+  color: $color-dark-slate-gray;
+  margin-bottom: 32px;
+  @media screen and (max-width: 768px){
+    
+  }
+  @media screen and (max-width: 425px){
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+.profile-label {
+  text-transform: uppercase;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 13px;
+  color: $color-soft-black;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+.profile-text {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 14px;
+  word-break: break-all;
+  color: $color-dark-gray;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+#doc-basic-sets {
+  margin-bottom: 5vh;
+}
+
+#doc-basic-sets>div, #doc-advanced-sets>div {
+  margin-bottom: 20px;
+}
+
+#doc-title {
+  margin-top: 25px;
+  margin-bottom: 23px;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 16px;
+  color: $color-dim-gray;
+  @media screen and (max-width: 425px){
+    font-size: 15px;
+  }
+}
+
+#doc-subtitle {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 12px;
+  color: $color-dim-gray;
+  align-self: center;
+}
+
+.subtitle {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.basic-sets-docs-uploaded app-document{
+  padding: 0;
+}
+
+.doc-uploaded {
+  padding-right: 0;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 13px;
+  text-align: center;
+  color: $color-dim-gray;
+}
+
+.doc-file {
+  border-radius: 5px;
+  background-color: $color-ghost-white;
+  border: 2px solid $color-ghost-white;
+  padding: 1% !important;
+}
+
+.mark-delete {
+  border: 2px solid $color-pale-violet-red;
+}
+
+.mark-reupload {
+  border: 2px solid $color-corn-flower-blue;
+}
+
+#docActionButton {
+  padding: 5%;
+  height: 30px;
+}
+
+#docActionButton img {
+  cursor: pointer;
+}
+
+#iconFolder {
+  padding: 25%;
+  width: 100%;
+}
+
+#iconReupload{
+  float: left;
+}
+
+#iconDelete {
+  float: right;
+}
+
+.doc-id {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 13px;
+  text-align: center;
+  color: $color-dim-gray;
+  margin: 10px 0;
+}
+
+.advanced-sets-docs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 2%;
+  /* grid-row-gap: 10%; */
+}
+
+.doc-not-selected {
+  padding-top: 35%;
+}
+
+.advanced-sets-docs .doc-uploaded {
+  width: 100%;
+}
+
+#cancelButton {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-dim-gray;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+#applyButton {
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-white;
+  background: $color-corn-flower-blue;
+  margin: 0;
+}
+
+.my-applicants-status>div {
+  padding: 0 5px;
+}
+
+th {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 14px;
+  background: $color-sky-blue;
+  color: $color-white;
+  padding: 26px 10px;
+
+}
+
+/* Medium devices (ipad) */
+/* @media screen and (max-width: 1024px) { */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .profile-wrapper {
+    padding: 30px 36px;
+  }
+
+  .profile-detail div {
+    margin-bottom: 11px;
+  }
+
+  .profile-picture button {
+    padding: 5px;
+  }
+
+  .my-applicants-status div {
+    font-size: 10px;
+    line-height: 20px;
+  }
+
+  #statusTotal {
+    font-size: 16px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .profile-wrapper {
+    padding: 25px;
+  }
+
+  #name {
+    margin-bottom: 21px;
+  }
+
+  .profile-detail div {
+    margin-bottom: 6px;
+  }
+
+  #doc-basic-sets {
+    margin-bottom: 60px;
+  }
+
+  .doc-id {
+    line-height: 13px;
+    font-size: 11px;
+    margin-top: 5%;
+  }
+
+  #doc-subtitle {
+    font-size: 11px;
+  }
+
+  #doc-advanced-sets #doc-subtitle {
+    margin-bottom: 20px;
+  }
+
+  .advanced-sets-docs button {
+    font-size: 11px;
+    margin-bottom: 5px;
+  }
+
+  .my-applicants-status div {
+    font-size: 7px;
+    line-height: 20px;
+  }
+
+  #statusTotal {
+    font-size: 12px;
+  }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 767.98px) {
+  .lite-wrapper {
+    padding: 0 40px 20px 40px;
+  }
+
+  .profile-wrapper {
+    padding: 20px;
+  }
+
+  #profile {
+    padding: 1%;
+  }
+
+  .profile-picture img {
+    width: 50%;
+    margin: 0 25%;
+  }
+
+  #name {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .profile-detail div,
+  .profile-documents div {
+    margin-bottom: 0px;
+    padding: 0;
+  }
+
+  .profile-detail section div {
+    margin-bottom: 5px;
+  }
+
+  #doc-basic-sets {
+    margin-bottom: 65px;
+  }
+
+  #doc-basic-sets button {
+    font-size: 12px;
+  }
+
+  .doc-id {
+    line-height: 14px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  #doc-subtitle {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .doc-uploaded {
+    margin: 0;
+  }
+
+  #doc-advanced-sets #doc-subtitle {
+    margin-bottom: 15px;
+    font-size: 12px
+  }
+
+  .advanced-sets-docs button {
+    font-size: 11px;
+    line-height: 10px;
+    margin-bottom: 0px;
+    padding: 4px;
+  }
+
+  .my-applicants-status {
+    /* width: 100%; */
+    margin-top: 10px;
+  }
+
+  .my-applicants-status div {
+    font-size: 10px;
+    line-height: 20px;
+  }
+
+  #statusTotal {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 570px) {
+  .my-applicants-status {
+    /* width: 100%; */
+    margin-top: 10px;
+  }
+
+  .my-applicants-status div {
+    font-size: 10px;
+    line-height: 20px;
+  }
+
+  #statusTotal {
+    font-size: 15px;
+  }
+}
+
+/* Jobs container css start here */
+.jobs-title {
+  color: $color-black;
+  font-family: $font-regular;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  margin-top: 50px;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+.jobs-count {
+  color: $color-chrome-blue;
+  font-family: $font-regular;
+  font-size: 22px;
+}
+
+.jobs-default-text {
+  color: $color-dim-gray;
+  font-family: $font-regular;
+  font-size: 15px;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+}
+
+.jobs-select-background {
+  background-color: $color-ghost-white;
+  border-radius: 5px;
+  margin: 0 8px;
+  padding: 10px 15px;
+}
+
+.jobs-select-value {
+  border: none;
+  background: url('../../../../../assets/images/ic_arrow_bottom.svg');
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: right 3px;
+  outline: none;
+  padding-right: 18px;
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  -ms-appearance: none;
+  /* Internet explorer */
+}
+
+.jobs-table {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.jobs-th {
+  background: $color-sky-blue;
+  cursor: pointer;
+  color: $color-white;
+  font-family: $font-regular;
+  font-size: 14px;
+  padding: 25px 0 25px 40px;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+    padding: 10px 0 10px 20px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+    padding: 5px 0 5px 10px;
+  }
+}
+
+.jobs-th-radius-left {
+  border-radius: 5px 0 0 0;
+}
+
+.jobs-th-radius-right {
+  border-radius: 0 5px 0 0;
+}
+
+.jobs-td-bold {
+  color: $color-black;
+  font-family: $font-regular;
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 22px;
+  padding: 25px 0 25px 40px;
+}
+
+.jobs-hover:hover {
+  border-left: 5px solid $color-sky-blue;
+  padding: 25px 0 25px 40px;
+}
+
+.jobs-td {
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: $color-dim-gray;
+  padding: 25px 0 25px 40px;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+    padding: 10px 0 10px 20px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+    padding: 5px 0 5px 10px;
+  } 
+}
+
+.jobs-td-odd {
+  border-left: 5px solid $color-ghost-white;
+  background-color: $color-ghost-white;
+}
+
+.jobs-td-even {
+  border-left: 5px solid $color-snow;
+  background-color: $color-snow;
+}
+
+.jobs-sort-arrow {
+  margin-left: 5px;
+  vertical-align: 3px;
+  content: url("../../../../../assets/images/ic_arrow_sort.svg");
+}
+
+.jobs-sort-arrow-asc {
+  margin-left: 5px;
+  vertical-align: 3px;
+  content: url("../../../../../assets/images/ic_arrow_sort_asc.svg");
+}
+
+.jobs-sort-arrow-dsc {
+  margin-left: 5px;
+  vertical-align: 3px;
+  content: url("../../../../../assets/images/ic_arrow_sort_dsc.svg");
+}
+
+.jobs-table button {
+  background: $color-pale-violet-red;
+  border-radius: 5px;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-white;
+}
+
+.jobs-table button:disabled{
+  background: $color-gainsboro;
+}
+
+.action-de{
+  padding: 0 40px;
+  @media screen and (max-width: 768px){
+    padding: 0 20px;
+  }
+  @media screen and (max-width: 425px){
+    padding: 0 10px;
+  }
+}
+
+#applicationDate {
+  line-height: 17px;
+  font-size: 12px;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+#applicationRole {
+  line-height: 22px;
+  font-size: 19px;
+  color: $color-black;
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 11px;
+  }
+}
+
+#applicationStatus {
+  font-weight: bold;
+  line-height: 23px;
+  font-size: 15px;
+  text-transform: capitalize;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+}
+
+.status-margin{
+  @media screen and (max-width: 425px){
+    padding-left: 1rem;
+  }
+}
+
+.mobile-col-doc{
+  @media screen and (max-width: 425px){
+    width: auto;
+  }
+}
+
+.onboarding-form{
+  background-color: $color-ghost-white;
+  border-radius: 5px;
+
+  #arrow{
+    transform: rotate(270deg);
+    height: 1rem;
+    filter: contrast(0.5);
+    cursor: pointer;
+  }
+
+  .form-pdf{
+    $bg-color: rgba(76, 97, 124, 0.04);
+    background-color: $bg-color;
+    border: 1px solid $bg-color;
+    border-radius: 5px;
+    a {
+      color: $color-corn-flower-blue;
+    }
+
+    img {
+      height: 1rem;
+      margin-right: 0.25rem;
+    }
+  }
+}

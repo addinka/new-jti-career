@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="wrapper-inside">
+    <div class="row justify-content-between margin-space">
+      <div class="col-auto margin-space">
+        <div id="job-title">{{ jobTitle }}</div>
+        <div id="job-title-detail">{{ selectedStatusCount }} Applicants {{ selectedStatus }}</div>
+      </div>
+      <div class="col-auto d-flex flex-row scrollable margin-space">
+        <!-- TODO: Responsive this part -->
+        <div class="col px-0 ml-2 align-self-center" *ngFor="let status of applicationsStatusCount; let i = index">
+          <app-application-status appApplicationStatus [total]="status.total"
+            [status]="applicationStatus[status.status]" [isClicked]="status.isClicked" (click)="chooseStatus(i)">
+          </app-application-status>
+        </div>
+      </div>
+    </div>
+
+    <app-applicant-list 
+      [jobId]="id"
+      [inJobDetail]="true"
+      (callback)="onGetJobById()"
+    ></app-applicant-list>
+  </div>
+</div>
+
+<!-- <ng-template #emptyview>
+  <div class="col-md-4"></div>
+</ng-template> -->
+
+<ng-template #tableFill>
+  <td></td>
+</ng-template>
+
+<ng-template #noData>
+  <div>
+    <app-not-found [message]="message"></app-not-found>
+  </div>
+</ng-template>

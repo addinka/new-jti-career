@@ -1,0 +1,47 @@
+<div class="applicant-container grid-width">
+    <div class="applicant-details" id="applicantDetails" (click)="openApplicantDetail()">
+        <div class="applicant align-self-center ml-3">
+            <div class="comment">WHY ME?</div>
+            <span id="applicant-comment">{{ applicant.comments }}</span>
+        </div>
+    
+        <!-- <div (click)="openApplicantReason()" class="applicant-reason-button" id="{{applicant['userID']}}">WHY ME?</div> -->
+        <div class="profile-picture">
+            <img [src]="applicant.user.profpic" onerror="this.src='../../../../../../assets/images/ic_user.svg'">
+        </div>
+       
+    
+        <div class="applicant-name">{{ applicant.user.name }}</div>
+        <div class="justify-content-center applicant-detail">
+            {{ applicant.user.degree }}
+        </div>
+        <div class="justify-content-center applicant-detail">
+            {{ applicant.user.experience }}
+        </div>
+        <div class="applicant-salary">{{ applicant.expSalary | currency : 'Rp ' : '' : '1.0-0' }}</div>
+        <div class="applicant-negotiable">{{ applicant.isNegotiable ? 'Negotiable' : '&nbsp;'}}</div>
+
+    </div>
+    <div class="row action-button-container m-0" *ngIf="showApplicantAction">
+        <div class="col-md-5 col-12 p-0">
+            <button class="btn dropdown-toggle" type="button" id="inviteButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Invite
+            </button>
+            <div class="dropdown-menu" aria-labelledby="inviteButton">
+                <span class="dropdown-item" *ngFor="let type of invItems" (click)="onInvite(type)">{{ type }}</span>
+            </div>
+        </div>
+        <div class="col-md-4 col-12 p-0">
+            <button class="reject-button" (click)="rejectApplicant()">Reject</button>
+        </div>
+        <div class="col-md-2 col-12 d-flex justify-content-center pt-1 p-0">
+            <img [src]="getShortListIcon()" alt="" (click)="setPotential()">
+        </div>
+      
+    </div>
+    <ng-container *ngIf="isApplicantReasonShown">
+        <div class="applicant-reason-container" id="applicantReasonContainer">
+            <div class="applicant-reason">{{ applicant.comments }}</div>
+        </div>
+    </ng-container>
+</div>

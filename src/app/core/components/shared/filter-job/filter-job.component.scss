@@ -1,0 +1,67 @@
+@import '../../../../../_variables.scss';
+.collapse-arrow {
+    margin-left: 5px;
+    vertical-align: 3px;
+    content: url("../../../../../assets/images/ic_arrow_sort.svg");
+  }
+
+.common-text{
+    color: #4C617C;
+    font-family: 'IBM-Plex-Sans-Regular';
+    font-size: 16px;
+    @media only screen and (max-width: 768px){ 
+        font-size: 11px;
+        padding-top: 5px;
+    }
+    @media only screen and (max-width: 768px){ 
+        padding-top: 3px;
+    }
+}
+
+.bold-text{
+    color: #4C617C;
+    font-family: 'IBM-Plex-Sans-Regular';
+    font-weight: bold;
+
+    @media only screen and (max-width: 768px){ 
+        font-size: 13px;
+    }
+}
+
+.center-text{
+    text-align: center;
+}
+
+.common-13-text-center {
+    color: #4C617C;
+    font-family: 'IBM-Plex-Sans-Regular';
+    font-size: 13px;
+    align-items: center;
+    text-align: center;
+}
+
+.section-text-filter{
+    font-family: $font-bold;
+    justify-content: space-between;
+    font-size: 16px;
+    cursor: pointer;
+    flex-wrap: nowrap;
+    @media only screen and (max-width: 768px){ 
+        font-size: 12px;
+    }
+    @media only screen and (max-width: 425px){ 
+        font-size: 14px;
+        padding-left: 20px;
+        padding-right: 30px
+    }
+}
+
+.section-text-space{
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-top: 0.5rem;
+    @media only screen and (max-width: 425px){
+        padding-left: 20px;
+        padding-right: 30px
+    }
+}

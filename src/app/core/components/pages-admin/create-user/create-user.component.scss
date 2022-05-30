@@ -1,0 +1,113 @@
+@import '../../../../../variables';
+
+#title {
+  font-family: $font-semi-bold;
+  font-size: 22px;
+  color: $color-black;
+  @media screen and (max-width: 768px){
+    font-size: 16px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 18px;
+  }
+}
+
+.avatar-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.avatar-list img {
+  padding: 0px 10px 10px 0px;
+  cursor: pointer;
+  @media screen and (max-width: 425px){
+    width: 50px;
+  }
+}
+
+.avatar-list img:hover {
+  opacity: 1;
+}
+
+.isSelected {
+  opacity: 1;
+}
+
+.isNotSelected {
+  opacity: 0.5;
+}
+
+.form-control {
+  background: $color-ghost-white;
+  border: none;
+  box-shadow: none;
+  color: $color-dim-gray;
+  font-family: $font-regular;
+  font-size: 15px;
+  line-height: 19px;
+  outline: none;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+}
+
+::ng-deep .mat-select-value {
+  color: $color-dim-gray;
+  font-family: $font-regular;
+  font-size: 15px;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+  }
+}
+
+form .row {
+  margin-bottom: 20px;
+  min-height: 30px;
+}
+
+.form-label {
+  font-family: $font-medium;
+  font-size: 14px;
+  color: $color-soft-black;
+  @media screen and (max-width: 768px){
+    font-size: 13px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+}
+
+.submit-button {
+  background: $color-corn-flower-blue;
+  border-radius: 5px;
+  font-family: $font-bold;
+  font-size: 16px;
+  text-align: center;
+  color: $color-white;
+  height: 50px;
+  border: none;
+  @media screen and (max-width: 768px){
+    font-size: 15px;
+    height: 40px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+    
+  }
+}
+
+.button-enable {
+  background: $color-corn-flower-blue;
+}
+
+.button-disable {
+  background: $color-gainsboro;
+}

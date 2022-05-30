@@ -1,0 +1,685 @@
+@import '../../../../../../../_variables.scss';
+
+::ng-deep .mat-sort-header-button {
+  letter-spacing: 1px;
+}
+
+
+.card {
+  border: 0px;
+  margin-right: 20px;
+}
+
+.search-icon {
+  margin: 0 0 0 15px;
+}
+
+.search-input {
+  background-color: $color-white;
+}
+
+.jobs-filter {
+  color: #3D526D;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+}
+
+.row-table{
+  @media only screen and (min-width: 1440px){
+    width: 100%;
+  }
+}
+
+.jobs-filter-text {
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  width: fit-content;
+  min-width: 155px;
+  padding: 10px 0px;
+  cursor: pointer;
+  @media screen and (max-width: 768px){
+    padding: 0px 0px;
+  }
+  @media screen and (max-width: 425px){
+    min-width: 100px;
+    padding: 0px 0px;
+  }
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 30px 0px rgba(76, 97, 124, 0.19);
+  z-index: 1;
+  font-size: 12px;
+  font-family: $font-regular;
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+  }
+}
+
+/* Jobs container css start here */
+
+.jobs-container {
+  background-color: #eff7f8;
+  padding: 0 50px 50px;
+  @media screen and (max-width: 425px){
+    padding: 0 30px 40px;
+  }
+  @media screen and (max-width: 425px){
+    padding: 0 40px 40px;
+  }
+
+}
+
+.jobs-container-detail {
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  padding: 0 50px 50px;
+  @media screen and (max-width: 768px){
+    padding: 0 25px 25px;
+  }
+  @media screen and (max-width: 425px){
+    padding: 0 20px 30px;
+  }
+}
+
+#job-title {
+  font-family: $font-semi-bold;
+  font-size: 30px;
+  color: $color-black;
+  @media only screen and (max-width: 768px){
+    font-size: 24px;
+  }
+}
+
+#job-title-detail {
+  font-family: $font-regular;
+  font-size: 23px;
+  color: $color-corn-flower-blue;
+  @media only screen and (max-width: 768px){
+    font-size: 20px;
+  }
+}
+
+.jobs-default-text {
+  color: $color-dim-gray;
+  font-family: $font-regular;
+  font-size: 15px;
+  @media only screen and (max-width: 768px){
+    font-size: 13px;
+  }
+}
+
+.jobs-title {
+  color: black;
+  font-family: 'IBM-Plex-Sans-Semi-Bold';
+  font-size: 30px;
+  line-height: 38px;
+  margin-top: 50px;
+}
+
+.button-size{
+  height: 30px;
+  width: 100px;
+  @media only screen and (min-width: 375px){ 
+    width: 60px;
+  }
+}
+
+.jobs-count {
+  color: #598CF5;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 23px;
+}
+
+.jobs-chip {
+  max-height: 121px;
+  overflow: scroll;
+  text-align: right;
+}
+
+.job-chip-shadow {
+  background: url("../../../../../../../assets/images/bg_filter_shadow.svg")
+}
+
+.jobs-chip::-webkit-scrollbar {
+  width: 0 !important
+}
+
+.jobs-chip {
+  overflow: -moz-scrollbars-none;
+}
+
+.jobs-chip {
+  -ms-overflow-style: none;
+}
+
+.jobs-chip-clear {
+  color: #3D526D;
+  cursor: pointer;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 14px;
+  margin: 0 5px;
+  line-height: 52px;
+}
+
+.jobs-default-text {
+  color: #4C617C;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 15px;
+}
+
+.jobs-select-background {
+  background-color: #F6F8FB;
+  border-radius: 5px;
+  margin: 0 8px;
+  padding: 10px 15px;
+  width: 70px;
+  height: 40px;
+}
+
+.jobs-select-value {
+  border: none;
+  background: url('../../../../../../../assets/images/ic_arrow_bottom.svg');
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: right 3px;
+  outline: none;
+  padding-right: 18px;
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  -ms-appearance: none;
+  /* Internet explorer */
+  color: #4C617C;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 15px;
+  opacity: 0.7;
+}
+
+.jobs-table {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.jobs-th {
+  width: 250px;
+  cursor: pointer;
+  color: white;
+  font-family: 'IBM-Plex-Sans-Medium';
+  font-size: 14px;
+  padding: 25px 0 25px 40px;
+  letter-spacing: 1px;
+}
+
+.jobs-th-radius-left {
+  border-radius: 5px 0 0 0;
+  width: 20%;
+}
+
+.jobs-th-radius-right {
+  border-radius: 0 5px 0 0;
+}
+
+.jobs-td-bold {
+  color: black;
+  font-family: 'IBM-Plex-Sans-Bold';
+  font-size: 19px;
+  line-height: 22px;
+  padding: 25px 0 25px 40px;
+}
+
+.jobs-hover:hover {
+  border-left: 5px solid #88ACDA;
+  padding: 25px 0 25px 40px;
+}
+
+.jobs-td {
+  color: #4C617C;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 16px;
+  line-height: 20px;
+  padding: 25px 0 25px 40px;
+}
+
+.jobs-td-odd {
+  border-left: 5px solid #F6F8FB;
+  background-color: #F6F8FB;
+}
+
+.jobs-td-even {
+  border-left: 5px solid #FBFBFB;
+  background-color: #FBFBFB;
+}
+
+.jobs-sort-arrow {
+  margin-left: 5px;
+  vertical-align: 3px;
+  content: url("../../../../../../../assets/images/ic_arrow_sort.svg");
+}
+
+.jobs-sort-arrow-asc {
+  margin-left: 5px;
+  vertical-align: 3px;
+  content: url("../../../../../../../assets/images/ic_arrow_sort_asc.svg");
+}
+
+.jobs-sort-arrow-dsc {
+  margin-left: 5px;
+  vertical-align: 3px;
+  content: url("../../../../../../../assets/images/ic_arrow_sort_dsc.svg");
+}
+
+.button-action {
+  width: 125px;
+  height: 30px;;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: 'IBM-Plex-Sans-Bold';
+  font-size: 12px;
+  cursor: pointer;
+}
+
+::ng-deep .mat-sort-header-button,
+button:focus {
+  outline: none !important;
+}
+
+.chips {
+  background: #ECF2F9;
+  border-radius: 100px;
+  margin: 0 6px;
+  padding: 12px 20px;
+}
+
+.chips-text {
+  color: #3D526D;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 13px;
+  padding-right: 7px;
+  line-height: 52px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #88ACDA;}
+
+.scrollable {
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y:hidden
+}
+
+.row-filter{
+  @media only screen and (max-width: 768px){
+    width: 623px;
+  }
+
+  @media only screen and (max-width: 425px){
+    width: 361px;
+  }
+  @media only screen and (max-width: 375px){
+    width: 310px;
+  }
+}
+
+.situational-row{
+  padding-right: 0;
+  margin-right: 0;
+  @media only screen and (max-width: 1024px){ 
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+
+.side-by-side-table{
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 15px;
+}
+
+.disable-padding-right{
+  @media screen and (max-width: 1024px){
+    padding-right: 0px;
+  }
+}
+
+.disable-padding-right{
+  @media screen and (max-width: 1024px){
+    padding-left: 0px;
+  }
+}
+
+.side-by-side-filter{
+  @media only screen and (min-width: 1024px){
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  @media only screen and (max-width: 768px){
+    margin-bottom: 1.25rem;
+  }
+  @media only screen and (min-width: 1024px){
+    margin-right: 1.25rem;
+  }
+}
+
+.no-list-margin{
+  @media only screen and (min-width: 1024px){
+    margin-left: 5rem;
+  }
+}
+
+.dropdown-search{
+  padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  @media only screen and (max-width: 425px){
+    width: 70px;
+  }
+}
+
+.dropdown-text{
+  font-family: $font-regular;
+  font-size: 12px;
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+  }
+}
+
+.filter-wrapper {
+  background-color: $color-white-smoke;
+  padding: 0 25px 40px 25px;
+  @media screen and (max-width: 768px){
+    padding: 0 10px 20px ;
+  }
+  @media screen and (max-width: 425px){
+    padding: 0 10px 20px;
+  }
+}
+
+.result-wrapper{
+  padding-left: 1.5rem;
+  @media screen and (max-width: 425px){
+    padding-left: 15px;
+    margin-top: 20px;
+  }
+
+}
+
+.recruiter-count {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: $color-dim-gray;
+  cursor: pointer;
+}
+
+.recruiter-count-selected {
+  color: $color-corn-flower-blue;
+}
+
+#recruiter-profpic {
+  opacity: 0.3;
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+#recruiter-profpic:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.recruiter {
+  position: relative;
+  display: inline-block;
+}
+
+.recruiter-selected {
+  box-shadow: 0 0 0 4px $color-corn-flower-blue;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.recruiter-unselected {
+  opacity: 0.3;
+  transition: transform .2s;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.recruiter-unselected:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+#recruiter-name-container {
+  display: none;
+  position: absolute;
+  background-color: $color-white;
+  min-width: 80px;
+  box-shadow: 0 0 10px 5px rgba(192, 192, 192, 0.2);
+  z-index: 1;
+  text-align: center;
+  font-size: 12px;
+  margin: 12px 0 0 -12px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.recruiter:hover #recruiter-name-container {
+  display: block;
+}
+
+.recruiter-count {
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: $color-dim-gray;
+  cursor: pointer;
+
+  @media only screen and (max-width: 768px){
+    font-size: 11px;
+  }
+}
+
+.recruiter-count-selected {
+  color: $color-corn-flower-blue;
+}
+
+#recruiter-profpic {
+  opacity: 0.3;
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+#recruiter-profpic:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.recruiter {
+  position: relative;
+  display: inline-block;
+}
+
+.recruiter-selected {
+  box-shadow: 0 0 0 4px $color-corn-flower-blue;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.recruiter-unselected {
+  opacity: 0.3;
+  transition: transform .2s;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.recruiter-unselected:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+#recruiter-name-container {
+  display: none;
+  position: absolute;
+  background-color: $color-white;
+  min-width: 80px;
+  box-shadow: 0 0 10px 5px rgba(192, 192, 192, 0.2);
+  z-index: 1;
+  text-align: center;
+  font-size: 12px;
+  margin: 12px 0 0 -12px;
+  padding: 7px;
+  border-radius: 5px;
+
+  @media only screen and (max-width: 768px){
+    font-size: 10px;
+  }
+}
+
+.recruiter:hover #recruiter-name-container {
+  display: block;
+}
+
+.triangle {
+  margin-top: -32px;
+}
+
+#recruiter-name {
+  margin-top: -17px;
+}
+
+.applicant {
+  position: relative;
+  display: inline-block;
+}
+
+#applicant-comment {
+  visibility: hidden;
+  position: absolute;
+  word-wrap: break-word;
+  background-color: $color-white;
+  min-width: 285px;
+  min-width: 285px;
+  box-shadow: 0 0 10px 5px rgba(192, 192, 192, 0.2);
+  z-index: 1;
+  font-size: 13px;
+  padding: 20px;
+  margin: -37px 0 0 20px;
+  border-radius: 5px;
+  color: $color-dim-gray;
+
+  @media only screen and (max-width: 768px){
+    font-size: 10px;
+  }
+}
+
+.applicant:hover #applicant-comment {
+  visibility: visible;
+}
+
+.applicant {
+  div {
+    background-image: url('../../../../../../../assets/images/ic_question_mark_grey.svg');
+    height: 14px;
+    width: 14px;
+  }
+}
+
+.applicant:hover {
+  div {
+    background-image: url('../../../../../../../assets/images/ic_question_mark_blue.svg');
+  }
+}
+
+.flip-vertical {
+  transform: scaleX(-1);
+  transform: scaleY(-1);
+}
+
+.applicants-view-layout{
+  @media screen and (min-width: 375px){
+    margin-top: 15px;
+  }
+
+}
+
+.applicants-select-value{
+  background: #F6F8FB;
+    border: 0;
+    padding: 5px;
+    border-radius: 5px;
+    color: #4C617C;
+}
+
+.document-progress{
+  position: relative;
+  span {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    left: 0;
+    font-size: 0.85rem;
+  }
+  ::ng-deep .mat-progress-spinner.front{
+    circle {
+      stroke: #598CF5;
+    }
+  }
+  ::ng-deep .mat-progress-spinner.back{
+    circle {
+      stroke: #c5c5c5;
+    }
+  }
+}

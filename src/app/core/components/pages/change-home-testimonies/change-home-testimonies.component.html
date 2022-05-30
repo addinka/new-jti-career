@@ -1,0 +1,126 @@
+<div class="landing-testimonial">
+  <div class="d-flex justify-content-center" style="text-align: center;">
+    <!-- <input #file hidden="true" type="file" onclick="this.value=null" (change)="fileChangeEvent($event.target.files)" accept="image/*"/> -->
+    <ng-container *ngFor="let item of testimonies; let i = index">
+      <div class="card">
+        <div class="container d-flex justify-content-center">
+          <img [src]="item.testimonyDisplayPic ? item.testimonyDisplayPic : '../../../assets/images/placeholder.svg'" 
+              alt="img" 
+              class="img-size"
+              >
+          <!-- <button class="btn btn-light" *ngIf="mode[i] === 'edit'" (click)="[setIndex(i), file.click()]">Upload Photo</button> -->
+          <button class="btn btn-light" *ngIf="mode[i] === 'edit'" (click)="[setIndex(i), openDialog()]">Upload Photo</button>
+        </div>
+        <ng-container *ngIf="mode[i] === 'view' && item._id === null">
+          <div style="height: 80%;">
+            <!--insert placeholder img here-->
+          </div>
+        </ng-container>
+
+        <!-- Add -->
+        <div *ngIf="mode[i] === 'edit' && item._id === null" class="card-content">
+          <div>
+            <mat-form-field hintLabel="Max 140 characters">
+              <p class="label-content">Testimonials</p>
+              <textarea matInput #input maxlength="140" [id]="'testimonyContent'+i"></textarea>
+              <mat-hint align="end">{{input.value?.length || 0}}/140</mat-hint>
+            </mat-form-field>
+          </div>
+            
+          <div>
+            <mat-form-field>
+              <p class="label-content">Name</p>
+              <input matInput [id]="'applicantName'+i">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <p class="label-content">Role</p>
+              <input matInput [id]="'role'+i">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--//Add-->
+
+        <!--Edit-->
+        <div *ngIf="mode[i] === 'edit' && item._id !== null" class="card-content">
+          <div>
+            <mat-form-field hintLabel="Max 140 characters">
+              <p class="label-content">Testimonials</p>
+              <textarea matInput #input maxlength="140" [id]="'testimonyContent'+i">{{item.testimonyContent}}</textarea>
+              <br>
+              <mat-hint align="end">{{input.value?.length || 0}}/140</mat-hint>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <p class="label-content">Name</p>
+              <input matInput [id]="'applicantName'+i" [value]="item.applicantName">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <p class="label-content">Role</p>
+              <input matInput [id]="'role'+i" [value]="item.role">
+            </mat-form-field>
+          </div>
+        </div>
+        <!--//Edit//-->
+
+        <div *ngIf="mode[i] === 'view' && item._id !== null" class="card-content">
+          <div>
+            <p class="testimonial" [id]="'ptestimonyContent'+i">{{item.testimonyContent}}</p>
+          </div>
+          <div>
+            <p class="applicants applicants-name"[id]="'papplicantName'+i">{{item.applicantName}}</p>
+          </div>
+          <div>
+            <p class="applicants applicants-role" [id]="'prole'+i">{{item.role}}</p>
+          </div>
+        </div>
+        <ng-container *ngIf="mode[i] === 'edit'">
+          <ng-container *ngIf="item._id === null">
+            <div class="">
+              <button class="btn-edit" (click)="createTestimony(i)">Add</button>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="item._id !== null">
+            <div class="">
+              <button class="btn-edit" (click)="updateTestimony(i)">Update</button>
+            </div>
+          </ng-container>
+          <div class="">
+            <button class="btn-delete" (click)="changeMode(i)">Cancel</button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="mode[i] === 'view' && item._id === null">
+          <div class="">
+            <button class="btn-edit" (click)="changeMode(i)">+Add New Testimonials</button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="mode[i] === 'view' && item._id !== null">
+          <div>
+            <div class="">
+              <button class="btn-edit" (click)="changeMode(i)">Edit</button>
+            </div>
+            <div class="">
+              <button class="btn-delete" (click)="deleteTestimony(i)">Delete</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div *ngIf="i !== 3">
+        <input type="image" src="../../../assets/images/swap_white.png" 
+          style="
+          height: 50px;
+          width: 50px; 
+          margin-right: 20px; 
+          margin-bottom: 100px;" (click)="swap(i)">
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div #myModal id="myModal" class="modal fade">
+</div>
+
+

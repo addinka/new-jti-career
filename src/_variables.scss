@@ -1,0 +1,69 @@
+$color-primary: #00D6EA;
+$color-black: #000000;
+$color-pink: rgba(227, 116, 173, 0.4);
+$color-antique-white: rgba(252, 218, 176, 0.5);
+$color-corn-flower-blue: #598CF5;
+$color-dark-cyan: #009DAB;
+$color-dark-gray: #758697;
+$color-dark-slate-gray: #26343F;
+$color-dark-slate-gray-v2: #3D526D;
+$color-dark-slate-gray-v3: #3C5B74;
+$color-dark-slate-gray-blur: rgba(38, 52, 63, 0.9);
+$color-dark-turtle-turquoise: #00C9DB;
+$color-dim-gray: #4C617C;
+$color-gainsboro: #DCE1E9;
+$color-ghost-white: #F6F8FB;
+$color-ghost-white-v2: #F5F9FF;
+$color-lavender: rgba(120, 160, 247, 0.4);
+$color-lavender-v2: #E9ECEF;
+$color-light-gray: #D3D3D3;
+$color-light-sky-blue: #89CEFF;
+$color-light-slate-gray: #B8CAE0;
+$color-light-slate-gray-v2: #7F8DA2;
+$color-light-steel-blue: #A3C1F9;
+$color-navajo-white: #FCDAB0;
+$color-pale-violet-red: #E16685;
+$color-plum: #E7AAC9;
+$color-sky-blue: #88ACDA;
+$color-steel-blue: #4273B3;
+$color-transparant: #00000000;
+$color-steel-blue-v2: #4F7695;
+$color-turquoise: #55F2FF;
+$color-white: #FFFFFF;
+$color-white-smoke: #EFF7F8;
+$color-soft-black: #010101;
+$color-snow: #FBFBFB;
+$color-darker-gray: #8B9FBA;
+$color-tomato: #FF4444;
+$color-chrome-blue: #5f8eee;
+$color-grey-white: #EDF1F5;
+
+
+$font-bold: 'IBM-Plex-Sans-Bold';
+$font-italic: 'IBM-Plex-Sans-Italic';
+$font-medium: 'IBM-Plex-Sans-Medium';
+$font-regular: 'IBM-Plex-Sans-Regular';
+$font-semi-bold: 'IBM-Plex-Sans-Semi-Bold';
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge((0: 0,
+    1: ($spacer * .25), // 4px
+    2: ($spacer * .5), // 8px
+    3: $spacer, // 16px
+    4: ($spacer * 1.5), // 24px
+    5: ($spacer * 3), // 48px
+    6: ($spacer * 4), // 64px
+    7: ($spacer * 5), // 80px
+    8: ($spacer * 6.25), // 100px
+    9: ($spacer * 7.5), // 120px
+    10: ($spacer * 9.375) // 150px
+  ),
+  $spacers);

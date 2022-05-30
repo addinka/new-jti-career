@@ -1,0 +1,14 @@
+<div *ngIf="isApplied" class="job-label">STATUS</div>
+<app-status *ngIf="isApplied" class="col-md-12" [status]="curStat"></app-status>
+<div class="jobs-detail">
+  <div class="job-label">JOB DESCRIPTION</div>
+  <div class="job-content job-content-margin">
+    <div [innerHTML]="job.jobDesc"></div>
+  </div>
+</div>
+<div class="jobs-detail">
+  <div class="job-label">REQUIREMENTS</div> 
+  <div class="job-content job-content-margin">
+    <div [innerHTML]="job.requirement"></div>
+  </div>
+</div>

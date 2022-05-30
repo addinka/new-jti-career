@@ -1,0 +1,46 @@
+<div class="card-container">
+  <div [ngClass]="{'super-admin-height': isSuperAdmin}">
+    <div class="row">
+      <!-- Super Admin icon -->
+      <div class="col-1">
+        <img *ngIf="recruiter.isSuperAdmin" class="crown-img" src="assets/images/ic_crown.svg">
+      </div>
+
+      <!-- Recruiter profile picture -->
+      <div class="col d-flex justify-content-center">
+        <div class="profile-picture">
+          <img [src]="recruiter.profpic">
+        </div>
+      </div>
+
+      <!-- Admin icon -->
+      <div class="col-1">
+        <!-- Privilege to Super Admin can promote to admin -->
+        <img [ngClass]="isSuperAdmin ? 'clickable' : 'not-allowed'"
+          [src]="recruiter.isAdmin ? 'assets/images/ic_key_blue.svg' : 'assets/images/ic_key_grey.svg'"
+          (click)="onToogleAdmin()">
+      </div>
+    </div>
+
+    <div class="user-name">{{ recruiter.name }}</div>
+
+    <div class="user-role mt-1">{{ recruiter.title }}</div>
+
+    <div class="user-email mt-1">{{ recruiter.email }}</div>
+
+    <!-- Action buttons -->
+    <!-- Super Admin can't be deleted or activated / deactivated -->
+    <div *ngIf="!recruiter.isSuperAdmin">
+
+      <!-- Privilege to Super Admin can be deleted or activated / deactivated -->
+      <div *ngIf="isSuperAdmin" class="row mt-3">
+        <button class="col button-warning custom-button mx-1" (click)="onDeleteRecruiter()">
+          Delete
+        </button>
+        <button class="col button-transparant-red custom-button mx-1" (click)="onToogleActive()">
+          {{ this.recruiter.isActive ? 'Active' : 'Inactive' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

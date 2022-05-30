@@ -1,0 +1,299 @@
+<div class="row">
+  <!-- TODO: Filter feature start here -->
+  <div class="col d-flex flex-column">
+      <!-- status !== 'applied' -->
+      <div class="row justify-content-between margin-bottom-1024" style="min-height: 60px;">
+          <div class="margin-bottom-768 col-auto align-self-center" id="processed-by">
+              Processed by: <span class="ml-2">{{ processedBy }}</span>
+          </div>
+          <div class="mt-2 scrollable col-auto d-flex flex-row recruiter-count" style="min-height: 60px;">
+              <div class="d-flex flex-row align-self-center">
+                  <div *ngFor="let recruiter of recruiters; let i = index">
+                      <div class="recruiter">
+                          <img class="rounded-image" [ngClass]="{'recruiter-selected': recruiter.selected, 'recruiter-unselected': !recruiter.selected}" [src]="getRecruiterImageURL + recruiter.profpic" height="50" width="50" (click)="onSelectRecruiter(i)">
+                          <div id="recruiter-name-container">
+                              <img class="triangle" src="../../../../../assets/images/ic_triangle.svg" style="max-height: 18px;">
+                              <div id="recruiter-name">{{ recruiter.name }}</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class=" align-self-center ml-4" (click)="onSelectAllRecruiter()" [ngClass]="{'recruiter-count-selected': isAllRecruiter}">All ({{ recruiters.length }})</div>
+          </div>
+      </div>
+
+      <div class="row d-flex mt-4">
+          <div class="col-md-2 filter-wrapper">
+              &nbsp;
+              <app-filter-candidate (filterValue)='getFilterInput($event)' [allNumber]="allNumber" [englishNumber]="englishNumber" [indonesiaNumber]="indonesiaNumber" [smkNumber]="smkNumber" [d2Number]="d2Number" [d3Number]="d3Number" [bachelorNumber]="bachelorNumber"
+                  [masterNumber]="masterNumber" [undergraduateNumber]="undergraduateNumber" [freshgraduateNumber]="freshgraduateNumber" [onethreeyearsNumber]="onethreeyearsNumber" [morethanthreeNumber]="morethanthreeNumber"></app-filter-candidate>
+          </div>
+          <div class="col-md-10 result-wrapper">
+              <div *ngIf="!isNoData" class="row justify-content-between">
+                  <div class="col-auto margin-bottom-375 jobs-default-text">
+                      Showing
+                      <span class="applicants-select-background mx-3">
+                          <select class="applicants-select-value" (change)="onChangeEntryNumber($event.target.value)">
+                              <option *ngFor="let select of entItems" [value]="select">{{ select }}</option>
+                          </select>
+                      </span> Entries
+                  </div>
+                  <div class="col-auto row applicants-view-layout">
+                      <!-- <span *ngIf="this.applicantsViewin.grid">
+                              Sort by
+                              <span class="applicants-select-background">
+                                  <select class="applicants-select-value" (change)="onSelectSoryBy($event.target.value)">
+                                  <option *ngFor="let sortBy of sortBys" [value]="sortBy">{{ sortBy }}</option>
+                                  </select>
+                              </span>
+                              <img [src]="getSortIcon()" (click)="onSortAscDsc()">
+                              </span>-->
+                      <div class="col-auto">
+                          <img class="img-size" style="cursor: pointer;" [src]="getGridIcon()" (click)="onSelectView('grid')" alt="">
+                      </div>
+                      <div class="col-auto">
+                          <img class="img-size" style="cursor: pointer;" [src]="getListIcon()" (click)="onSelectView('list')" alt="">
+                      </div>
+                      <div class="col-auto" *ngIf="isFetched;">
+                          <button class="button-size button-transparant-blue" type="button" (click)="exportTable()">Export</button>
+                      </div>
+                  </div>
+              </div>
+              <ng-container *ngIf="isFetched; else starting">
+                  <div class="side-by-side-table">
+                      <ng-container *ngIf="this.applicantsViewin.list">
+                          <div class="scrollable row-table" *ngIf="!isNoData; else noData">
+                              <table>
+                                  <tr>
+                                      <th class="th-custom th-radius-left" style="text-align:center;" *ngIf="!inJobDetail">TITLE</th>
+                                      <th [ngClass]="{'th-custom': true, 'th-radius-left': inJobDetail}" style="text-align:center;">
+                                        <span *ngIf="applicationStatus !== 'applied'">BY</span>
+                                      </th>
+                                      <!-- <th class="th-custom">
+                                          <div class="d-flex align-items-center">
+                                              SCHEDULED<br>DATE <img [src]="arrowDown" alt="" [class.flip-vertical]="sortInviteTime" class=mb-1 style="width: 15px; height: 15px; cursor: pointer;" (click)="sortTable('inviteTime')">
+                                          </div>
+                                      </th> -->
+                                      <th class="th-custom">
+                                          <div class="d-flex align-items-center">
+                                              NAME <img [src]="arrowDown" alt="" [class.flip-vertical]="sortUserName" class=mb-1 style="width: 15px; height: 15px; cursor: pointer;" (click)="sortTable('userName')">
+                                          </div>
+                                      </th>  
+                                      <th class="th-custom">
+                                          <div class="d-flex align-items-center">
+                                              EDUCATION <img [src]="arrowDown" alt="" [class.flip-vertical]="sortDegree" class=mb-1 style="width: 15px; height: 15px; cursor: pointer;" (click)="sortTable('degree')">
+                                          </div>
+                                      </th>
+                                      <th class="th-custom">
+                                          <div class="d-flex align-items-center">
+                                              EXPERIENCE<img [src]="arrowDown" alt="" [class.flip-vertical]="sortExperience" class=mb-1 style="width: 15px; height: 15px; cursor: pointer;" (click)="sortTable('experience')">
+                                          </div>
+                                      </th>  
+                                      <!-- <th class="th-custom">
+                                          <div class="d-flex align-items-center">
+                                              EXPECTED<br>SALARY <img [src]="arrowDown" alt="" [class.flip-vertical]="sortExpSalary" class=mb-1 style="width: 15px; height: 15px; cursor: pointer;" (click)="sortTable('expSalary')">
+                                          </div>
+                                      </th>  -->
+                                      <th class="th-custom">DOCUMENT COMPLETION</th>
+                                      <th class="th-custom">STATUS</th>
+                                      <th class="th-custom">
+                                          <div class="d-flex align-items-center">
+                                              SCHEDULED DATE <img [src]="arrowDown" alt="" [class.flip-vertical]="sortInviteTime" class=mb-1 style="width: 15px; height: 15px; cursor: pointer;" (click)="sortTable('inviteTime')">
+                                          </div>
+                                      </th>
+                                      <th class="th-custom th-radius-right"><span *ngIf="showApplicantAction({status:status.toUpperCase()})">MY ACTION</span></th>
+                                  </tr>
+                                  <tbody *ngFor="let applicant of data; let i = index;">
+                                      <tr class="tr-pointer" [ngClass]="{'tr-odd': i % 2 === 1, 'tr-even': i % 2 === 0}" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="true">
+                                          <td class="td-bold td-first" style="text-align:center;" *ngIf="!inJobDetail">{{ applicant.jobTitle }}</td>
+                                          <td [ngClass]="{'td-first': inJobDetail}">
+                                              <div *ngIf="applicant.recruiterName && applicationStatus!=='applied'" class="recruiter">
+                                                  <img class="rounded-circle" [src]="getRecruiterImageURL + applicant.recruiterPic" height="50" width="50" onerror="this.src='../../../../../assets/images/ic_user.svg'">
+                                                  <div id="recruiter-name-container">
+                                                      <img class="triangle" src="../../../../../assets/images/ic_triangle.svg" style="max-height: 18px;">
+                                                      <div id="recruiter-name">{{ applicant.recruiterName }}</div>
+                                                  </div>
+                                              </div>
+                                          </td>
+                                          <!-- <td>{{ applicant.inviteTime | date: 'hh:mm dd/MM/yyyy' }}</td> -->
+                                          <!-- <td class="d-flex align-items-center">
+                                              <img class="rounded-circle profile" [src]="applicant.user.profpic" height="53" width="53" onerror="this.src='../../../../../assets/images/ic_user.svg'">
+                                              <div class="applicant align-self-center ml-3">
+                                                  <div class="comment"></div>
+                                                  <span id="applicant-comment">{{ applicant.comments }}</span>
+                                              </div>
+                                          </td> -->
+                                          <td>
+                                              <div class="td-bold d-flex">
+                                                  <div class="applicant align-self-center mr-2">
+                                                      <div class="comment"></div>
+                                                      <span id="applicant-comment">{{ applicant.comments || 'This Candidate Has No Comment' }}</span>
+                                                  </div>
+                                                  <span class="text-capitalize">{{ applicant.user.name.toLowerCase() }}</span>
+                                              </div>
+                                          </td>
+                                          <td>{{ applicant.user.degree }}</td>
+                                          <td>{{ applicant.user.experience }}</td>
+                                          <!-- <td>
+                                              <div class="td-bold">
+                                                  {{ applicant.expSalary | currency : 'Rp ' : symbol : '1.0-0' }}
+                                              </div>
+                                              <div *ngIf="applicant.isNegotiable" class="td-negotiable">
+                                                  Negotiable
+                                              </div>
+                                          </td> -->
+                                          <td class="text-center">
+                                              <div *ngIf="applicant.user.percentageOfCompletion" class="document-progress">
+                                                  <span>{{ applicant.user.percentageOfCompletion || '-'}}</span>
+                                                  <div style="position: absolute; width: 100%;">
+                                                      <mat-progress-spinner
+                                                          style="margin: auto; z-index: 1;"
+                                                          class="front"
+                                                          diameter="50"
+                                                          mode="determinate"
+                                                          [value]="applicant.user.percentageOfCompletion.replace('%', '')">
+                                                      </mat-progress-spinner>
+                                                  </div>
+                                                  <mat-progress-spinner
+                                                      style="margin: auto;"
+                                                      diameter="50"
+                                                      class="back"
+                                                      mode="determinate"
+                                                      [value]="100">
+                                                  </mat-progress-spinner>
+                                              </div>
+                                          </td>
+                                          <td style="text-transform: capitalize;" class="text-center">{{ applicant.status.toLowerCase() }}</td>
+                                          <td class="text-center">{{ applicant.inviteTime | date: 'hh:mm dd/MM/yyyy' }}</td>
+                                          <td *ngIf="true; else tableFill" class="td-action">
+                                              <div class="show" [id]="'collapse' + i" >
+                                                  <ng-container *ngIf="showApplicantAction(applicant)">
+                                                      <div class="d-flex">
+                                                          <img class="button-primary mr-3" src="../../../../../assets/images/ic_action_accept.svg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                          <div class="dropdown-menu">
+                                                              <span class="dropdown-item" *ngFor="let type of invItems[i]" (click)="onInvite(type, applicant); $event.stopPropagation()">{{ type }}</span>
+                                                          </div>
+                                                          <img class="button-transparant button-reject mr-3" src="../../../../../assets/images/ic_action_reject.svg" (click)="openRejectDialog(applicant); $event.stopPropagation()">
+                                                          <img *ngIf="applicant.userStatus !== 'POTENTIAL'" class="p-0" src="assets/images/ic_star_grey.svg" height="25" width="27" (click)="onSelectPotential(applicant); $event.stopPropagation()">
+                                                          <img *ngIf="applicant.userStatus === 'POTENTIAL'" class="p-0" src="assets/images/ic_star_on.svg" height="25" width="27" (click)="onSelectPotential(applicant); $event.stopPropagation()">
+                                                      </div>
+                                                  </ng-container>
+                                              </div>
+                                          </td>
+
+                                      </tr>
+                                      <tr [ngClass]="{'tr-odd': i % 2 === 1, 'tr-even': i % 2 === 0}" class="collapse" [id]="'collapse' + i">
+                                          <td colspan="100%" class="p-0">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, applicant)" (reject)="openRejectDialog(applicant)" 
+                                              [applicant]="applicant" [inheritBackground]="true" ></app-applicant-detail>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+
+                          </div>
+                      </ng-container>
+                      <ng-container *ngIf="this.applicantsViewin.grid">
+                          <div class="scrollable side-by-side-table">
+                              <ng-container *ngFor="let applicant of data; let i = index;">
+                                  <ng-container>
+                                      <div class="d-flex" *ngIf="i%6 === 0">
+                                          <!-- This container is shown if use choose to view list of applicants in grid layout -->
+                                          <app-applicant [applicant]="data[i]" (applicantDetailContainer)="openApplicantDetail(i)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i])" (reject)="openRejectDialog(data[i])" *ngIf="this.applicantsViewin.grid" class="col-xs-12 mr-2 grid-width"></app-applicant>
+
+                                          <!-- END grid layout -->
+                                          <ng-container *ngIf="(i+1) < data.length; else emptyview">
+                                              <app-applicant [applicant]="data[i+1]" (applicantDetailContainer)="openApplicantDetail(i+1)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+1])" (reject)="openRejectDialog(data[i+1])" *ngIf="this.applicantsViewin.grid"
+                                                  class="col-xs-12 mr-2 grid-width"></app-applicant>
+                                              <!-- This container is shown if use choose to view applicant's detail -->
+                                          </ng-container>
+                                          <!-- END grid layout -->
+
+                                          <ng-container *ngIf="(i+2) < data.length; else emptyview">
+                                              <app-applicant [applicant]="data[i+2]" (applicantDetailContainer)="openApplicantDetail(i+2)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+2])" (reject)="openRejectDialog(data[i+2])" *ngIf="this.applicantsViewin.grid"
+                                                  class="col-xs-12 mr-2 grid-width"></app-applicant>
+
+                                              <!-- This container is shown if use choose to view applicant's detail -->
+
+                                          </ng-container>
+
+                                          <ng-container *ngIf="(i+3) < data.length; else emptyview">
+                                              <app-applicant [applicant]="data[i+3]" (applicantDetailContainer)="openApplicantDetail(i+3)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+3])" (reject)="openRejectDialog(data[i+3])" *ngIf="this.applicantsViewin.grid"
+                                                  class="col-xs-12 mr-2 grid-width"></app-applicant>
+
+                                              <!-- This container is shown if use choose to view applicant's detail -->
+
+                                          </ng-container>
+
+                                          <ng-container *ngIf="(i+4) < data.length; else emptyview">
+                                              <app-applicant [applicant]="data[i+4]" (applicantDetailContainer)="openApplicantDetail(i+4)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+4])" (reject)="openRejectDialog(data[i+4])" *ngIf="this.applicantsViewin.grid"
+                                                  class="col-xs-12 mr-2 grid-width"></app-applicant>
+                                          </ng-container>
+
+                                          <ng-container *ngIf="(i+5) < data.length; else emptyview">
+                                              <app-applicant [applicant]="data[i+5]" (applicantDetailContainer)="openApplicantDetail(i+5)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+5])" (reject)="openRejectDialog(data[i+5])" *ngIf="this.applicantsViewin.grid"
+                                                  class="col-xs-12 grid-width"></app-applicant>
+                                          </ng-container>
+                                          <!-- END grid layout -->
+                                      </div>
+                                      <div class="row flex-nowrap" *ngIf="i%6 === 0">
+                                          <!-- This container is shown if use choose to view applicant's detail -->
+                                          <ng-container *ngIf="applicantDetailShown[i] === true">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i])" (reject)="openRejectDialog(data[i])" [applicant]="data[i]"></app-applicant-detail>
+                                          </ng-container>
+
+                                          <ng-container *ngIf="applicantDetailShown[i+1] === true">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i+1)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+1])" (reject)="openRejectDialog(data[i+1])" [applicant]="data[i+1]"></app-applicant-detail>
+                                          </ng-container>
+
+                                          <ng-container *ngIf="applicantDetailShown[i+2] === true">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i+2)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+2])" (reject)="openRejectDialog(data[i+2])" [applicant]="data[i+2]"></app-applicant-detail>
+                                          </ng-container>
+
+                                          <ng-container *ngIf="applicantDetailShown[i+3] === true">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i+3)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+3])" (reject)="openRejectDialog(data[i+3])" [applicant]="data[i+3]"></app-applicant-detail>
+                                          </ng-container>
+
+                                          <ng-container *ngIf="applicantDetailShown[i+4] === true">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i+4)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+4])" (reject)="openRejectDialog(data[i+4])" [applicant]="data[i+4]"></app-applicant-detail>
+                                          </ng-container>
+
+                                          <ng-container *ngIf="applicantDetailShown[i+5] === true">
+                                              <app-applicant-detail class="col-xs-12" id="getApplicantDetailContainerIndex(i+5)" (potentialChange)="onSelectPotential($event)" (inviteOn)="onInvite($event, data[i+5])" (reject)="openRejectDialog(data[i+5])" [applicant]="data[i+5]"></app-applicant-detail>
+                                          </ng-container>
+                                      </div>
+                                  </ng-container>
+                                  <!-- END applicant's detail layout -->
+                              </ng-container>
+                          </div>
+                      </ng-container>
+                      <div class="row mt-4 pb-5 justify-content-between">
+                          <div class="col-auto jobs-default-text" style="line-height: 40px">
+                              Showing {{ currentLowerCount }} to {{ currentUpperCount }} of {{ dataCount }} entries
+                          </div>
+                          <!-- [page]=page -->
+                          <app-pagination class="col-auto jobs-default-text" [pagesCount]=pagesCount (pagesJob)="onChangePage($event)" style="margin-top: 10px;">
+                          </app-pagination>
+                      </div>
+                  </div>
+              </ng-container>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #tableFill>
+  <td></td>
+</ng-template>
+
+<ng-template #noData>
+  <div>
+    <app-not-found [message]="message"></app-not-found>
+  </div>
+</ng-template>
+
+<ng-template #starting>
+  <div class="no-list-margin">
+      <app-not-found [message]="'Search Candidates Above'"></app-not-found>
+  </div>
+</ng-template>

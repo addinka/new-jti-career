@@ -1,0 +1,228 @@
+<div class="timeline-wrapper row justify-content-between" *ngIf="this.id !== ''">
+    <div class="row col-md-2 d-flex flex-column align-self-center" id="job-title">
+        <div>Applying for</div><span>{{ job?.title }}</span>
+    </div>
+    <div class="col-md-2 align-self-center">
+        <div class="job-desc my-1">{{ job?.location }}</div>
+        <div class="job-desc my-1" *ngIf="job?.onBoardStart !== 'F' && job?.onBoardStart !== 'I'; else f">{{ job?.onBoardStart | date: 'MMM yy' }}</div>
+        <div class="job-desc my-1">{{ job?.language }}</div>
+        <div class="job-desc my-1">{{ job?.experience }}</div>
+        <div class="job-desc my-1">{{ job?.education }}</div>
+        <div class="job-desc my-1">{{ job?.employment }}</div>
+    </div>
+    <div class="col-md-8">
+        <app-steps class="col-md-12" [steps]="steps"></app-steps>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="wrapper-inside">
+        <div class="row col-md-12 pr-0">
+            <div class="col-md-2 px-0" id="form-title">{{ id === '' ? 'Sign Up' : 'Apply ' }}</div>
+
+            <div class="pl-0" [ngClass]="id === '' ? 'col-md-8' : 'col-md-10 col-lg-6'">
+                <form [formGroup]="applyForm" (keydown.enter)="$event.preventDefault()">
+
+                    <div class="mt-3">
+                        <div class="d-flex flex-row">
+                            <div class="form-section">Personal Information</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col class-flex">
+                                <div class="col-4 pl-0 display-pic">
+                                    <div class="d-flex justify-content-center">
+                                        <img class="image-select" [src]="pathPhoto" onerror="this.src='../../../assets/images/ic_user.svg'">
+                                    </div>
+
+                                    <input id="photo" hidden type="file" (change)="onPhotoSelected($event)" accept="image/*">
+                                    <button *ngIf="!isDisabled" class="button-select mt-3" (click)="onSelectPhoto()">
+                    {{ isPathPhoto ? 'Change File': 'Select File'}}
+                  </button>
+                                </div>
+
+                                <div class="col-8 pr-0 grid-form">
+                                    <input class="form-control form-control-borderless form-bg col-grid" formControlName="name" placeholder="Name (*)" [ngClass]="{'disabled': isDisabled}">
+                                    <div *ngIf="this.id === ''">
+                                        <div class="row class-flex">
+                                            <div class="col col-grid pr-0">
+                                                <input class="form-control form-control-borderless form-bg mt-3" formControlName="emailAddress" placeholder="Email (*) (can't be changed later)" [ngClass]="{'disabled': isDisabled}">
+                                            </div>
+                                            <div class="col col-grid">
+                                                <input type="text" mask="0*" class="form-control form-control-borderless form-bg mt-3" formControlName="contactNumber" placeholder="Contact Number (*)" [ngClass]="{'disabled': isDisabled}">
+                                            </div>
+                                        </div>
+                                        <div class="row class-flex">
+                                            <div class="col col-grid pr-0 input-group mt-3">
+                                                <input class="form-control form-control-borderless form-bg " placeholder="Password" formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'">
+                                                <div class="pad-img-hidden d-flex vertical-align-center" id="password-visibility">
+                                                    <img class="img-hidden" [src]="isPasswordVisible ? 'assets/images/ic_visibility.svg' : 'assets/images/ic_visibility_hidden.svg'" (click)="isPasswordVisible = !isPasswordVisible" style="cursor: pointer">
+                                                </div>
+                                            </div>
+                                            <div class="col col-grid input-group mt-3">
+                                                <input class="form-control form-control-borderless form-bg" placeholder="Confirm Password" formControlName="confirmPassword" [type]="isConfirmPasswordVisible ? 'text' : 'password'">
+                                                <div class="pad-img-hidden  d-flex vertical-align-center" id="password-visibility">
+                                                    <img class="img-hidden" [src]="isConfirmPasswordVisible ? 'assets/images/ic_visibility.svg' : 'assets/images/ic_visibility_hidden.svg'" (click)="isConfirmPasswordVisible = !isConfirmPasswordVisible" style="cursor: pointer">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="this.id !== ''">
+                                        <input class="form-control form-control-borderless form-bg mt-3" formControlName="emailAddress" placeholder="Email (can't be changed later)" [ngClass]="{'disabled': isDisabled}">
+                                        <input type="text" mask="0*" class="form-control form-control-borderless form-bg mt-3" formControlName="contactNumber" placeholder="Contact Number (*)" [ngClass]="{'disabled': isDisabled}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <input class="form-control form-control-borderless form-bg mt-3" formControlName="linkedinURL" placeholder="LinkedIn URL" [ngClass]="{'disabled': isDisabled}">
+                            <mat-select class="col form-bg align-self-center mt-3" [ngClass]="{'disabled': isDisabled}" placeholder="Domicile (*)" formControlName="domicile">
+                                <ng-container *ngFor="let item of locItems">
+                                    <mat-option [value]="item">{{item}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <input *ngIf="this.applyForm.controls.domicile.value === 'Other'" class="col form-bg mt-3" [ngClass]="{'disabled': isDisabled}" placeholder="Other Location" formControlName="otherDomicile">
+                            <input class="form-control form-control-borderless form-bg mt-3" formControlName="university" placeholder="University (*)" [ngClass]="{'disabled': isDisabled}">
+                            <input class="form-control form-control-borderless form-bg mt-3" formControlName="majorField" placeholder="Major (*)" [ngClass]="{'disabled': isDisabled}">
+
+                            <br>
+                            <div class="form-section">
+                                Work Experience History
+                            </div>
+                            <form [formGroup]="workExperienceForm" style="width:100%">
+                                <div formArrayName="workExperience" *ngFor="let field of workExperienceList.controls; let i = index;">
+                                    <div [formGroupName]="i">
+                                        <input class="form-control form-control-borderless form-bg mt-3" formControlName="companyName" placeholder="Company Name" [ngClass]="{'disabled': isDisabled}">
+
+                                        <input class="form-control form-control-borderless form-bg mt-3" formControlName="position" placeholder="Position" [ngClass]="{'disabled': isDisabled}">
+
+                                        <input class="form-control form-control-borderless form-bg mt-3" formControlName="jobdesk" placeholder="Job Desk" [ngClass]="{'disabled': isDisabled}">
+
+                                        <input class="form-control form-control-borderless form-bg mt-3" formControlName="startPeriod" placeholder="Start Period (e.g: June 2020)" [ngClass]="{'disabled': isDisabled}">
+
+                                        <input class="form-control form-control-borderless form-bg mt-3" formControlName="endPeriod" placeholder="End Period (e.g: Present)" [ngClass]="{'disabled': isDisabled}">
+
+                                        <div class="mt-3 d-flex" style="width: 100%; display:flex; justify-content: flex-end;">
+                                            <button *ngIf="!isDisabled" class="dialog-button button-warning" (click)="removeWorkExperience(i)" style="width: 240px; font-size:14px;">Remove Work Experience</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 d-flex" style="width: 100%; display:flex; justify-content: flex-end;">
+                                    <button *ngIf="!isDisabled" class="dialog-button button-primary" (click)="addWorkExperience()" style="width: 240px; font-size:14px;">Add New Work Experience</button>
+                                </div>
+                            </form>
+
+                            <mat-select class="form-bg mt-3" [ngClass]="{'disabled': isDisabled}" formControlName="language" placeholder="Language Proficiency (*)" multiple>
+                                <ng-container *ngFor="let language of lanItems">
+                                    <mat-option [value]="language">{{ language }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-select class="form-bg mt-3" formControlName="experience" placeholder="Please choose Experience (*)" [ngClass]="{'disabled': isDisabled}">
+                                <ng-container *ngFor="let experience of expItems">
+                                    <mat-option [value]="experience">{{ experience }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-select class="form-bg mt-3" formControlName="educationalDegree" placeholder="Please choose Educational Degree (*)" [ngClass]="{'disabled': isDisabled}">
+                                <ng-container *ngFor="let education of eduItems">
+                                    <mat-option [value]="education">{{ education }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <textarea rows="4" class="form-bg mt-3" formControlName="selfDescription" placeholder="Self Description (*) (cover letter)" [ngClass]="{'disabled': isDisabled}"></textarea>
+                            <textarea rows="4" class="form-bg mt-3" formControlName="qualifications" placeholder="Qualifications (*) (skill)" [ngClass]="{'disabled': isDisabled}"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <div class="d-flex flex-row">
+                            <div class="form-section">Document Submissions</div>
+                            <!-- <div class="form-section-info d-flex align-items-end ml-1">- One Time Only</div> -->
+                        </div>
+                        <div class="row form-section-info justify-content-between">
+                            <div class="col-auto align-items-center">
+                                BASIC SETS - @ Max 1MB
+                            </div>
+                            <div class="col-auto">
+                                <div *ngIf="!documents.editable">
+                                    <button class="select-buttons px-2" (click)="enableEdit()">Edit Documents</button>
+                                </div>
+
+                                <div *ngIf="documents.editable" class="row px-3 justify-content-end align-items-center">
+                                    <div id="cancelButton" (click)="saveDocumentChanges(false)">Cancel</div>
+                                    <button class="select-buttons px-2" (click)="saveDocumentChanges(true)" id="applyButton">Apply</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-3">
+                            <ng-container *ngFor="let doc of documents.doc; let i = index">
+                                <app-document class="col-lg-3 doc-grid" [document]="doc" [index]="i" [editable]="documents.editable" [applyForm]=false [saveChanges]="documents.saveChanges">
+                                </app-document>
+                            </ng-container>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3" *ngIf="this.id !== ''">
+                        <div class="d-flex flex-column">
+                            <div class="form-section">Others<span style="color:red">*</span></div>
+                            <textarea rows="4" class="form-bg mt-3" formControlName="others" placeholder="Why Should We Hire You?"></textarea>
+
+                            <div class="d-flex flex-row align-items-center mt-3">
+                                <div class="form-section mr-2">IDR<span style="color:red">*</span></div>
+                                <input type="text" mask="0*" class="col form-control form-control-borderless form-bg mr-2" formControlName="expectedSalary" placeholder="Expected Monthly Salary">
+                                <div class="mx-2 row align-items-center" (click)="onChangeFlexibleValue()" style="cursor: pointer;">
+                                    <span class="mr-2" [ngClass]="{'filter-dot': !isFlexible, 'filter-dot-selected': isFlexible}"></span>
+                                    <span class="text-label">Negotiable</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5" *ngIf="!isRegistered">
+                        <div class="d-flex flex-row">
+                            <div class="form-section">Where did you get JTI Career information? <span style="color:red">*</span></div>
+                        </div>
+
+                        <mat-select class="form-bg mt-3" [ngClass]="{'disabled': isDisabled}" formControlName="informationSource" placeholder="Select One">
+                            <ng-container *ngFor="let information of infoItems">
+                                <mat-option [value]="information">{{ information }}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </div>
+
+                    <button class="col mt-4 button-apply" type="submit" [disabled]="!applyForm.valid" [ngClass]="{'button-primary ': applyForm.valid, 'button-disable': !applyForm.valid}" (click)="onSubmit()">
+            Next
+          </button>
+                    <!-- <button class="col mt-4 button-apply" type="submit" (click)="onSubmit()">
+          Next
+        </button> -->
+                    <!-- <mat-error *ngIf="isError">{{ errorMessage }}</mat-error> -->
+                </form>
+            </div>
+
+            <div *ngIf="this.id !== ''">
+                <div *ngIf="!isDisabled" class="col-md-auto login-card mt-3">
+                    <img src="assets/images/analyze.png">
+                    <div class="login-card-title mt-3">Restore Info & Documents</div>
+                    <div class="login-card-desc mt-3">Have you ever filled in your Personal Information or uploaded any documents on this section before?
+                        <br>Let’s save time, login and instantly restore them</div>
+                    <div class="d-flex justify-content-center">
+                        <button class="button-primary login-card-button mt-4 mb-5" (click)="openLogin()">Login</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #f>
+    <div *ngIf="job?.onBoardStart !== 'F'; else i" class="job-desc my-1">Anytime</div>
+</ng-template>
+
+<ng-template #i>
+    <div class="job-desc my-1">Immediately</div>
+</ng-template>

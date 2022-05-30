@@ -1,0 +1,43 @@
+@import '../../../../../variables';
+
+.status-container {
+  background: $color-ghost-white;
+  border-radius: 5px;
+  min-width: 80px;
+  cursor: pointer;
+  @media screen and (max-width: 768px){
+    min-width: 77px;
+  }
+  @media screen and (max-width: 425px){
+    min-width: 70px;
+  }
+}
+
+.status {
+  font-family: $font-medium;
+  text-align: center;
+  color: $color-dim-gray;
+}
+
+#status-count {
+  font-weight: 500;
+  line-height: 40px;
+  font-size: 28px;
+  @media screen and (max-width: 768px){
+    font-size: 18px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 16px;
+  }
+}
+
+#status-name {
+  font-style: normal;
+  font-weight: 600;
+  line-height: 14px;
+  font-size: 10px;
+  text-transform: uppercase;
+  @media screen and (max-width: 768px){
+    font-size: 9px;
+  }
+}

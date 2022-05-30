@@ -1,0 +1,135 @@
+@import '../../../../../variables';
+
+.landing-top {
+    background-color: $color-primary;
+}
+
+.margin-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.landing-top-title-helper {
+    color: $color-dim-gray;
+}
+
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.card {
+    border: 0px;
+    margin-top: 35px;
+}
+
+.search-icon {
+    margin: 0 0 0 15px;
+}
+
+.landing-wave-white {
+    background: linear-gradient(to bottom, $color-primary 95%, $color-white 95%);
+    width: calc(100vw + 15px);
+    margin-top: -12%;
+}
+
+.landing-wave-white-helper {
+    width: 100%;
+    background-size: cover;
+}
+/* Dots css start here. */
+
+#dot-big-purple {
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-pink;
+    margin-left: -50px;
+}
+
+#dot-small-purple {
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-plum;
+    margin-top: 120px;
+    margin-left: 37.5vw;
+}
+
+#dot-big-light-blue {
+    width: 27.5vw;
+    height: 27.5vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-lavender;
+    margin: 20px 0 0 30vw;
+}
+
+#dot-small-light-blue {
+    width: 7.5vw;
+    height: 7.5vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-light-steel-blue;
+    margin: 100px 0 0 5vw;
+}
+
+#dot-big-yellow {
+    width: 26vw;
+    height: 26vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-antique-white;
+    margin: 20px 0 0 -100px;
+}
+
+#dot-small-yellow {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-navajo-white;
+    margin-left: 27.5vw;
+}
+
+#dot-big-blue {
+    width: 27.5vw;
+    height: 27.5vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-corn-flower-blue;
+    margin: -200px 0 0 30vw;
+}
+
+#dot-small-blue {
+    width: 7.5vw;
+    height: 7.5vw;
+    border-radius: 50%;
+    position: absolute;
+    background-color: $color-light-sky-blue;
+    margin: 100px 0 0 5vw;
+}
+
+/* Hot role css start here. */
+
+.hot-role {
+    width: 25%;
+    display: inline-block;
+    padding: 5px 10px 5px 0;
+}
+
+.hot-role-text {
+    color: white;
+    cursor: pointer;
+    font-family: $font-regular;
+    font-size: 14px;
+    font-weight: 600;
+}

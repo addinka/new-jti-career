@@ -1,0 +1,385 @@
+<div class="row jobs-search">
+  <div class="job-title">Blue Form</div>
+</div>
+<div *ngIf="!!blueform" class="d-flex main-container justify-content-center">
+<div class="col-12 col-md-8 col-xl-9">
+<div class="section-container mt-5">
+  <h3 class="title">Personal Data</h3>
+
+  <p class="label">FULL NAME</p>
+  <p>{{ blueform.personalData.name.firstName }} {{ blueform.personalData.name.middleName }} {{ blueform.personalData.name.lastName }}</p>
+  <hr/>
+
+  <!-- ????????????????? -->
+  <!-- <p class="label">NOMOR KTP/PASSPORT</p>
+  <p>{{ blueform.personalData.nationalID.identificationNumber }}</p>
+  <hr/> -->
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">PLACE OF BIRTH</p>
+      <p>{{ blueform.personalData.birthPlace }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">DATE OF BIRTH</p>
+      <p>{{ blueform.personalData.birthDate | date:'dd MMMM yyyy' }}</p>
+    </div>
+    <!-- <div class="mr-5">
+      <p class="label">UMUR</p>
+      <p>{{ blueform.personalData.age }} Years old</p>
+    </div> -->
+  </div>
+  <hr/>
+
+  <p class="label">EMAIL ADDRESS</p>
+  <p>{{ blueform.personalData.email }}</p>
+  <hr/>
+
+  <!-- <p class="label">GOLONGAN DARAH</p>
+  <p>{{ blueform.personalData.bloodType }}</p>
+  <hr/>
+
+  <p class="label">AGAMA</p>
+  <p>{{ blueform.personalData.religion }}</p>
+  <hr/> -->
+
+  <p class="label">PRESENT/MAILING ADDRESS</p>
+  <p>{{ blueform.personalData.mailAddress.street }}
+     {{ blueform.personalData.mailAddress.city }}
+     {{ blueform.personalData.mailAddress.province }}
+     {{ blueform.personalData.mailAddress.postalCode }}</p>
+  <hr/>
+
+  <p class="label">PERMANENT ADDRESS</p>
+  <p>{{ blueform.personalData.mailAddress.street }}
+     {{ blueform.personalData.mailAddress.city }}
+     {{ blueform.personalData.mailAddress.province }}
+     {{ blueform.personalData.mailAddress.postalCode }}</p>
+  <hr/>
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">PRESENT TELEPHONE</p>
+      <p>{{ blueform.personalData.presentTelephone || '-' }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">PERMANENT TELEPHONE</p>
+      <p>{{ blueform.personalData.permanentTelephone || '-' }}</p>
+    </div>
+  </div>
+  <hr/>
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5" *ngIf="blueform.personalData.details.isUnder18">
+      <p class="label">UNDER 18</p>
+      <p>Yes, {{ blueform.personalData.details.ageIfUnder18 }} Years old</p>
+    </div>
+    <div class="mr-5" *ngIf="blueform.personalData.details.isOver55">
+      <p class="label">OVER 55</p>
+      <p>Yes, {{ blueform.personalData.details.ageIfOver55 }} Years old</p>
+    </div>
+    <div class="mr-5" *ngIf="blueform.personalData.details.isForeigner">
+      <p class="label">FOREIGNER</p>
+      <p>visa type: {{ blueform.personalData.details.visaIfForeigner || '-' }}</p>
+    </div>
+  </div>
+  <!-- <hr/> -->
+
+  <!-- <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">JUMLAH ANAK</p>
+      <p>{{ blueform.personalData.noOfChildren }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">JUMLAH TANGGUNGAN</p>
+      <p>{{ blueform.personalData.noOfDependents }}</p>
+    </div>
+  </div>
+  <hr/> -->
+
+  <!-- <p class="label">ANGGOTA KELUARGA</p> -->
+  <!-- ????????????????? -->
+  <!-- <p>TODO: BELUM IMPLEMENT DESIGN</p> -->
+
+</div>
+
+<div class="section-container">
+  <h3 class="title">Job Requirements</h3>
+
+  <p class="label">TYPE OF WORK DESIRED</p>
+  <p>{{ blueform.workStatement.position }}</p>
+  <hr/>
+
+  <p class="label">WORK LOCATION DESIRED</p>
+  <p>{{ blueform.workStatement.workLocation }}</p>
+  <hr/>
+  
+  <p class="label">IF YOU WERE ASKED TO CONSIDER EMPLOYMENT AT ANOTHER JTI-IBM LOCATION, DO YOU HAVE A GEOGRAPHIC PREFERENCE?</p>
+  <p>{{ blueform.workStatement.placement.choice }}</p>
+  <hr/>
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5" *ngFor="let location of blueform.workStatement.placement.location;let i = index">
+      <p class="label">LOCATION {{i+1}}</p>
+      <p>{{ location || '-' }}</p>
+    </div>
+    <!-- ?????????????????????? -->
+    <!-- <div class="mr-5">
+      <p class="label">LOKASI 2</p>
+      <p>8888</p>
+    </div> -->
+  </div>
+  <hr/>
+
+  <p class="label">SALARY DESIRED</p>
+  <p>Rp. {{ blueform.workStatement.expectedSalary }} Per Nett</p>
+  <hr/>
+
+  <p class="label">WORK SCHEDULE AVAILABILITY</p>
+  <p>{{ blueform.workStatement.typeOfWork.join(', ') }}</p>
+  <hr/>
+
+  <p class="label">AVAILABLE TO BEGIN WORK AT</p>
+  <p>{{ blueform.workStatement.startDate }}</p>
+  <hr/>
+  
+  <p class="label">TYPE OF EMPLOYMENT</p>
+  <p>{{ blueform.workStatement.employmentType.join(', ') }}</p>
+  <hr/>
+
+</div>
+
+<div class="section-container">
+  <h3 class="title">Employment Experience</h3>
+  
+  <div class="bordered" *ngFor="let exp of blueform.workExperience">
+    <h5 class="font-bold">{{ exp.position }}</h5>
+    <h5 class="font-bold">{{ exp.companyName }}</h5>
+    <p class="font-lighter">
+      <img src="../../../../../assets/images/ic_location.svg" class="mr-2">
+      {{ exp.companyLocation || '-' }}</p>
+    <p class="font-lighter">
+      <img src="../../../../../assets/images/ic_calendar.svg" class="mr-2">
+      {{ exp.startPeriod | date:'MMMM yyyy' }} - {{ (exp.endPeriod | date:'MMMM yyyy') || 'Now' }}</p>
+    <p class="font-lighter">
+      <img src="../../../../../assets/images/ic_money.svg" class="mr-2">
+      Rp{{ exp.startSalary }} - Rp{{ exp.endSalary }}</p>
+    <p class="label mt-4">Description of Duties</p>
+    <p>{{ exp.jobDescription || '-' }}</p>
+    <p class="label mt-4">Reason for Leaving</p>
+    <p class="mb-0">{{ exp.reasonOfQuit || '-' }}</p>
+  </div>
+
+  <h5 class="font-bold">Contact from past company</h5>
+  
+  <!-- <p class="label">NAMA PERUSAHAAN</p>
+  <p>{{ blueform.contactInformationOfLastCompany.companyName || '-' }}</p>
+  <hr/>
+
+  <p class="label">HUBUNGAN PROFESIONAL</p>
+  <p>{{ blueform.contactInformationOfLastCompany.professionalRelationship || '-' }}</p>
+  <hr/> -->
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">CONTACT NUMBER</p>
+      <p>{{ blueform.contactInformationOfLastCompany.contactNumber || '-' }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">EMAIL</p>
+      <p>{{ blueform.contactInformationOfLastCompany.contactEmail || '-' }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">CONTACT OBJECTION</p>
+      <p>{{ blueform.contactInformationOfLastCompany.consent.contactAnytime || '-' }}</p>
+      <p>{{ blueform.contactInformationOfLastCompany.consent.specificTime || '-' }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-container">
+  <h3 class="title">Education And Training</h3>
+
+  <div class="bordered" *ngFor="let edu of blueform.education">
+    <h5 class="font-bold">{{ edu.degree }}</h5>
+    <h5 class="font-bold">{{ edu.school }}</h5>
+    <p class="font-lighter">
+      <img src="../../../../../assets/images/ic_calendar.svg" class="mr-2">
+      {{ edu.startPeriod | date:'MMMM yyyy' }} - {{ (edu.endPeriod | date:'MMMM yyyy') || 'Now' }}</p>
+    <p class="font-lighter">
+      <img src="../../../../../assets/images/ic_building.svg" class="mr-2">
+      {{ edu.fieldOfStudy || '-'}}</p>
+    <p class="font-lighter mb-0">
+      <!-- ?????????????? -->
+      <img src="../../../../../assets/images/ic_graduate.svg" class="mr-2">
+      {{ edu.grade || '-' }}</p>
+  </div>
+
+  <p class="label">ACADEMIC ACHIEVEMENTS AND ACTIVITIES</p>
+  <p>{{ blueform.activitiesSocietiesAchievement || '-' }}</p>
+  <hr/>
+
+  <p class="label">THESIS OR SIGNIFICANT RESEARCH TITLE</p>
+  <p>{{ blueform.accomplishment.scientificPaperTitle || '-' }}</p>
+  <hr/>
+
+  <p class="label">RESEARCH TITLE</p>
+  <p>{{ blueform.accomplishment.researchTitle || '-' }}</p>
+  <hr/>
+
+  <p class="label">PUBLISHED BOOKS</p>
+  <p>{{ blueform.accomplishment.publicationTitle || '-' }}</p>
+  <hr/>
+
+  <p class="label">PATENT ISSUED</p>
+  <p>{{ blueform.accomplishment.patent || '-' }}</p>
+</div>
+
+<div class="section-container">
+  <h3 class="title">SKILLS</h3>
+  <!-- ?????????????????????????????? -->
+  <div class="chip-container">
+    <span *ngFor="let skill of blueform.skills">{{skill}}</span>
+  </div>
+
+  <!-- <p class="label">KEAHLIAN BAHASA INGGRIS</p>
+
+  <p class="label">KEAHLIAN BAHASA LAIN</p>
+  <div class="chip-container">
+    <span *ngFor="let othLang of blueform.skill.otherLanguageSkills">{{othLang.language}} - {{othLang.proficiency}}</span>
+    <span *ngIf="blueform.skill.otherLanguageSkills.length===0">-</span>
+  </div>
+
+  <p class="label">KEAHLIAN KOMPUTER</p>
+  <div class="chip-container">
+    <span *ngFor="let compSkill of blueform.skill.computingSkills">{{compSkill}}</span>
+    <span *ngIf="blueform.skill.computingSkills.length===0">-</span>
+  </div> -->
+
+</div>
+
+<div class="section-container">
+  <h3 class="title">General Information</h3>
+
+  <!-- <p class="label">TERKAIT DENGAN MITRA ATAU KARYAWAN DARI IBM-JTI, IBM, ATAU ANAK PERUSAHAAN IBM LAINNYA</p>
+  <p>{{ blueform.generalInformation.relationship.isRelateWithPartnerSubsidiaryOrEmployee }}, 
+    {{ blueform.generalInformation.relationship.withWhomYourRelationship }}
+  </p>
+  <hr/> -->
+
+  <!-- <p class="label">NAMA REFERAL</p>
+  <p>{{ blueform.generalInformation.referralName || '-' }}</p>
+  <hr/> -->
+
+  <!-- ?????????????????????????????????????? -->
+  <p class="label" *ngIf="blueform.generalInformation.haveYouEver.previouslyWorked">
+    HAVE EVER {{blueform.generalInformation.haveYouEver.previouslyWorked}}</p>
+  <p>{{ blueform.generalInformation.haveYouEver.details }}</p>
+  <hr/>
+
+  <p class="label">HAVE FAMILY MEMBERS OR CLOSE RELATIVES THAT WORK FOR IBM OR IBM JTI</p>
+  <p>{{ blueform.generalInformation.anyRelatives}}</p>
+
+  <div class="bordered overflow-auto" *ngIf="blueform.generalInformation.anyRelatives==='Yes'">
+    <table>
+      <tr>
+        <!-- <th>Relationship</th> -->
+        <th>Name</th>
+        <th>Position</th>
+      </tr>
+      <tr *ngFor="let family of blueform.generalInformation.relatives">
+        <!-- <td>{{family.relationStatus}}</td> -->
+        <td>{{family.name}}</td>
+        <td>{{family.position}}</td>
+      </tr>
+    </table>
+  </div>
+  <hr/>
+
+  <p class="label">SOURCE</p>
+  <p *ngIf="blueform.generalInformation.knowJTIFrom.isAds">Job Ads: {{ blueform.generalInformation.knowJTIFrom.ads }}</p>
+  <p *ngIf="blueform.generalInformation.knowJTIFrom.isAgency">Work Agencies: {{ blueform.generalInformation.knowJTIFrom.agency }}</p>
+  <p *ngIf="blueform.generalInformation.knowJTIFrom.isOther">Others: {{ blueform.generalInformation.knowJTIFrom.other }}</p>
+  <hr/>
+
+  <p class="label">HAVE ANOTHER COMMITMENT TO ANOTHER EMPLOYER OR ORGANIZATION THAT MIGHT AFFECT EMPLOYMENT WITH US</p>
+  <p>{{ blueform.generalInformation.otherWorkAgreement }}</p>
+  <hr/>
+
+  <p class="label">OTHER INFORMATION</p>
+  <p>{{ blueform.generalInformation.additionalInformation || '-'}}</p>
+</div>
+
+<div class="section-container">
+  <h3 class="title">Security Data Sheet</h3>
+
+  <p class="label">IN THE LAST FIVE YEARS, HAVE YOU BEEN CONVICTED OR  PLEADED GUILTY TO A CRIME (INCLUDING ANY CRIMES COMMITTED DURING MILITARY SERVICE)?</p>
+  <p>{{blueform.personalStatement.criminalHistory}}</p>
+  <hr/>
+
+  <p class="label">DO NOT INCLUDE ARRESTS WITHOUT CONVICTIONS, SPEEDING OR MINOR TRAFFIC VIOLATIONS</p>
+  <p class="label">ARE YOU AT THIS PRESENT TIME, UNDER INDICTMENTS OR OTHERWISE FORMALLY CHARGED WITH A FELONY?</p>
+  <p>{{blueform.personalStatement.underIndictmentsOrCharged}}</p>
+  <hr/>
+
+  <p class="label">WAS YOUR DISCHARGE AS A INDONESIA VETERAN DISHONORABLE?</p>
+  <p>{{blueform.personalStatement.honoredAsIndonesiaVeteran}}</p>
+  <hr/>
+  
+  <p class="label">DESCRIPTION</p>
+  <p>{{blueform.personalStatement.description || '-'}}</p>
+</div>
+
+<!-- <div class="section-container">
+  <h3 class="title">Family Background</h3>
+
+  <div class="bordered">
+    <table>
+      <tr>
+        <th>Relationship</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Telephone</th>
+        <th>Occupation</th>
+      </tr>
+      <tr *ngFor="let family of blueform.familyBackground">
+        <td>{{family.relationStatus}}</td>
+        <td>{{family.name}}</td>
+        <td>{{family.address}}</td>
+        <td>{{family.telephone}}</td>
+        <td>{{family.occupation}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div> -->
+
+</div>
+
+<div class="col-12 col-sm-6 col-md-4 col-xl-3 user-info">
+  <div class="section-container mt-5 position-sticky" style="top:6rem;">
+    <div class="text-center mb-4">
+      <img class="rounded-circle" [src]="userData.profpic || '../../../../../../assets/images/ic_user.svg'" >
+      <p class="text-center">{{userData.name}}</p>
+      <p class="text-center break">{{userData.email}}</p>
+    </div>    
+
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">CONTACT NO.</div>
+      <div class="col-12 col-xl-7">{{userData.contact}}</div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">LANGUAGE</div>
+      <div class="col-12 col-xl-7">{{userData.language}}</div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">EDUCATION</div>
+      <div class="col-12 col-xl-7">{{userData.degree}}</div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">EXPERIENCE</div>
+      <div class="col-12 col-xl-7">{{userData.experience}}</div>
+    </div>
+  </div>
+</div>
+</div>

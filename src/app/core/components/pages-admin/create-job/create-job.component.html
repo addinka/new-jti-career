@@ -1,0 +1,189 @@
+<div class="wrapper">
+  <div class="wrapper-inside">
+    <div id="text-title">{{this.currentURL === '/admin/jobs-ads/create' ? 'Create New Job' : 'Edit Job'}}</div>
+
+    <form [formGroup]="createJobForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+        <div class="col-lg-6 pr-5">
+          <div class="text-sub-title">Schedule</div>
+          <div class="row my-3 align-items-center">
+            <div class="col-3 text-label">
+              <b>Start</b>
+            </div>
+            <mat-form-field class="col-5 mr-2 form-bg" [floatLabel]="'never'" (click)="pickerLive.open()">
+              <input matInput [matDatepicker]="pickerLive" [min]="minLiveDate" [value]="minLiveDate"
+                (dateChange)="selectLiveSchedule($event)" formControlName="liveStart">
+              <mat-datepicker-toggle matSuffix [for]="pickerLive"></mat-datepicker-toggle>
+              <mat-datepicker #pickerLive disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <mat-select class="col-3 form-bg" placeholder="00.00" [(value)]="selectedLiveHour">
+              <mat-option *ngFor="let hour of hours" [value]="hour.value">{{hour.viewValue}}</mat-option>
+            </mat-select>
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-3 text-label">
+              <b>End</b>
+            </div>
+            <mat-form-field class="col-5 mr-2 form-bg" [floatLabel]="'never'" (click)="pickerEnd.open()">
+              <input matInput [matDatepicker]="pickerEnd" [min]="minEndDate" [max]="maxEndDate"
+                formControlName="liveEnd" (dateChange)="selectEndSchedule($event)">
+              <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+              <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <mat-select class="col-3 form-bg" placeholder="00.00" [(value)]="selectedEndHour">
+              <mat-option *ngFor="let hour of hours" [value]="hour.value">{{hour.viewValue}}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+
+        <div class="col-lg-6 pr-5">
+          <div class="text-sub-title">Job Details</div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Job Title</b>
+            </div>
+            <input class="col form-bg" placeholder="Title" formControlName="title">
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Categories</b>
+            </div>
+            <mat-select class="col form-bg align-self-center" placeholder="Categories" formControlName="categories">
+              <ng-container *ngFor="let item of catItems">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Location</b>
+            </div>
+            <mat-select class="col form-bg align-self-center" placeholder="City" formControlName="location">
+              <ng-container *ngFor="let item of locItems">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div> 
+
+          <div class="row my-3 align-items-center" *ngIf="this.createJobForm.controls.location.value === 'Other'">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+            </div>
+            <input class="col form-bg" placeholder="Other Location" formControlName="otherLocation">
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Expected Join Date</b>
+            </div>
+            <mat-form-field class="col-6 col-md-3 col-lg-3 form-bg align-self-center" [floatLabel]="'never'" (click)="pickerOnBoard.open()">
+              <input #onBoardStartInput matInput [matDatepicker]="pickerOnBoard" [min]="minOnBoardDate" formControlName="onBoardStart"
+                readonly>
+              <mat-datepicker-toggle matSuffix [for]="pickerOnBoard"></mat-datepicker-toggle>
+              <mat-datepicker #pickerOnBoard [disabled]="isFlexible || isImmediately"></mat-datepicker>
+            </mat-form-field>
+            <div class="mx-2 mt-2 row align-items-center" (click)="isFlexible = !isFlexible; isImmediately = false; (isFlexible) ? resetOnBoard() : setDefaultOnBoard()" style="cursor: pointer;">
+              <span class="mr-2" [ngClass]="{'filter-dot': !isFlexible, 'filter-dot-selected': isFlexible}"></span>
+              <span class="text-label">Anytime</span>
+            </div>
+            <div class="mx-2 mt-2 row align-items-center" (click)="isImmediately = !isImmediately; isFlexible = false; (isImmediately) ? resetOnBoard() : setDefaultOnBoard()" style="cursor: pointer;">
+              <span class="mr-2" [ngClass]="{'filter-dot': !isImmediately, 'filter-dot-selected': isImmediately}"></span>
+              <span class="text-label">Immediately</span>
+            </div>
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Language</b>
+            </div>
+            <mat-select class="col form-bg align-self-center" placeholder="Please choose Language" multiple
+              formControlName="languageTemp" (selectionChange)="selectLanguage($event)">
+              <ng-container *ngFor="let item of lanItems">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+
+          <!-- <div class="row my-3 align-items-center" *ngIf="this.languages.includes('Other')">
+            <input class="col offset-3 form-bg" placeholder="Other language" formControlName="languageOther">
+          </div> -->
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Experience</b>
+            </div>
+            <mat-select class="col form-bg align-self-center" placeholder="Please choose Experience" formControlName="experience">
+              <ng-container *ngFor="let item of expItems">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Education</b>
+            </div>
+            <mat-select class="col form-bg align-self-center" placeholder="Please choose Education" formControlName="education">
+              <ng-container *ngFor="let item of eduItems">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+
+          <div class="row my-3 align-items-center">
+            <div class="col-6 col-md-3 col-lg-3 text-label">
+              <b>Employment</b>
+            </div>
+            <mat-select class="col form-bg align-self-center" placeholder="Please choose Employment" formControlName="employment">
+              <ng-container *ngFor="let item of empItems">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </div>
+
+          <div class="row my-3">
+            <div class="col-3 mt-2 text-label">
+              <b>Job Description</b>
+            </div>
+          </div>
+
+          <div class="row">
+            <ejs-richtexteditor class="rich-text-editor" [pasteCleanupSettings]='cleanup' [enableTabKey]='true' [toolbarSettings]='tools'
+              placeholder="Describe the Job Role Scope" showCharCount="true" formControlName="jobDesc">
+            </ejs-richtexteditor>
+          </div>
+
+          <div class="row my-3">
+            <div class="col-3 mt-2 text-label">
+              <b>Requirements</b>
+            </div>
+          </div>
+
+          <div class="row">
+            <ejs-richtexteditor class="rich-text-editor" [pasteCleanupSettings]='cleanup' [enableTabKey]='true' [toolbarSettings]='tools' 
+              placeholder="Describe the Job Role Requirements" showCharCount="true" formControlName="requirement">
+            </ejs-richtexteditor>
+          </div>
+
+          <div class="row mt-5">
+            <button class="offset-3 col button" type="button" id="button-preview"
+              [ngClass]="{'button-preview-able': createJobForm.valid, 'button-preview-disable': !createJobForm.valid}"
+              [disabled]="!createJobForm.valid" (click)="onPreview()">Preview</button>
+          </div>
+
+          <div class="row mt-3">
+            <button class="offset-3 col button" type="submit" id="button-post"
+              [ngClass]="{'button-primary': createJobForm.valid, 'button-disable': !createJobForm.valid}"
+              [disabled]="!createJobForm.valid">{{this.currentURL === '/admin/jobs-ads/create' ? 'Post' : 'Edit'}}</button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

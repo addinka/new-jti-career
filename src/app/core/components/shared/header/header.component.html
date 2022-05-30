@@ -1,0 +1,143 @@
+<nav class="sticky-top navbar navbar-expand-lg navbar-light navbar-padding py-sm-3" id="navbar-color">
+  <a class="navbar-brand" (click)="onNavigateToHome()">
+    JTI <span [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">CAREER</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="currentRole !== 'Recruiter'" class="nav-item mx-md-0 mx-lg-3">
+        <a class="nav-link" (click)="onSearchFromHeader(false)">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Jobs
+          </div>
+        </a>
+      </li>
+      
+      <li *ngIf="currentRole === 'Recruiter'" class="nav-item mx-md-0 mx-lg-3 dropdown  my-auto">
+        <a class="nav-link dropdown-toggle" href="#" id="jobsDropdown" currentRole="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Jobs
+            <!-- <ng-container *ngIf="currentRole !== 'Recruiter'">
+              <img [src]="this.getImageURL" onerror="this.src='../../../../../assets/images/ic_user.svg'" class="rounded-circle mx-2 profile" height="27" width="27">
+            </ng-container>
+            <ng-container *ngIf="currentRole === 'Recruiter'">
+              <img [src]="getRecruiterImageURL + currentProfilePicture" onerror="this.src='../../../../../assets/images/ic_user.svg'" class="rounded-circle mx-2 profile" height="27" width="27">
+            </ng-container> -->
+            
+            <img src="../../../../../assets/images/ic_dropdown.svg" alt="Dropdown" height="7" width="7">
+          </div>
+        </a>
+
+        <div class="dropdown-menu shadow-lg mt-3" aria-labelledby="jobsDropdown">
+          <div class="row" style="margin-top: -16px">
+            <img class="mx-auto" src="../../../../../assets/images/ic_triangle.svg" style="max-height: 18px">
+          </div>
+          <a class="dropdown-item" routerLink="/admin/jobs-ads">Jobs Ads</a>
+          <a class="dropdown-item" (click)="openDialogInviteApply()">Invite to Register</a>
+        </div>
+      </li>
+
+      <!-- <li *ngIf="currentRole === 'Recruiter'" class="nav-item mx-md-0 mx-lg-3">
+        <a class="nav-link" (click)="openDialogInviteApply()">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Invite External
+          </div>
+        </a>
+      </li>
+
+      <li *ngIf="currentRole === 'Recruiter'" class="nav-item mx-md-0 mx-lg-3">
+        <a class="nav-link" routerLink="/admin/jobs-ads">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Jobs Ads
+          </div>
+        </a>
+      </li> -->
+
+      <li *ngIf="currentRole === 'Recruiter'" class="nav-item mx-md-0 mx-lg-3">
+        <a class="nav-link" routerLink="/admin/all-candidate">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Candidates
+          </div>
+        </a>
+      </li>
+
+      <li *ngIf="currentRole === 'Recruiter'" class="nav-item mx-md-0 mx-lg-3">
+        <a class="nav-link" routerLink="/admin/candidate-list">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Applicants
+          </div>
+        </a>
+      </li>
+
+      <li *ngIf="currentToken !== null" class="nav-item mx-md-0 mx-lg-3 dropdown  my-auto">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" currentRole="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <div [ngClass]="{'color-gray': mainRoute, 'color-white': !mainRoute}">
+            Hi {{currentName.split(' ')[0]}}
+            <ng-container *ngIf="currentRole !== 'Recruiter'">
+              <img [src]="this.getImageURL" onerror="this.src='../../../../../assets/images/ic_user.svg'" class="rounded-circle mx-2 profile" height="27" width="27">
+            </ng-container>
+            <ng-container *ngIf="currentRole === 'Recruiter'">
+              <img [src]="getRecruiterImageURL + currentProfilePicture" onerror="this.src='../../../../../assets/images/ic_user.svg'" class="rounded-circle mx-2 profile" height="27" width="27">
+            </ng-container>
+            
+            <img src="../../../../../assets/images/ic_dropdown.svg" alt="Dropdown" height="7" width="7">
+          </div>
+        </a>
+
+        <div class="dropdown-menu shadow-lg mt-3" aria-labelledby="navbarDropdown">
+          <div class="row" style="margin-top: -16px">
+            <img class="mx-auto" src="../../../../../assets/images/ic_triangle.svg" style="max-height: 18px">
+          </div>
+          <a *ngIf="currentRole !== 'Recruiter'" class="dropdown-item" (click)="onNavigateToProfile()">Profile</a>
+          <a *ngIf="currentRole === 'Recruiter'" class="dropdown-item" routerLink="/admin/change-home">Customize Home</a>
+          <a *ngIf="currentRole === 'Recruiter'" class="dropdown-item" routerLink="/admin/manage-user">Manage Users</a>
+          <a class="dropdown-item" (click)="doLogOut()">Log out</a>
+        </div>
+      </li>
+
+      <li *ngIf="currentToken === null" class="nav-item mx-md-0 mx-lg-2 my-auto">
+        <button class="button-primary" id="button-login" (click)="openDialogLogin()">Login</button>
+      </li>
+
+      <li *ngIf="currentToken !== null" class="nav-item mx-md-0 mx-lg-2 dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarNotification" currentRole="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <img [src]="this.unreadNotification ? '../../../../../assets/images/ic_notification_on.svg' : '../../../../../assets/images/ic_notification_off.svg'" alt="Search" height="17" width="15">
+        </a>
+        <div class="dropdown-menu shadow-lg mt-3" aria-labelledby="navbarNotification" style="overflow-y: scroll;">
+          <div class="row" style="margin-top: -16px">
+            <img class="mx-auto" src="../../../../../assets/images/ic_triangle.svg" style="max-height: 18px">
+          </div>
+
+          <!-- Notifications -->
+          <div *ngFor="let notification of notifications; let i = index">
+            <div class="d-flex flex-row">
+              <div *ngIf="!notification.read" class="d-flex align-items-center mx-3">
+                <img class="notification-img"src="../../../../../assets/images/ic_new_notification.svg">
+              </div>
+              <a class="dropdown-item custom-dropdown-item p-0 mr-2" [ngClass]="{'custom-padding': notification.read}"
+                (click)="onClickNotification(i)">{{ notification.message }}</a>
+              <div class="d-flex align-items-center custom-notification-date mr-3">
+                {{ notification.timestamp | date: 'h:mm dd/MM/yy' }}</div>
+            </div>
+
+            <div *ngIf="i !== notifications.length - 1" class="dropdown-divider mx-3"></div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="nav-item mx-md-0 mx-lg-2">
+        <a class="nav-link" (click)="onSearchFromHeader(true)">
+          <img src="../../../../../assets/images/ic_search.svg" alt="Search" height="16" width="16">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

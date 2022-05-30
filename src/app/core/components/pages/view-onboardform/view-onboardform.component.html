@@ -1,0 +1,437 @@
+<div class="row jobs-search">
+  <div class="job-title">Onboard Form <span class="font-italic text-capitalize" *ngIf="onboardform">({{onboardform.status}})</span></div>
+</div>
+<div *ngIf="!!onboardform" class="d-flex main-container justify-content-center">
+<div class="col-12 col-md-8 col-xl-9">
+<div class="section-container mt-5">
+  <h3 class="title">Personal Information</h3>
+
+  <p class="label">EMPLOYEE'S NAME</p>
+  <!-- <p>{{ blueform.personalData.name.firstName }} {{ blueform.personalData.name.middleName }} {{ blueform.personalData.name.lastName }}</p> -->
+  <p>{{onboardform.personalFormGroup.employeeName}}</p>
+  <hr/>
+
+  <p class="label">EMPLOYEE'S SERIAL NUMBER</p>
+  <p>{{onboardform.personalFormGroup.serialNumber}}</p>
+  <hr/>
+
+  <p class="label">DATE OF EMPLOYEMENT</p>
+  <p>{{ onboardform.personalFormGroup.dateOfEmployment | date:'dd MMMM yyyy' }}</p>
+  <hr/>
+
+  <p class="label">DEPARTMENT/WORK LOCATION</p>
+  <p>{{onboardform.personalFormGroup.department || '-'}}</p>
+  <hr/>
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">PHONE NUMBER</p>
+      <p>{{onboardform.personalFormGroup.phoneNumber || '-'}}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">EMAIL</p>
+      <p>{{onboardform.personalFormGroup.email || '-'}}</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="section-container">
+  <h3 class="title">Emergency Contact</h3>
+
+  <h5 class="font-bold">Emergency Contact #1</h5>
+  <p class="label">NAME</p>
+  <p>{{onboardform.emergencyFormGroup.name1}}</p>
+  <hr/>
+
+  <p class="label">RELATION</p>
+  <p>{{onboardform.emergencyFormGroup.relation1}}</p>
+  <hr/>
+
+  <p class="label">PHONE NUMBER</p>
+  <p>{{onboardform.emergencyFormGroup.phoneNumber1}}</p>
+  <hr/>
+
+  <h5 class="font-bold">Emergency Contact #2</h5>
+  <p class="label">NAME</p>
+  <p>{{onboardform.emergencyFormGroup.name2 || '-'}}</p>
+  <hr/>
+
+  <p class="label">RELATION</p>
+  <p>{{onboardform.emergencyFormGroup.relation2 || '-'}}</p>
+  <hr/>
+
+  <p class="label">PHONE NUMBER</p>
+  <p>{{onboardform.emergencyFormGroup.phoneNumber2 || '-'}}</p>
+
+</div>
+
+<div class="section-container">
+  <h3 class="title">Personal Commitment Document for Valid SKCK Submission </h3>
+  <p>Hereby authorize the Company to void the Employement Contract that has been signed due to my failure to meet my commitment for submitting valid Police Certificate of Good Conduct (SKCK)</p>
+  <p class="label">SKCK VALID ON</p>
+  <p>{{ onboardform.skckValidity | date:'dd MMMM yyyy' }}</p>
+</div>
+
+<div class="section-container">
+  <h3 class="title">BPJS Ketenagakerjaan</h3>
+  
+  <h5 class="font-bold">Copy of ID</h5>
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">KETERANGAN</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.isID ? 'YES' : 'NO'}}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">DATE OF DOCUMENT</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.IDDate | date:'dd MMMM yyyy' }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">REMARKS</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.IDRemarks || '-' }}</p>
+    </div>
+  </div>
+  <hr/>
+
+  <h5 class="font-bold">Sambung Saldo</h5>
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">KETERANGAN</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.isSambungSaldo ? 'YES' : 'NO'}}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">REMARKS</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.sambungSaldoRemarks || '-' }}</p>
+    </div>
+  </div>
+  <hr/>
+
+  <h5 class="font-bold">Copy of BPJS Ketenagakerjaan</h5>
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">KETERANGAN</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.isBPJSKetenagakerjaan ? 'YES' : 'NO'}}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">DATE OF DOCUMENT</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.BPJSKetenagakerjaanDate | date:'dd MMMM yyyy' }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">REMARKS</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.BPJSKetenagakerjaanRemarks || '-' }}</p>
+    </div>
+  </div>
+  <hr/>
+
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">MOTHER'S NAME</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.motherName || '-' }}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">REMARKS</p>
+      <p>{{ onboardform.BPJSKetenagaKerjaanFormGroup.motherRemarks || '-' }}</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="section-container">
+  <h3 class="title">Health Insurance Package Form</h3>
+  <p>Hereby authorize the Company to make deductions from my pay check to pay health insurance premium every month according to the applicable premium</p>
+  
+  <h5 class="font-bold">Health Insurance Package P2 (*Family includes Spouse & Children Only)</h5>
+  <div class="d-flex flex-row row-multi">
+    <div class="mr-5">
+      <p class="label">TYPE OF INSURANCE</p>
+      <p>{{onboardform.healthFormGroup.healthInsuranceType}}</p>
+    </div>
+    <div class="mr-5">
+      <p class="label">PRICE</p>
+      <p>{{ findPrice(onboardform.healthFormGroup.healthInsuranceType) }}</p>
+    </div>
+  </div>
+  <hr/>
+
+  <h5 class="font-bold">Health Insurance Coverage Form </h5>
+  <p>I hereby submit a request for data changes related to health insurance coverage with the following details</p>
+
+  <div class="bordered overflow-auto">
+    <table>
+      <tr>
+        <th>Family member's name</th>
+        <th>DOB</th>
+        <th>Relation</th>
+        <th>Gender</th>
+        <th>Type</th>
+        <th>Remarks</th>
+      </tr>
+      <tr *ngFor="let coverage of onboardform.healthFormGroup.healthCoverages">
+        <td>{{coverage.name}}</td>
+        <td>{{coverage.birthDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{coverage.relation}}</td>
+        <td>{{coverage.gender}}</td>
+        <td>{{coverage.type}}</td>
+        <td>{{coverage.remarks || '-'}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="label">EFFECTIVE DATE</p>
+  <p>{{ onboardform.healthFormGroup.effectiveDate | date:'dd MMMM yyyy' }}</p>
+  <hr/>
+
+  <p class="label">SUPPORTING DOCUMENTS CHECKLIST</p>
+  <div class="chip-container">
+    <span *ngIf="onboardform.healthFormGroup.isIDCard">ID Card</span>
+    <span *ngIf="onboardform.healthFormGroup.isFamilyCard">Familiy Card</span>
+    <span *ngIf="onboardform.healthFormGroup.isBirthCertificate">Birth Certificate</span>
+  </div>
+</div>
+
+
+<div class="section-container">
+  <h3 class="title">BPJS Kesehatan Coverage Form</h3>
+
+  <p class="label">BPJS KESEHATAN NO.</p>
+  <p>{{onboardform.BPJSKesehatanFormGroup.BPJSKesehatanNumber || '-'}}</p>
+  <hr/>  
+
+  <p class="label">MOTHER'S NAME</p>
+  <p>{{onboardform.BPJSKesehatanFormGroup.motherName || '-'}}</p>
+  <hr/>  
+
+  <p class="label">EMAIL</p>
+  <p>{{onboardform.BPJSKesehatanFormGroup.email || '-'}}</p>
+  <hr/>  
+
+  <p class="label">NATIONALITY</p>
+  <p>{{onboardform.BPJSKesehatanFormGroup.nationality || '-'}}</p>
+  <hr/>  
+
+  <p class="label">SALARY</p>
+  <p>Rp. {{onboardform.BPJSKesehatanFormGroup.salary || '-'}}</p>
+  <hr/>  
+
+  <p class="label">FAMILIY CARD NO.</p>
+  <p>{{onboardform.BPJSKesehatanFormGroup.familyCardNumber || '-'}}</p>
+  <hr/>  
+
+  <p class="label">ADDRESS</p>
+  <p>{{onboardform.BPJSKesehatanFormGroup.address}}, {{onboardform.BPJSKesehatanFormGroup.city}}, {{onboardform.BPJSKesehatanFormGroup.province}}, {{onboardform.BPJSKesehatanFormGroup.postalCode}}</p>
+  <hr/>  
+
+  <p>I hereby submit a request for data changes related to BPJS Kesehatan coverage with the following details</p>
+  <div class="bordered overflow-auto">
+    <table>
+      <tr>
+        <!-- <th>Relationship</th> -->
+        <th>Family member's name</th>
+        <th>ID Card No</th>
+        <th>Place of Birth</th>
+        <th>DOB</th>
+        <th>Relation</th>
+        <th>Gender</th>
+        <th>Marital Status</th>
+      </tr>
+      <tr *ngFor="let coverage of onboardform.BPJSKesehatanFormGroup.BPJSCoverages">
+        <td>{{coverage.name || '-'}}</td>
+        <td>{{coverage.idCardNumber || '-'}}</td>
+        <td>{{coverage.birthPlace || '-'}}</td>
+        <td>{{coverage.birthDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{coverage.relation || '-'}}</td>
+        <td>{{coverage.gender || '-'}}</td>
+        <td>{{coverage.maritalStatus || '-'}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="label">EFFECTIVE DATE</p>
+  <p>{{ onboardform.BPJSKesehatanFormGroup.effectiveDate | date:'dd MMMM yyyy' }}</p>
+  <hr/>
+
+  <p class="label">SUPPORTING DOCUMENTS CHECKLIST</p>
+  <div class="chip-container">
+    <span *ngIf="onboardform.BPJSKesehatanFormGroup.isIDCard">ID Card</span>
+    <span *ngIf="onboardform.BPJSKesehatanFormGroup.isFamilyCard">Familiy Card</span>
+    <span *ngIf="onboardform.BPJSKesehatanFormGroup.isBPJSKesehatanCard">BPJS Kesehatan Card</span>
+  </div>
+</div>
+
+<div class="section-container">
+  <h3 class="title">Access and Badge Request</h3>
+  <p class="label">STATUS</p>
+  <p>{{onboardform.accessFormGroup.status || '-'}}</p>
+  <hr/>
+  <p class="label">CATEGORY OF BADGE</p>
+  <p>{{onboardform.accessFormGroup.badgeCategory || '-'}}</p>
+  <hr/>
+  <p class="label">PERIOD OF VALIDATION</p>
+  <p>{{onboardform.accessFormGroup.validationStartPeriod | date:'dd MMMM yyyy' }} - {{onboardform.accessFormGroup.validationEndPeriod | date:'dd MMMM yyyy' }}</p>
+</div>
+
+
+<div class="section-container">
+  <h3 class="title">IBM Agreement</h3>
+
+  <p class="">Dengan memahami peran saya sebagai karyawan atau karyawan yang baru diperpanjang oleh International Business Machines Corporation atau salah satu anak perusahaannya (secara bersama- sama disingkat, sebagai “IBM”), yang merupakan employment at will, serta pembayaran gaji dan upah lainnya kepada saya selama saya dipekerjakan, saya menyetujui hal-hal sebagai berikut</p>
+  <div class="label-v2">In consideration of my employment or my continued employment by International Business Machines Corporation or one of its subsidiaries (collectively, “IBM”), which is employment at will, and the payment to me of a salary or other compensation during my employment, I agree as follows</div>
+  <br/>
+  <ol>
+    <li>
+      Saya berjanji tidak akan mengungkapkan materi atau informasi rahasia apapun milik IBM, atau materi atau informasi apapun yang diterima yang bersifat rahasia dari pihak ketiga, sepertipemasok atau pelanggan, oleh IBM kepada pihak lain manapun di luar perusahaan IBM atau menggunakannya di luar kegiatan bisnis IBM tanpa izin tertulis sebelumnya dari IBM, baik selama saya masih menjadi karyawan di IBM maupun ketika saya tidak lagi menjadi karyawan di IBM. Apabila saya berhenti menjadi karyawan IBM, saya akan mengembalikan kepada IBM seluruh properti milik IBM yang berada di bawah kepemilikan saya atau yang diterima dari pihak ketiga manapun oleh IBM, baik hal tersebut berisi informasi rahasia ataupun tidak, termasuk tapi tidak terbatas pada disket atau media penyimpanan lainnya, gambar, catatan, laporan dan dokumen lainnya.  <br/>
+      Informasi dan materi rahasia milik IBM merupakan informasi atau materi apapun: (a) dihasilkan atau diperoleh maupun dimanfaatkan dalam kegiatan operasional IBM, yang diterima dari pihak ketiga manapun, atau diusulkan oleh maupun merupakan hasil dari tugas yang diberikan kepada saya atau pekerjaan yang dilaksanakan oleh saya untuk atau atas nama IBM, dan (b) yang secara umum tidak tersedia untuk kalangan publik/ umum, baik yang tertera dan tidak tertera di dalam sebuah dokumen maupun media lainnya dan baik yang diberikan tanda “IBM Confidential (Rahasia IBM)” maupun yang tidak, ataupun keterangan apapun lainnya yang serupa dari IBM atau pihak ketiga manapun. Informasi atau materi rahasia dapat termasuk, tapi tidak terbatas pada informasi dan materi yang berhubungan dengan kegiatan pengembangan, aktivitas produksi, ataupun perihal personalia di masa lalu, masa sekarang ataupun masa depan; perencanaan pemasaran dan bisnis; spesifikasi teknis, gambar, dan desain; purwarupa; program komputer; dan database.
+      <br>
+      <span class="label-v2">
+        I will not, without IBM’s prior written permission, disclose to anyone outside of IBM or use in other than IBM’s business, either during or after my employment, any confidential information or material of IBM, or any information or material received in confidence from third parties, such as suppliers or customers, by IBM. If I leave the employ of IBM, I will return to IBM all property in my possession belonging to IBM or received from any third party by IBM, whether or not containing confidential information, including, but not limited to, diskettes and other storage media, drawings, notebooks, reports, and other documents.  <br/>
+        Confidential information or material of IBM is any information or material: (a) generated or collected by or utilized in the operations of IBM, received from any third party, or suggested by or resulting from any task assigned to me or work performed by me for or on behalf of IBM, and (b) which has not been made available generally to the public, whether or not expressed in a document or other medium and whether or not marked “IBM Confidential” or with any similar legend of IBM or any third party. Confidential information or material may include, but is not limited to, information and material related to past, present and future development, manufacturing activities, or personnel matters; marketing and business plans; technical specifications, drawing, and designs; prototypes; computer programs; and databases.
+      </span>
+    </li>
+    <br>
+    <li>
+      Saya tidak akan mengungkapkan kepada pihak IBM, menggunakan di dalam kegiatan bisnisnya, atau mengakibatkan digunakannya, informasi atau materi apapun yang merupakan informasi atau materi rahasia milik pihak ketiga manapun kecuali apabila diizinkan oleh IBM. Selain itu, saya tidak akan menggabungkan ke dalam produk apapun yang digunakan dan/atau yang dijual oleh IBM, materi apapun yang memiliki hak cipta dari pihak ketiga manapun, kecuali apabila telah diizinkan oleh IBM.
+      <br>
+      <span class="label-v2">
+        I will not disclose to IBM, use in its business, or cause it to use, any information or material which is confidential, to any third party unless authorized by IBM. In addition, I will not incorporate into any product used and/or sold by IBM, any copyrighted materials of any third party, unless authorized by IBM.
+      </span>
+    </li>
+    <br>
+    <li>
+      Saya akan mematuhi, dan melaksanakan seluruh hal yang diperlukan agar IBM mematuhi, (a) hukum dan peraturan dari seluruh pemerintah yang menjadi dasar IBM melakukan bisnis, (b) ketentuan yang tercantum di dalam kontrak yang berlaku antara setiap pemerintah tersebut atau pihak kontraktornya dan IBM yang terkait dengan kekayaan intelektual atau untuk melindungi informasi, dan (c) Pedoman Pelaksanaan Usaha IBM (IBM Business Conduct Guidelines) sebagaimana yang telah diamendemen dari waktu ke waktu.
+      <br>
+      <span class="label-v2">
+        I will comply, and do all things necessary for IBM to comply, (a) with the laws and regulations of all governments under which IBM does business, (b) with provisions of contracts between any such government or its contractors and IBM that relate to intellectual property or to safeguarding of information, and (c) with all of the IBM Business Conduct Guidelines as amended from time to time.
+      </span>
+    </li>
+    <br>
+    <li>
+      Dengan ini saya mengalihkan seluruh hak, kepemilikan serta kepentingan saya kepada IBM untuk ide-ide, konsep, teknik, penemuan, desain (baik desain yang bersifat dekoratif atau hal lainnya), program komputer dan dokumentasi yang terkait, ataupun karya kepengarangan, mask work, serta bentuk sejenis lainnya (selanjutnya akan disebut “Pengembangan”), yang berdasarkan perjanjian ini dibuat, disusun, ditulis ataupun sebaliknya dikembangkan sendiri maupun secara bersama-sama oleh saya, baik Pengembangan tersebut dipatenkan atau tidak, dengan tunduk pada perlindungan hak cipta ataupun yang rentan terhadap bentuk perlindungan lain apapun yang: (a) terkait dengan bisnis ataupun riset atau pengembangan yang aktual maupun yang diantisipasi dari IBM atau anak perusahaannya atau (b) telah diusulkan oleh atau merupakan hasil dari tugas yang ditugaskan kepada saya atau pekerjaan yang dikerjakan oleh saya untuk maupun atas nama IBM atau anak perusahaannya. <br>
+      Apabila terdapat “karya kepengarangan lainnya” apapun, pengalihan tersebut akan terbatas pada karya kepengarangan yang memenuhi persyaratan dalam ayat (a) dan (b) yang sudah dijelaskan di atas.  <br>
+      Peraturan Negara Bagian California: Untuk segala bentuk Pengembangan yang tunduk pada hukum California yang berlaku, meskipun terdapat ketentuan apapun yang menetapkan sebaliknya, saya memahami bahwa pengalihan ini tidak berlaku pada Pengembangan yang sepenuhnya memenuhi persyaratan dalam ketentuan Pasal 2870 Peraturan Ketenagakerjaan California. <br>
+      Ketentuan di atas terkait pengalihan Pengembangan berlaku untuk Pengembangan yang saya ciptakan ketika saya masih menjadi karyawan IBM di suatu jenjang eksekutif, manajer, profesional, perencanaan produk atau teknis, riset teknis, programming, atau dalam kapasitas keahlian teknik (termasuk pengembangan produk, produksi, sistem, ilmu yang digunakan, dan ahli teknik di lapangan). <br><br>
+      Terkecuali yakni bentuk Pengembangan apapun yang tidak dapat saya berikan kepada IBM dikarenakan perjanjian terdahulu dengan:
+      <div class="mt-2">
+        <p class="font-bold">{{onboardform.agreementFormGroup.agreementFourPointOne || '-'}}</p>
+        <!-- <input class="form-bg" type="text" formControlName="agreementFourPointOne" placeholder=""> -->
+      </div> <br>
+      yang masih efektif sampai tanggal: <br>
+      <div class="mt-2">
+        <p class="font-bold">{{onboardform.agreementFormGroup.agreementFourPointTwo || '-'}}</p>
+        <!-- <input class="form-bg" type="text" formControlName="agreementFourPointTwo" placeholder=""> -->
+      </div>
+      <br>
+      Saya mengetahui bahwa hak cipta dan hak kekayaan intelektual lainnya di dalam desain, program komputer dan dokumentasi terkait, serta karya kepengarangan lainnya, yang dibuat di dalam lingkup pekerjaan saya, merupakan milik IBM berdasarkan hukum yang berlaku. <br> <br>
+      <span class="label-v2">
+        I hereby assign to IBM my entire right, title and interest in any idea, concept, technique, invention, design (whether the design is ornamental or otherwise), computer programs and related documentation, or other works of authorship, mask works, and the like (all hereinafter called “Developments”), hereafter made, conceived, written, or otherwise created solely or jointly by me, whether or not such Developments are patentable, subject to copyright protection or susceptible to any other form of protection which: (a) relate to the actual or anticipated business or research or development of IBM or its subsidiaries or (b) are suggested by or result from any task assigned to me or work performed by me for or on behalf of IBM or its subsidiaries. <br>
+        In the case of any “other works of authorship”, such assignment shall be limited to those works authorship which meet both conditions (a) and (b) above.
+        California Notice: For Developments subject to California law, notwithstanding anything above to the contrary, I understand that this assignment does not apply to a Development which qualifies fully under the provisions of Section 2870 of the California Labor Code. <br>
+        The above provisions concerning assignment of Developments apply to Developments created while I am employed by IBM in an executive, managerial, professional, product or technical planning, technical research, programming, or engineering capacity (including development, product, manufacturing, systems, applied science, and field engineering). <br>
+        I acknowledge that the copyright and any other intellectual property in designs, computer programs and related documentation, and other works authorship, created within the scope of my employment, belong to IBM by operation of law. <br>
+      </span>
+    </li>
+    <br>
+    <li>
+      Sehubungan dengan setiap Pengembangan yang dialihkan berdasarkan Ayat 4: (a) saya akan mengungkapkannya dengan segera secara tertulis kepada Departemen Hukum Kekayaan Intelektual IBM; dan (b) saya akan, atas permintaan IBM, segera melaksanakan pengalihan hak spesifik kepada IBM atau pihak lain yang ditentukan oleh IBM, dan melakukan hal lain apapun yang secara wajar diperlukan untuk memungkinkan IBM atau pihak yang ditunjuk tersebut untuk mendapatkan paten, hak cipta, atau bentuk perlindungan lainnya sehubungan dengan hal tersebut di Amerika Serikat dan negara lainnya. Selain itu, saya juga menyetujui untuk segera melakukan pemberitahuan kepada Departemen Hukum Kekayaan Intelektual secara tertulis mengenai paten atau aplikasi paten untuk hal yang merupakan ciptaan saya namun tidak termasuk yang dialihkan berdasarkan Ayat 4 dan yang mengungkapkan atau mengklaim Pengembangan apapun
+yang saya buat, susun atau tulis selama saya menjadi karyawan di IBM.
+      <br>
+      <span class="label-v2">
+        In connection with any of the Developments assigned by Paragraph 4: (a) I will promptly disclose them in writing to the IBM Intellectual Property Law Department; and (b) I will, on IBM’s request, promptly execute a specific assignment of title to IBM or its designee, and do anything else reasonably necessary to enable IBM or such designee to secure a patent, copyright or other form of protection therefore in the United States and in other countries. In addition, I agree to promptly notify the IBM Intellectual Property Law Department in writing of any patent or patent application in which I am an inventor but which is not assigned by Paragraph 4 and which discloses or claims any Development made, conceived, or written while I am employed by IBM.
+      </span>
+    </li>
+    <br>
+    <li>
+      IBM dan penerima lisensi, penerus, atau penerima pengalihan haknya (langsung ataupun tidak langsung) tidak diwajibkan untuk menetapkan saya sebagai pihak yang membuat Pengembangan apapun yang tunduk pada Ayat 4, ketika Pengembangan tersebut didistribusikan, kepada publik ataupun sebaliknya, atau untuk mendapatkan izin saya untuk merubah atau sebaliknya mengubah integritasnya. Saya dengan ini melepaskan dan mengesampingkan, sepanjang yang diizinkan oleh di hukum yang berlaku, seluruh hak dalam dan terhadap penetapan tersebut dan setiap hak yang mungkin untuk saya miliki terkait dengan modifikasi atas Pengembangan tersebut.
+Saya memahami bahwa setiap hak, pengesampingan, pelepasan, dan pengalihan, yang diberikan berdasarkan perjanjian ini dan dibuat oleh saya dapat dialihkan dengan bebas oleh IBM dan untuk kepentingan IBM serta anak perusahaan, penerima lisensi, penerus dan penerima pengalihan haknya.
+      <br>
+      <span class="label-v2">
+        IBM and its licensees, successors, or assigns (direct or indirect) are not required to designate me as an author of any Development which subject to Paragraph 4, when it is distributed, publicly or otherwise, or to secure my permission to change or otherwise alter its integrity. I hereby waive and release, to the extent permitted by law, all rights in and to such designation and any rights I may have concerning modifications of such Developments.
+I understand that any rights, waivers, releases, and assignments herein granted and made by me are freely assignable by IBM and are for the benefit of IBM and its subsidiaries, licensees, successors, and assigns.
+      </span>
+    </li>
+    <br>
+    <li>
+      Saya telah mengidentifikasikan seluruh Pengembangan yang tidak dialihkan berdasarkan Ayat 4 yang terhadapnya saya memiliki hak, kepemilikan, atau kepentingan apapun, dan yang dibuat atau disusun sebelumnya oleh saya sendiri maupun bersama-sama, ataupun yang dituliskan secara keseluruhan atau sebagian oleh saya, tetapi tidak dipublikasikan maupun dipatenkan.
+      <br><br>
+      Apabila saya tidak memiliki apapun untuk diidentifikasikan, saya akan menuliskan “tidak ada” di baris berikut: 
+      <div class="mt-2">
+        <!-- <input class="form-bg" type="text" formControlName="agreementSeven" placeholder=""> -->
+        <p class="font-bold">{{onboardform.agreementFormGroup.agreementSeven || '-'}}</p>
+      </div>
+      <br>
+      <span class="label-v2">
+        I have identified all Developments not assigned by Paragraph 4 in which I have any right, title, or interest, and which were previously made or conceived solely or jointly by me, or written wholly or in part by me, but neither published nor filed in any patent office.
+      </span>
+    </li>
+    <br>
+    <li>
+      Istilah “Anak Perusahaan”, sebagaimana yang digunakan di dalam Perjanjian ini, mencakup entitas apapun yang dimiliki atau dikontrol, secara langsung maupun tidak langsung, oleh International Business Machines Corporation.
+      <br>
+      <span class="label-v2">
+        The term “subsidiaries”, as used in this Agreement, includes any entity owned or controlled, directly or indirectly, by International Business Machines Corporation.
+      </span>
+    </li>
+    <br>
+    <li>
+      Istilah “employment at will”, sebagaimana yang digunakan di dalam Perjanjian ini, adalah pemberian kerja berdasarkan kesepakatan bersama antara saya dan IBM. Oleh karena itu, pihak IBM atau saya dapat menghentikan hubungan kerja, kapan saja, dengan tunduk pada Hukum Ketenagakerjaan Indonesia.
+      <br>
+      <span class="label-v2">
+        The term “employment at will”, as used in this Agreement, means the employment at the mutual consent of both me and IBM. Accordingly, either IBM or I can terminate the employment relationship at will, at any time, subject to Indonesian Manpower Law.
+      </span>
+    </li>
+    <br>
+    <li>
+      Perjanjian ini menggantikan seluruh komunikasi, pernyataan, pemahaman, janji, atau kesepakatan sebelumnya secara lisan maupun tertulis terkait dengan pokok permasalahan yang diatur dalam Perjanjian ini. Setiap pengesampingan terhadap suatu syarat yang diatur di dalam Perjanjian ini serta amandemen apapun terhadap Perjanjian ini hanya dapat dibuat secara tertulis dan ditandatangani oleh Senior Vice President of Human Resources untuk International Business Machines dan saya sendiri.
+      <br>
+      <span class="label-v2">
+        This Agreement supersedes all previous oral or written communications, representations, understandings, undertakings, or agreements relating to the subject matter hereof. Any waiver of a term in this Agreement and any amendment to this Agreement may only be made in a writing signed by the Senior Vice President of Human Resources for International Business Machines Corporation and myself.
+      </span>
+    </li>
+    <br>
+    <li>
+      Perjanjian ini diatur oleh hukum Negara Bagian New York, seperti halnya Perjanijan ini dilaksanakan dan dilakukan sepenuhnya di negara bagian tersebut. Jika ada ketentupan dari Perjanjian ini yang tidak dapat diberlakukan oleh hukum, maka ketentuan lainnya yang tersisa akan tetap berlaku.
+      <br>
+      <span class="label-v2">
+        This Agreement shall be governed by the laws of the State of New York, as if it had been executed and fully performed within such state. If any provision of this Agreement is unenforceable at law, the remainder shall remain in effect.
+      </span>
+    </li>
+    <br>
+    <li>
+      Saya menyadari bahwa apabila saya melakukan pelanggaran terhadap kewajiban saya seperti yang dijelaskan di sini, maka hal tersebut dapat mengakibatkan suatu tindakan disipliner, termasuk pemberhentian oleh IBM
+      <br>
+      <span class="label-v2">
+        I recognize that any of violation of my obligations described herein can result in any disciplinary action, including dismissal from IBM.
+      </span>
+    </li>
+    <br><br>
+
+  </ol>
+</div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4 col-xl-3 user-info">
+  <div class="section-container mt-5 position-sticky" style="top:6rem;">
+    <div class="text-center mb-4">
+      <img class="rounded-circle" [src]="userData.profpic || '../../../../../../assets/images/ic_user.svg'">
+      <p class="text-center">{{userData.name}}</p>
+      <p class="text-center break">{{userData.email}}</p>
+    </div>    
+
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">CONTACT NO.</div>
+      <div class="col-12 col-xl-7">{{userData.contact}}</div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">LANGUAGE</div>
+      <div class="col-12 col-xl-7">{{userData.language}}</div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">EDUCATION</div>
+      <div class="col-12 col-xl-7">{{userData.degree}}</div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 col-xl-5 label">EXPERIENCE</div>
+      <div class="col-12 col-xl-7">{{userData.experience}}</div>
+    </div>
+  </div>
+</div>
+</div>

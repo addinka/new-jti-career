@@ -1,0 +1,33 @@
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<ul class="timeline" id="timeline">
+
+  <ng-container *ngFor="let item of status; let i = index">
+    <li class="col-md-2 li " [ngClass]="
+    {
+      '': item.status === null,
+      'complete': item.status === 'complete',
+      'withdrawn': item.status === 'withdrawn',
+      'eliminated': item.status === 'eliminated'
+    }">
+      <!-- <div class="title"><span *ngIf="i === 0">STATUS</span></div> -->
+      <div class="status solid-line" [ngClass]="
+      {
+        'dashed-line': item.name === 'Test' && item.status !== 'ongoing',
+        'dashed-blue-line': item.name === 'Test' && item.status === 'ongoing',
+        'no-line': i === 0,
+        'solid-blue-line': item.name !== 'Test' && item.status === 'ongoing'
+      }">
+        <span *ngIf="item.status === 'ongoing'">
+          ON-REVIEW
+        </span>
+      </div>
+      <div class="desc-steps">
+        {{item.name}}
+      </div>
+    </li>
+  </ng-container>
+</ul>

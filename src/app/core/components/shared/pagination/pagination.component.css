@@ -1,0 +1,23 @@
+.jobs-pagination {
+  margin-top: -10px;
+  text-align: right;
+}
+
+.jobs-arrow-left-on {
+  border-radius: 5px 0 0 5px;
+ }
+
+.jobs-arrow-right-on {
+  border-radius: 0 5px 5px 0;
+}
+
+.jobs-pagination-arrow-off {
+  background-color: #FFFFFF;
+  opacity: 0.3;
+  cursor: default;
+  color: #4C637B;
+  margin: 0 0.5px;
+  padding: 13px 15px;
+  vertical-align: -1px;
+  font-size: 11px;
+}

@@ -1,0 +1,252 @@
+@import '../../../../../../../variables';
+
+.applicant-container {
+  background: #F6F8FB;
+  border-radius: 10px;
+  padding: 40px;
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  &.no-bg{
+    background: none;
+  }
+}
+
+.left-container,
+.right-container {
+  padding: 0;
+}
+
+.left-container div {
+  align-self: center;
+}
+
+.left-container>span,
+.right-container>span {
+  display: flex;
+  margin-bottom: 23px;
+}
+
+.profile img {
+  width: 108px;
+  height: 108px;
+  object-fit: cover;
+}
+
+.applicant-name {
+  font-family: 'IBM-Plex-Sans-Medium';
+  font-size: 22px;
+  color: #26343F;
+}
+
+.label {
+  font-family: 'IBM-Plex-Sans-Medium';
+  font-size: 14px;
+  color: #010101;
+  text-transform: uppercase;
+  @media only screen and (max-width: 768px){
+    font-size: 14px;
+  }
+  @media only screen and (max-width:425px){
+    font-size: 12px;
+  }
+}
+
+.content {
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 16px;
+  color: #4C617C;
+  @media only screen and (max-width:425px){
+    font-size: 12px;
+  }
+}
+
+.applicant-salary {
+  font-family: 'IBM-Plex-Sans-Bold';
+  font-size: 26px;
+  color: #000000;
+  @media only screen and (max-width: 768px){
+    font-size: 15px;
+  }
+}
+
+.applicant-negotiable {
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 14px;
+  color: #598CF5;
+  margin: 15px 0 35px;
+}
+
+.applicant-applied {
+  color: #598CF5;
+}
+
+
+/* CSS for right container  */
+
+.btn:focus,
+.reject-button:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.action-button-container {
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.action-button-container .dropdown {
+  padding: 0;
+}
+
+.applicant-label-bold {
+  font-family: $font-bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-dim-gray;
+
+  @media only screen and (max-width: 768px){
+    font-size: 13px;
+  }
+}
+
+.applicant-history-role {
+  font-family: $font-bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-corn-flower-blue;
+
+  @media only screen and (max-width: 768px){
+    font-size: 13px;
+  }
+}
+
+#applicant-recruiter-name {
+  font-family: $font-regular;
+  font-size: 16px;
+  color: $color-dim-gray;
+
+  @media only screen and (max-width: 768px){
+    font-size: 13px;
+  }
+}
+
+
+.dropdown,
+.reject-button {
+  width: 9rem;
+}
+
+.dropdown-menu {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 34px rgba(76, 97, 124, 0.19);
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+
+.dropdown-menu span {
+  cursor: pointer;
+  font-family: 'IBM-Plex-Sans-Regular';
+  font-size: 16px;
+  text-align: center;
+  color: #4C617C;
+}
+
+.dropdown-item:active {
+  background: transparant;
+}
+
+.action-button-container button {
+  font-family: 'IBM-Plex-Sans-Bold';
+  font-size: 15px;
+  text-align: center;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.dropdown button {
+  width: 100%;
+}
+
+/* CSS for shortlist Icon */
+.action-button-container img {
+  width: 60px;
+  cursor: pointer;
+}
+
+#inviteButton {
+  color: #FFFFFF;
+  background: #598CF5;
+  border: none;
+}
+
+.reject-button {
+  border: 2px solid #E16685;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #E16685;
+}
+
+
+/* CSS For Documents */
+.applicant-documents {
+  margin-bottom: 40px;
+}
+
+.applicant-documents>span {
+  margin-bottom: 23px;
+}
+
+
+.history-remarks{
+  cursor: pointer;
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  background-image: url('../../../../../../../assets/images/ic_remark.svg');
+  // background-color: $color-grey-white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  >span {
+    visibility: hidden;
+    position: absolute;
+    word-wrap: break-word;
+    background-color: $color-white;
+    min-width: 275px;
+    box-shadow: 0 0 10px 5px rgba(192, 192, 192, 0.2);
+    z-index: 1;
+    font-size: 13px;
+    padding: 20px;
+    margin: -37px 0 0 20px;
+    border-radius: 5px;
+    color: $color-dim-gray;
+  
+    @media only screen and (max-width: 768px){
+      font-size: 10px;
+    }
+  }
+  
+  // &:hover >span, 
+  &:focus >span {
+    visibility: visible;
+  }
+}
+
+.onboard-status {
+  background-color: white;
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 0px 5px;
+  color:  #4C617C;
+  text-transform: capitalize;
+}

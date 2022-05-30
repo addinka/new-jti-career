@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-3 section-title" style="padding-left: 90px;">
+    <p>Available Roles</p>
+  </div>
+  <div class="col-3 section-title"  style="padding-left: 40px;">
+    <p>Layout</p>
+  </div>
+  <!-- <div class="col-7" style="text-align: center;">
+    <p>&nbsp;</p>
+  </div> -->
+</div>
+<div cdkDropListGroup class="row">
+  <div class="col-3 roles-section" #scrollEl cdk-scrollable>
+    <div class="available-container col-2">
+      <div
+        cdkDropList 
+        #availableRolesList="cdkDropList"
+        [cdkDropListData]="availableRoles"
+        class="available-list"
+        (cdkDropListDropped)="onDrop($event)">
+        <div class="example-box" style="margin-top: 6px; margin-bottom: 6px;" *ngFor="let item of availableRoles" cdkDrag>
+          {{item.name}}<button class="btn-hotroles" (click)="onClickEdit(i)">:</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <ng-container *ngFor="let item of hotRoles; let i = index">
+      <div class="example-container col-2">
+        <div
+          cdkDropList 
+          #hotRolesList="cdkDropList"
+          [cdkDropListData]="hotRoles"
+          class="example-list"
+          (cdkDropListDropped)="onDrop($event)">
+          <div class="example-box" cdkDrag *ngIf="item.id !== null && item.name !== null">
+            {{item.name}}<button class="btn-hotroles" (click)="onClickRemove(i)">x</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div #myModal id="myModal" class="modal fade">
+</div>

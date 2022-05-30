@@ -1,0 +1,82 @@
+@import '../../../../../variables';
+
+#text-title {
+  color: $color-black;
+  font-family: $font-medium;
+  font-size: 22px;
+  line-height: 29px;
+}
+
+.text-sub-title {
+  color: $color-black;
+  font-family: $font-medium;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 40px 0 25px;
+}
+
+.text-label {
+  color: $color-black;
+  font-family: $font-regular;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+  }
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 0 !important;
+  border-top: 0 !important;
+  width: 100% !important;
+}
+
+::ng-deep .mat-focused .placeholder {
+  color: $color-light-slate-gray-v2;
+}
+
+#button-preview { 
+  background-color: $color-transparant;
+  font-family: $font-medium;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.button-preview-able {
+  border: 2px solid $color-corn-flower-blue;
+  color: $color-corn-flower-blue;
+}
+
+.button-preview-disable {
+  border: 2px solid $color-gainsboro;
+  color: $color-gainsboro;
+}
+
+#button-post {
+  font-family: $font-medium;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.rich-text-editor {
+  z-index: 0;
+  font-family: $font-medium;
+  font-size: 10px;
+}

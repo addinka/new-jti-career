@@ -1,0 +1,14 @@
+@import '../../../../../variables';
+
+.not-found-container {
+  // min-height: calc(100vh - 372px);
+  padding-top: 90px;
+}
+
+.not-found-message {
+  color: $color-dim-gray;
+  font-family: $font-regular;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}

@@ -1,0 +1,141 @@
+@import '../../../../../variables';
+
+.job-title{
+  font-family: $font-medium;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33px;
+  font-size: 30px;
+  color: $color-white;
+  @media screen and (max-width: 768px){
+      font-size: 20px;
+  }
+  @media screen and (max-width: 425px){
+      font-size: 18px;
+  }
+}
+
+.main-container {
+  font-size: 1rem;
+  margin: 1rem 86px;
+  flex-wrap: wrap-reverse;
+  @media screen and (max-width: 1500px) {
+    font-size: 0.9rem;
+    margin: 1rem 32px;
+  }
+  @media screen and (max-width: 1200px) {
+    font-size: 0.87rem;
+    margin: 1rem 16px;
+  }
+  @media screen and (max-width: 768px){
+    font-size: 0.8rem;
+    margin: 1rem 8px;
+  }
+  @media screen and (max-width: 425px){
+      margin: 1rem 0px;
+  }
+}
+
+.section-container{
+  $row-item-margin: 0.5rem;
+  $row-container-margin: 1rem;
+
+  padding: 2rem;
+  margin: $row-container-margin 0px;
+  border-radius: 1rem;
+  background-color: $color-white;
+
+  font-family: $font-regular;
+  font-size: 1em;
+  color: black;
+  p {
+    margin-bottom: $row-item-margin;
+  }
+  .row-multi {
+    margin-bottom: -$row-item-margin;
+  }
+  .title {
+    font-family: $font-bold;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    color: black;
+  }
+  
+  .label{
+    font-size: 1em;
+    font-family: $font-medium;
+    color: $color-dim-gray;
+  }
+
+  .label-v2 {
+    font-size: 1em;
+    font-family: $font-regular;
+    color: $color-dim-gray;
+    font-style: italic;
+  }
+
+  .font-bold{
+    font-family: $font-semi-bold;
+  }
+
+  .color-lighter {
+    color: $color-dim-gray;
+  }
+
+  .chip-container {
+    display: flex;
+    margin-bottom: 2*$row-item-margin;
+    span {
+      padding: 0.75rem;
+      border: 2px solid $color-white-smoke;
+      border-radius: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .bordered{
+    border: 2px solid $color-white-smoke;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    font-family: $font-regular;
+    margin-bottom: $row-container-margin;
+
+    table {
+      th {
+        font-family: $font-semi-bold;
+        padding-bottom: 1rem;
+      }
+      td {
+        padding: 1rem 1rem 1rem 0;
+      }
+      tr:last-child {
+        & td {
+          padding: 1rem 1rem 0 0;
+        }
+      }
+      tr:not(:first-child) {
+        border-top: 2px solid $color-white-smoke;
+      }
+    }
+  }
+}
+
+.user-info {
+  color: $color-dim-gray;
+  .label {
+    color: $color-soft-black
+  }
+  .title {
+    color: $color-dark-slate-gray;
+  }
+  img {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+  }
+  .break {
+    word-break: break-all;
+  }
+}
+
+

@@ -1,0 +1,24 @@
+<div class="col-md-12 doc-wrapper">
+  <div class="doc-uploaded" [ngClass]="{'doc-not-selected': document.file === null && tempFile === null} ">
+    <ng-container *ngIf="document.file === null && tempFile === null">
+      <button class="col-md-12 select-button" (click)="chooseFile('inputDocument'+document.type)">Select File</button>
+      <div class="doc-id">{{document.name}}</div>
+      <input type="file" id="inputDocument{{document.type}}" (change)="handleFileInput($event.target.files)" style="display: none">
+    </ng-container>
+    <ng-container *ngIf="document.file !== null || tempFile !== null">
+      <div class="doc-file col-md-12" [ngClass]="{
+              'mark-delete': document.mark.delete ,
+              'mark-reupload': document.mark.reupload}">
+        <div id="docActionButton">
+          <ng-container *ngIf="editable">
+            <img [src]="getReuploadIcon()" [ngClass]="{'cursor-disable': getReuploadIcon() === 'assets/images/ic_reupload_blue.svg'}" id="iconReupload" (click)="markToReupload()" *ngIf="!isDocMarkedToDelete()">
+            <input type="file" id="inputReupload{{document.type}}" (change)="handleFileInput($event.target.files)" style="display: none">
+            <img [src]="getDeleteIcon()" id="iconDelete" (click)="markToDelete()" *ngIf="!isDocMarkedToReupload()">
+          </ng-container>
+        </div>
+        <img id="iconFolder" [src]="getFolderIcon()" (click)="onGetDocument()">
+      </div>
+      <div class="doc-id">{{document.name}}</div>
+    </ng-container>
+  </div>
+</div>

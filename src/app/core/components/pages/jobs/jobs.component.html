@@ -1,0 +1,185 @@
+<div class="row jobs-search">
+  <div class="col-md">
+    <form class="card card-sm">
+      <div class="row no-gutters align-items-center">
+        <div class="col-auto search-icon">
+          <img src="../../../assets/images/ic_search.svg" alt="Search">
+        </div>
+        <div class="col">
+          <input class="form-control form-control-borderless search-input" type="search"
+            placeholder="Search available jobs" [(value)]=search name="search" [(ngModel)]="search"
+            (keyup.enter)="onSearch(search)" autocomplete="off">
+        </div>
+        <div class="col-auto">
+          <button class="btn button-search" type="button" (click)="onSearch(search)">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="col-md-6 jobs-filter justify-content-end" *ngIf="false">
+    <div class="dropdown">
+      <span class="jobs-filter-text">
+        {{ types[0] | titlecase }}
+        <img src="../../../assets/images/ic_arrow_bottom.svg" style="vertical-align: 2px;">
+      </span>
+      <div class="dropdown-content">
+        <app-filter *ngFor="let item of locations; let i = index" [item]=item [index]=i [type]=types[0]
+          (all)="onAllSelected($event)" (unSelect)="onUnSelect($event)"></app-filter>
+      </div>
+    </div>
+    <div class="dropdown">
+      <span class="jobs-filter-text">
+        {{ types[1] | titlecase }}
+        <img src="../../../assets/images/ic_arrow_bottom.svg" style="vertical-align: 2px;">
+        <div class="dropdown-content">
+          <app-filter *ngFor="let item of experiences; let i = index" [item]=item [index]=i [type]=types[1]
+            (all)="onAllSelected($event)" (unSelect)="onUnSelect($event)"></app-filter>
+        </div>
+      </span>
+    </div>
+    <div class="dropdown">
+      <span class="jobs-filter-text">
+        {{ types[2] | titlecase }}
+        <img src="../../../assets/images/ic_arrow_bottom.svg" style="vertical-align: 2px;">
+        <div class="dropdown-content">
+          <app-filter *ngFor="let item of employments; let i = index" [item]=item [index]=i [type]=types[3]
+            (all)="onAllSelected($event)" (unSelect)="onUnSelect($event)"></app-filter>
+        </div>
+      </span>
+    </div>
+  </div> -->
+</div>
+<div class="jobs-container">
+  <div *ngIf="!searchFromHeader; else searchImage" class="jobs-container-detail">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="jobs-title">All Jobs</div> 
+        <div class="jobs-count">{{jobsCount}} {{ jobsCount > 1? 'Posts' : 'Post' }}</div>
+      </div>
+      <div class="col-md-6 jobs-chip align-self-end">
+        <div class="row">
+          <div class="col-md-10 job-chip-shadow">
+            <div class="row justify-content-end">
+              <div *ngFor="let chip of chips">
+                <span class="chips">
+                  <span class="chips-text">{{ chip }}</span>
+                  <img src="../../../assets/images/ic_delete.svg" style="cursor: pointer;" (click)="onDelete(chip)">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2" *ngIf="chips.length !== 0" class="jobs-chip-clear align-self-end" (click)="onClear()">
+            Clear All
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 40px;">
+      <div class="col-md-6 jobs-default-text">
+        Showing
+        <span class="jobs-select-background">
+          <select class="jobs-select-value" (change)="onSelect($event.target.value)">
+            <option *ngFor="let select of selects" [value]="select">{{ select }}</option>
+          </select>
+        </span>
+        Entries
+      </div>
+      <!-- <app-pagination class="col-md-6 jobs-default-text" [page]=page [pagesCount]=pagesCount (pagesJob)="onPagesJob($event)"></app-pagination> -->
+    </div>
+    <div class="jobs-table">
+      <table style="width:100%;" matSort (matSortChange)="sortData($event)">
+        <tr style="background: #88ACDA;">
+          <th class="jobs-th jobs-th-radius-left" mat-sort-header="role" (click)="onSortArrow(sorts[0], 0)">
+            ROLE
+            <span [ngSwitch]="sorts[0]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th class="jobs-th" mat-sort-header="location" (click)="onSortArrow(sorts[1], 1)" style="width: 13%">
+            LOCATION
+            <span [ngSwitch]="sorts[1]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th class="jobs-th" mat-sort-header="experience" (click)="onSortArrow(sorts[2], 2)" style="width: 17%">
+            EXPERIENCE
+            <span [ngSwitch]="sorts[2]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th class="jobs-th" mat-sort-header="employment" (click)="onSortArrow(sorts[3], 3)" style="width: 10%">
+            EMPLOYMENT
+            <span [ngSwitch]="sorts[3]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th class="jobs-th" mat-sort-header="onBoard" (click)="onSortArrow(sorts[4], 4)">
+            EXPECTED JOIN
+            <span [ngSwitch]="sorts[4]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th class="jobs-th jobs-th-radius-right">MY ACTION</th>
+        </tr>
+        <tr class="jobs-hover" *ngFor="let job of sortedJobs; let i = index"
+          [ngClass]="{'jobs-td-odd': i%2 === 0, 'jobs-td-even': i%2 !== 0 }" (click)="onJobDetail(job.id, job.applied)">
+          <td class="jobs-td-bold">{{ job.title }}</td>
+          <td class="jobs-td">{{ job.location }}</td>
+          <td class="jobs-td">{{ job.experience }}</td>
+          <td class="jobs-td">{{ job.employment }}</td>
+          <td class="jobs-td" *ngIf="job?.onBoardStart === 'I'">Immediately</td>
+          <td class="jobs-td" *ngIf="job?.onBoardStart === 'F'">Anytime</td>
+          <td class="jobs-td" *ngIf="job?.onBoardStart !== 'F' && job?.onBoardStart !== 'I'">{{ job?.onBoardStart | date:'MMMM yyyy' }}</td>
+          <!-- <td class="jobs-td" *ngIf="job?.onBoardStart !== 'F' && job?.onBoardStart !== 'I'; else f">{{ job?.onBoardStart | date:'MMMM yyyy' }}</td> -->
+          <td class="action-table">
+            <button class="btn button-action" [ngClass]="{'button-primary': !job.applied, 'button-disable': job.applied}"
+              (click)="onJobDetail(job.id, job.applied); $event.stopPropagation()" [disabled]="job.applied">
+              {{ job.applied ? 'Applied': 'See more' }}
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-6 jobs-default-text" style="line-height: 40px">
+        Showing {{ entriesCount }} of {{ jobsCount }} entries
+      </div>
+      <app-pagination class="col-md-6 jobs-default-text" [page]=page [pagesCount]=pagesCount
+        (pagesJob)="onPagesJob($event)" style="margin-top: 10px;"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<ng-template #searchImage>
+  <div class="jobs-search-container">
+    <div class="row justify-content-center">
+      <img class="searchImage" src="../../../assets/images/bg_search.svg" alt="Search Your Desired Job">
+    </div>
+    <div class="jobs-search-text">
+      {{ searchImageText }}
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #arrowAsc>
+  <img *ngIf="sorts[0] === 'default'; else arrowAsc" class="jobs-sort-arrow-asc">
+</ng-template>
+
+<ng-template #f>
+  <td *ngIf="job?.onBoardStart !== 'F'; else i" class="jobs-td">Anytime</td>
+</ng-template>
+
+<ng-template #i>
+  <td class="jobs-td">Immediately</td>
+</ng-template>
+

@@ -1,0 +1,31 @@
+<div id="calender-container">
+  <div class="row month-year-padding justify-align-between align-items-center justify-content-center">
+    <div class="col-2" id="calender-change" (click)="onSelectMonth('previous')">
+      <img src="../../../../assets/images/ic_calender_left.svg">
+    </div>
+    <div class="col-7" id="calender-month-year">
+      {{showingDate | date: 'MMMM yyyy'}}
+    </div>
+    <div class="col-2" id="calender-change" (click)="onSelectMonth('next')">
+      <img src="../../../../assets/images/ic_calender_right.svg">
+    </div>
+  </div>
+  <div class="row no-gutters date-padding">
+    <div class="col" [ngClass]="{'calender-weekday': item !== 'S', 'calender-weekend': item === 'S'}"
+      *ngFor="let item of weekNames">{{item}}</div>
+  </div>
+  <div class="calendar-day-padding">
+    <div class="calender-day" *ngFor="let cal of calender; let i = index">
+      <div [ngClass]="{
+          'color-weekday': (i+7)%7 !== 0 || (i+1)%7 !== 0, 
+          'color-weekend': (i+7)%7 === 0 || (i+1)%7 === 0 || cal.type === 'previous' || cal.type === 'next'
+        }">
+        <!-- [ngClass]="{'circle-active': cal.selected, 'circle-inactive': !cal.selected}" -->
+        <div class="circle-active pt-1" [ngClass]="{'tes': cal.iso === isoDate}"
+          (click)="onSelectDate(cal.iso)">{{ cal.date }}</div>
+      </div>
+      <div class="mr-auto ml-auto bullet-margin" [ngClass]="{'bullet-active': cal.event, 'bullet-inactive': !cal.event}">
+      </div>
+    </div>
+  </div>
+</div>

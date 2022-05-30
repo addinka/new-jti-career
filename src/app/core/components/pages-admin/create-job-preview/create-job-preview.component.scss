@@ -1,0 +1,65 @@
+@import "../../../../../variables";
+
+#img-preview {
+  position: absolute;
+  top: 75px;
+  right: 0;
+}
+
+.mat-card {
+  background: $color-ghost-white;
+  max-width: 125px;
+  height: 152px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: none;
+  font-family: $font-medium;
+  font-weight: bold;
+  line-height: 15px;
+}
+
+.mat-card-subtitle {
+  color: $color-dim-gray;
+  font-size: 14px;
+}
+
+#img-author {
+  height: 63px;
+  width: 63px;
+}
+
+button {
+  font-family: $font-medium;
+  color: $color-white;
+  font-size: 14px;
+  width: 150px;
+  height: 40px;
+  font-weight: bold;
+}
+
+.enable-button {
+  background: $color-corn-flower-blue;
+}
+
+.disable-button {
+  background: $color-light-gray;
+}
+
+.margin-auth-collab{
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  @media screen and (max-width: 768px){
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+  }
+  @media screen and (max-width: 425px){
+    margin-bottom: 2rem;
+  }
+}
+
+.button-edit-margin{
+  margin-left: 16px;
+  @media screen and (max-width: 768px){
+    margin-top: 10px
+  }
+}

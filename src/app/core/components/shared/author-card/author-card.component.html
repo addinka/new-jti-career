@@ -1,0 +1,6 @@
+<div class="card-container" [ngClass]="{'isSelected': author.selected}" (click)="selectAuthor()">
+  <div class="profile-picture">
+    <img [src]="author.profpic" alt="Recruiter">
+  </div>
+  <div class="user-name">{{author.name}}</div>
+</div>

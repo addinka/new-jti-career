@@ -1,0 +1,53 @@
+@import "src/_variables.scss";
+
+.card-container {
+  background: $color-ghost-white;
+  border-radius: 5px;
+  padding: 17px;
+  margin-bottom: 28px;
+  cursor: pointer;
+  border: 3px solid $color-white;
+  @media screen and (max-width: 425px){
+    padding: 8px;
+    margin-bottom: 10px;
+    min-height: 115px;
+  }
+}
+
+.isSelected {
+  box-sizing: border-box;
+  border: 3px solid $color-corn-flower-blue;
+  .user-name {
+    color: $color-corn-flower-blue;
+  }
+}
+
+.profile-picture {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 27px;
+}
+
+.profile-picture img {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
+
+.user-name {
+  font-family: $font-bold;
+  font-size: 19px;
+  text-align: center;
+  color: $color-dim-gray;
+  margin-bottom: 12px;
+  @media screen and (max-width: 425px){
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+}
+
+.button-disable {
+  background: $color-gainsboro;
+  color: $color-white;
+  border: none;
+}

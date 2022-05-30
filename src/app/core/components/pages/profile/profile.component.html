@@ -1,0 +1,262 @@
+<div class="wrapper" *ngIf="user !== undefined">
+    <div class="wrapper-inside">
+        <div id="title-app">My Profile</div>
+        <div class="row" id="profile">
+            <div class="col-md-4 col-lg-2 profile-picture">
+                <img [src]="profileURL" class="profilePictureSize" alt="Profile Picture" onerror="this.src='../../../../../assets/images/ic_user.svg'">
+                <button class="col-md-12" [routerLink]="['/profile/edit']">Edit Profile</button>
+            </div>
+            <div class="col-md-8 col-lg-5 profile-detail">
+                <div class="col-md-12 text-capitalize" id="name">{{user.name.toLowerCase()}}</div>
+                <div>
+                    <div class="col-sm-4 col-md-4 profile-label">EMAIL</div>
+                    <div class="col-sm-8 col-md-8 profile-text">{{user.email}}</div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 profile-label">CONTACT NO.</div>
+                    <div class="col-sm-8 col-md-8 profile-text">{{user.contact}}</div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 profile-label">LINKEDIN URL</div>
+                    <div class="col-sm-8 col-md-8 profile-text"><a href="{{user?.linkedinURL}}" target="_blank" rel="noopener noreferrer">{{ user?.linkedinURL || '-' }}</a></div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile-label">DOMICILE</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.domicile}}</div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile-label">UNIVERSITY</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.university}}</div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile-label">MAJOR</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.majorField}}</div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-12 profile-label">
+                    <b>Work Experience History</b>
+                </div>
+                <br>
+                <ng-container *ngFor="let workExperience of user.companyName; let i = index;">
+                    <div class="col-md-12" id="name">Job {{ i + 1 }}</div>
+                    <div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 profile-label">COMPANY</div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.companyName[i]}}</div>
+                    </div>
+                    <div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 profile-label">POSITION</div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.position[i]}}</div>
+                    </div>
+                    <div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 profile-label">JOB DESK</div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.jobdesk[i]}}</div>
+                    </div>
+                    <div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 profile-label">START PERIOD</div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.startPeriod[i]}}</div>
+                    </div>
+                    <div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 profile-label">END PERIOD</div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.endPeriod[i]}}</div>
+                    </div>
+                </ng-container>
+
+                <div class="col-sm-12 col-md-12 col-lg-12 profile-label">
+                    <b>End of Work Experience History</b>
+                </div>
+                <br>
+
+                <div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile-label">LANGUAGE</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.language}}</div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile-label">DEGREE</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.degree}}</div>
+                </div>
+                <div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile-label">EXPERIENCE</div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 profile-text">{{user.experience}}</div>
+                </div>
+                <section>
+                    <div class="col-sm-12 col-md-12 col-lg-12 profile-label">SELF DESCRIPTION</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 profile-text">{{user.selfDesc}}</div>
+                </section>
+                <section>
+                    <div class="col-sm-12 col-md-12 col-lg-12 profile-label">QUALIFICATIONS</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 profile-text">{{user.qualification}}</div>
+                </section>
+            </div>
+            <div class="col-md-12 col-lg-5 profile-documents">
+                <div *ngIf="userData.isSentOnboardInvitation" class="onboarding-form d-flex flex-row p-4 align-items-center">
+                    <img src="../../../../../assets/images/ic_onboardingform.svg" alt=""/>
+                    <div class="flex-grow-1 mx-4">
+                        <p id="doc-title" class="m-0 mb-1">Onboarding Form
+                            <span class="font-italic small font-bold text-capitalize">{{userData.onboardForm?.status || 'New'}}</span>
+                        </p>
+                        <div class="d-flex flex-row">
+                            <div class="form-pdf p-1 mr-2 align-items-center d-flex flex-row">
+                                <img src="../../../../../assets/images/ic_pdf.svg" alt=""/>
+                                <a href="../../../../../assets/forms/OnBoarding Forms - Beneficiary & Tax.pdf" download="Beneficiary & Tax">Beneficiary & Tax</a>
+                            </div>
+                            <div class="form-pdf p-1 mr-2 align-items-center d-flex flex-row">
+                                <img src="../../../../../assets/images/ic_pdf.svg" alt=""/>
+                                <a href="../../../../../assets/forms/Onboarding Forms - P2 - WBT.pdf" download="P2-WBT">P2-WBT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="../../../../../assets//images/ic_dropdown.svg" alt="V" id="arrow" (click)="onBoardLink()"/>
+                </div>
+                <div id="doc-title">Application Summary</div>
+                <div class="col-auto d-flex flex-row">
+                    <div class="row status-margin">
+                        <app-application-status *ngFor="let status of myApplicationsStatusCount; let i = index" [ngClass]="{'ml-0': i === 0}" class="mr-2 mt-2" (click)=onScrollToApplications() [total]="status.total" [status]="status.status" style="cursor: pointer;"></app-application-status>
+                    </div>
+                </div>
+                <div id="doc-title">Documents</div>
+                <div id="doc-basic-sets">
+                    <div class="row justify-content-between align-items-center subtitle">
+                        <div id="doc-subtitle">BASIC SETS</div>
+                        <ng-container *ngIf="!docs.basicSets.editable">
+                            <button class="col-md-3 mobile-col-doc select-button" (click)="enableEdit('basicSets')">Edit
+                Documents</button>
+                        </ng-container>
+                        <div *ngIf="docs.basicSets.editable" class="row col-md-6 justify-content-end align-items-center">
+                            <div id="cancelButton" (click)="saveDocumentChanges('basicSets', false)">Cancel</div>
+                            <button class="col-md-7 mobile-col-doc select-button" (click)="saveDocumentChanges('basicSets', true)" id="applyButton">Apply</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ng-container *ngFor="let doc of docs.basicSets.doc; let i = index">
+                            <app-document class="col-md-3 mobile-col-doc" [document]="doc" [editable]="docs.basicSets.editable" [applyForm]=false [saveChanges]="docs.basicSets.saveChanges"></app-document>
+                        </ng-container>
+                    </div>
+                </div>
+                <div id="doc-advanced-sets">
+                    <div class="row justify-content-between align-items-center subtitle">
+                        <div id="doc-subtitle">ADVANCED SETS (Mandatory after Interview II)</div>
+                        <ng-container *ngIf="!docs.advancedSets.editable">
+                            <button class="col-md-3 mobile-col-doc select-button" (click)="enableEdit('advancedSets')">Edit
+                Documents</button>
+                        </ng-container>
+                        <div *ngIf="docs.advancedSets.editable" class="row col-md-4 justify-content-end align-items-center">
+                            <div id="cancelButton" (click)="saveDocumentChanges('advancedSets', false)">Cancel</div>
+                            <button class="col-md-7 mobile-col-doc select-button" (click)="saveDocumentChanges('advancedSets', true)" id="applyButton">Apply</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ng-container *ngFor="let doc of docs.advancedSets.doc; let i = index">
+                            <app-document class="col-md-3 mobile-col-doc" [document]="doc" [editable]="docs.advancedSets.editable" [applyForm]=false [saveChanges]="docs.advancedSets.saveChanges"></app-document>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start list of applied jobs-->
+<div class="wrapper">
+    <div class="wrapper-inside">
+        <div class="row justify-content-between">
+            <div class="col-auto d-flex align-items-center">
+                <span id="title-app">My Application </span>
+                <span class="ml-2" id="applicationsCount">{{applicationsCount}}</span>
+            </div>
+            <div class="col-auto d-flex flex-row">
+                <div class="row status-margin">
+                    <app-application-status *ngFor="let status of myApplicationsStatusCount; let i = index" [ngClass]="{'ml-0': i === 0}" class="mr-2 mt-2" [total]="status.total" [status]="status.status"></app-application-status>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-6 jobs-default-text">
+                Showing
+                <span class="jobs-select-background">
+          <select class="jobs-select-value" (change)="onSelect($event.target.value)">
+            <option *ngFor="let select of selects" [value]="select">{{ select }}</option>
+          </select>
+        </span> Entries
+            </div>
+        </div>
+        <div class="jobs-table">
+            <table style="width:100%;" matSort (matSortChange)="sortData($event)">
+                <tr>
+
+                    <th class="jobs-th jobs-th-radius-left" mat-sort-header="date" (click)="onSortArrow(sorts[0], 0)">
+                        DATE
+                        <span [ngSwitch]="sorts[0]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+                    </th>
+                    <th class="jobs-th" mat-sort-header="role" (click)="onSortArrow(sorts[1], 1)">
+                        ROLE
+                        <span [ngSwitch]="sorts[1]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+                    </th>
+                    <th class="jobs-th" mat-sort-header="experience" (click)="onSortArrow(sorts[2], 2)">
+                        EXPERIENCE
+                        <span [ngSwitch]="sorts[2]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+                    </th>
+                    <th class="jobs-th" mat-sort-header="location" (click)="onSortArrow(sorts[3], 3)">
+                        LOCATION
+                        <span [ngSwitch]="sorts[3]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+                    </th>
+                    <th class="jobs-th" mat-sort-header="onBoard" (click)="onSortArrow(sorts[4], 4)">
+                        ON BOARD
+                        <span [ngSwitch]="sorts[4]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+                    </th>
+                    <th class="jobs-th" mat-sort-header="status" (click)="onSortArrow(sorts[5], 5)">
+                        STATUS
+                        <span [ngSwitch]="sorts[5]">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+                    </th>
+                    <th class="jobs-th jobs-th-radius-right">ACTION</th>
+                </tr>
+                <tr class="jobs-hover" *ngFor="let application of sortedApplications; let i = index" [ngClass]="{'jobs-td-odd': i%2 === 0, 'jobs-td-even': i%2 !== 0 }" [routerLink]="[ '/jobs', application.applicationID]">
+                    <td class="jobs-td" id="applicationDate">
+                        {{ application.lastUpdated | date:'hh:mm' }}<br>{{application.lastUpdated | date:'dd/MM/yy'}}
+                    </td>
+                    <td class="jobs-td-bold" id="applicationRole">{{ application.job.title }}</td>
+                    <td class="jobs-td">{{ application.job.experience }}</td>
+                    <td class="jobs-td">{{ application.job.location }}</td>
+                    <!-- <td class="jobs-td" *ngIf="application.job?.onBoardStart !== ''; else na">{{ application.job.onBoardStart | date: 'MMMM yyyy' }}</td> -->
+                    <td class="jobs-td" *ngIf="application.job?.onBoardStart !== '' && application.job?.onBoardStart !== 'I' ; else na">{{ application.job.onBoardStart | date: 'MMMM yyyy'  }}</td>
+                    <td class="jobs-td" id="applicationStatus">{{ applicationStatus[application.status]}}</td>
+                    <td class="action-td">
+                        <button class="btn col-md-12" (click)="openWithdrawDialog(application.applicationID);$event.stopPropagation()" [disabled]="disableWithdraw(application)">Withdraw</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-6 jobs-default-text" style="line-height: 40px">
+                Showing {{ entriesCount }} of {{ applicationsCount }} entries
+            </div>
+            <app-pagination class="col-md-6 jobs-default-text" [page]=page [pagesCount]=pagesCount (pagesJob)="onPages($event)" style="margin-top: 10px;"></app-pagination>
+        </div>
+    </div>
+</div>
+
+<ng-template #na>
+    <td class="jobs-td">N/A</td>
+</ng-template>

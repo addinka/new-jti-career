@@ -1,0 +1,80 @@
+@import '../../../../../variables';
+
+::ng-deep .mat-dialog-container {
+  padding: 0;
+}
+
+.author-list {
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.large-dialog-wrapper {
+  background: $color-white;
+  margin: 30px;
+}
+
+.large-dialog-wrapper button {
+  border-radius: 5px;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 17px;
+  text-align: center;
+  padding: 15px;
+  color: $color-white;
+  margin: 10px 0;
+  outline: none;
+  @media screen and (max-width: 425px){
+    font-size: 12px;
+    padding: 7px;
+    margin: 7px 0;
+  }
+}
+
+#close {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+#update {
+  background: $color-corn-flower-blue;
+}
+
+.disable-button {
+  background: $color-light-gray;
+}
+
+
+#title {
+  font-family: $font-bold;
+  color: $color-black;
+  font-family: $font-medium;
+  font-size: 18px;
+  line-height: 29px;
+  @media screen and (max-width: 425px){
+    font-size: 14px;
+  }
+}
+
+.margin-card{
+  margin-top: 3rem;
+  @media screen and (max-width: 768px){
+    margin-top: 3rem;
+  }
+  @media screen and (max-width: 425px){
+    margin-top: 1.5rem;
+  }
+}
+
+.width-card-col{
+  @media screen and (max-width: 425px){
+    width: 33%;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+}

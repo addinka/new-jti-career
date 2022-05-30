@@ -1,0 +1,147 @@
+<div class="wrapper">
+  <div class="wrapper-inside">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-auto">
+        <div class="jobs-title">All Jobs Ads</div>
+        <div class="jobs-count">{{ jobsCount }} {{ jobsCount > 1 ? 'Posts' : 'Post'}}</div>
+      </div>
+      <div class="col-auto justify-content-end">
+        <button type="button" class="button-primary button-create-new-job" [routerLink]="['/admin/jobs-ads/create']">
+          Create New Job
+        </button>
+      </div>
+    </div>
+
+    
+
+    <div class="row mt-5 align-items-center">
+      <div class="col-md-3 jobs-default-text">
+        Showing
+        <span id="jobs-select-background">
+          <select (change)="onSelect($event.target.value)">
+            <option *ngFor="let item of entriesItems" [value]="item">{{ item }}</option>
+          </select>
+        </span>
+        Entries
+      </div>
+      <div class="col-md-9">
+        <!-- Pagination should be here. -->
+        <div class="d-flex no-gutters align-items-center">
+          <div class="col">
+              <input class="form-control form-control-borderless search-input" type="search" placeholder="Search Jobs" autocomplete="off" [(value)]=search name="search" [(ngModel)]="search" (keyup.enter)="onSearch()">
+          </div>
+          <div class="col-auto">
+              <button class="btn button-search btn-search-size" type="button" (click)="onSearch()">Search</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-table mt-4">
+      <table matSort (matSortChange)="sortData($event)">
+        <tr>
+          <th id="th-left" style="width: 6%">AUTHOR</th>
+          <th mat-sort-header="date" (click)="onSortArrow(sort)" style="width: 10%">
+            ENDS
+            <span [ngSwitch]="sort">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th mat-sort-header="role" (click)="onSortArrow(sort)" style="width: 35%">
+            TITLE
+            <span [ngSwitch]="sort">
+              <img *ngSwitchCase="'asc'" class="jobs-sort-arrow-asc" />
+              <img *ngSwitchCase="'dsc'" class="jobs-sort-arrow-dsc" />
+              <img *ngSwitchDefault class="jobs-sort-arrow" />
+            </span>
+          </th>
+          <th id="th-right">APPLICANTS</th>
+        </tr> 
+
+        <tr class="hover" *ngFor="let item of sortedJobsAds; let i = index"
+          [ngClass]="getRowClass(i)">
+          <td>
+            <div class="recruiter">
+              <img class="rounded-image" [src]="this.getImageURL + item.authorProfile" height="50"
+                width="50">
+              <div id="recruiter-name-container">
+                <img class="triangle" src="../../../../../assets/images/ic_triangle.svg" style="max-height: 18px;">
+                <div id="recruiter-name">{{ item.authorName }}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div id="jobs-date">{{ item.date | date:'dd/MM/yy hh:mm' }}</div>
+          </td>
+          <td>
+            <div class="jobs-status mb-2" *ngIf="item.expired || item.status === 'CLOSED'" [ngClass]="{expired: item.expired, deactivated: item.status === 'CLOSED'}">{{ item.expired ? 'EXPIRED' : 'DEACTIVATED' }}</div>
+            <div class="jobs-role" [ngClass]="{expired: item.expired, deactivated: item.status === 'CLOSED'}">{{ item.title }}</div>
+            <div class="row no-gutters unwrap-row mt-2">
+              <button class="option jobs-action" (click)="onViewJob(item.id)">View</button>
+              <button class="option" [disabled]="getEditActionDisable(item.collaborators)" [ngClass]="getEditActionClass(item.collaborators)" [routerLink]="['/admin/jobs-ads/edit', item.id]">Edit</button>
+              <button class="option" [disabled]="item.expired" [ngClass]="getJobActionClass(item.expired, item.status, 'Deactivate')" (click)="deactivateJob(item.id, i)">
+                  {{ item.status === 'OPEN' ? 'DEACTIVATE' : 'ACTIVATE' }}
+              </button>
+              <button class="option" [disabled]="!item.expired && (item.status === 'OPEN' || item.status === 'CLOSED')" [ngClass]="getJobActionClass(item.expired, item.status, 'Repost')" (click)="onRepostJob(item.id)">Repost</button>
+              <button class="option jobs-action" (click)="followJobs(item.id)"> {{ item.isFollow ? 'Unfollow' : 'Follow' }}</button>
+              <button class="option jobs-action" (click)="editCollaborators(item.id, i)">Collaborators</button>
+            </div>
+          </td>
+          <td>
+            <div class="row no-gutters unwrap-row" [ngClass]="{expired: item.expired || item.status === 'CLOSED'}">
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'applied']">
+                <div id="applicant-count">{{ item.countApplied }}</div>
+                <div id="applicant-status">APPLIED</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'shortlist']">
+                <div id="applicant-count">{{ item.countShortlist }}</div>
+                <div id="applicant-status">SHORTLISTED</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'test']">
+                <div id="applicant-count">{{ item.countTest }}</div>
+                <div id="applicant-status">TEST</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'inter1']">
+                <div id="applicant-count">{{ item.countInterview1 }}</div>
+                <div id="applicant-status">INTERVIEW I</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'inter2']">
+                <div id="applicant-count">{{ item.countInterview2 }}</div>
+                <div id="applicant-status">INTERVIEW II</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'hired']">
+                <div id="applicant-count">{{ item.countOnBoard }}</div>
+                <div id="applicant-status">ON BOARD</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'withdrawn']">
+                <div id="applicant-count">{{ item.countWithdrawn }}</div>
+                <div id="applicant-status">WITHDRAWN</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'eliminated']">
+                <div id="applicant-count">{{ item.countEliminated }}</div>
+                <div id="applicant-status">ELIMINATED</div>
+              </div>
+              <div class="jobs-applicant" [routerLink]="[ '/admin/jobs-ads', item.id, 'rejected']">
+                <div id="applicant-count">{{ item.countRejected }}</div>
+                <div id="applicant-status">REJECTED</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="row mt-4 pb-5 justify-content-between">
+      <div class="col-auto jobs-default-text" style="line-height: 40px">
+        Showing {{ entriesCount }} of {{ jobsCount }} entries
+      </div>
+      <!-- [page]=page -->
+      <app-pagination class="col-auto jobs-default-text" [pagesCount]=pagesCount
+        (pagesJob)="onGetJob($event, this.select)" style="margin-top: 10px;"></app-pagination>
+    </div>
+
+  </div>
+</div>

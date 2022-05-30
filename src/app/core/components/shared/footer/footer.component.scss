@@ -1,0 +1,55 @@
+@import '../../../../../variables';
+
+footer {
+  background-color: $color-dark-slate-gray;
+}
+
+.app-info {
+  color: $color-white;
+  font-family: $font-regular;
+  font-size: 12px;
+}
+
+.app-info span {
+  font-family: $font-bold;
+}
+
+.copyright {
+  color: $color-white;
+  font-family: $font-bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.copyright span {
+  font-family: $font-regular;
+}
+
+.copyright-detail {
+  color: $color-light-slate-gray;
+  font-family: $font-regular;
+  font-size: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .copyright {
+    text-align: center;
+  }
+
+  .copyright-detail {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .footer {
+    padding: 5px;
+  }
+}
+
+.footer {
+  @media only screen and (max-width: 768px) {
+    padding: 35px !important;
+  }
+}
+

@@ -1,0 +1,125 @@
+@import '../../../../../variables';
+.available-container {
+    width: 208px;
+    min-height: 75px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.example-container {
+    width: 196px;
+    min-height: 63px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.available-list {
+    border: solid 1px #3865A0;
+    min-height: 63px;
+    background: #3865A0;
+    border-radius: 10px;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    width: 190px;
+}
+
+.example-list {
+    border: solid 1px #3865A0;
+    min-height: 60px;
+    background: #3865A0;
+    border-radius: 10px;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    width: 180px;
+}
+
+.example-box {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 12px;
+    font-family: $font-bold;
+    width: 180px;
+    border-radius: 10px;
+
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #3865A0;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #598CF5;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(25, 52, 87);
+}
+
+.roles-section{
+    padding-left: 70px; 
+    height: 350px; 
+    overflow-x: hidden; 
+    overflow-y: scroll;
+}
+
+.section-title{
+    font-family: $font-bold;
+    color : white;
+    font-size: 16px;
+}
+
+.btn-hotroles{
+    padding: 4px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    color: darkgrey;
+}

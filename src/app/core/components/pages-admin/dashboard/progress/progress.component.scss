@@ -1,0 +1,30 @@
+#progress-title {
+    border-radius: 5px 5px 0 0;
+    color: #4C617C;
+    font-family: 'IBM-Plex-Sans-Medium';
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    @media screen and (max-width: 768px){
+        font-size: 13px;
+      }
+      @media screen and (max-width: 425px){
+        
+      }
+}
+
+.bg-red {
+    background: #FF467E;
+}
+
+.bg-yellow-dark {
+    background: #F5B479;
+}
+
+.bg-yellow {
+    background: #FCC27D;
+}
+
+.bg-green {
+    background: #98CE8B;
+}

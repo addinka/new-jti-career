@@ -1,0 +1,40 @@
+@import '../../../../../variables';
+
+.job-title {
+  color: $color-black;
+  font-family: $font-semi-bold;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 31px;
+  font-size: 22px;
+  @media screen and (max-width: 768px){
+    font-size: 22px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 18px;
+  }
+}
+
+.job-categories {
+  color: $color-black;
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 21px;
+  @media screen and (max-width: 768px){
+    font-size: 17px;
+  }
+  @media screen and (max-width: 425px){
+    font-size: 15px;
+  }
+}
+
+.custom-button {
+  color: $color-white;
+  font-family: $font-medium;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+}
