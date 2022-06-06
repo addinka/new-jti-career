@@ -35,9 +35,7 @@
         <div id="forgot-password" (click)="openDialogReset();">Forgot Password</div>
       </div>
 
-      <button class="dialog-button mb-3" [ngClass]="{
-              'button-primary': loginForm.valid ,
-              'button-disable': loginForm.invalid}" [disabled]="loginForm.invalid" 
+      <button class="dialog-button mb-3" [ngClass]="btndisable ? 'button-disable' : 'button-primary'" [disabled]="btndisable" 
         (click)="doLogin()">Login</button>
 
       <div class="mb-3" id="sign-up" [routerLink]="['/sign-up']" (click)="this.dialogRef.close()">Sign Up</div>

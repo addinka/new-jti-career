@@ -1,6 +1,7 @@
 import { environment } from 'src/environments/environment';
 
 export const BASE_URL = environment.baseURL;
+export const SSO_URL = environment.ssoURL;
 export const PROFILE_URL = BASE_URL + 'user/profpic/';
 export const TESTIMONY_URL = BASE_URL + 'testimony/testimonyPic/';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { BASE_URL } from '../utils/constant';
+import { BASE_URL,SSO_URL } from '../utils/constant';
 import { ServiceMapping } from '../utils/service.mapping';
 import * as jwt_decode from 'jwt-decode';
 
@@ -22,6 +22,19 @@ export class AuthService {
    */
   login(credentials: any): Observable<any> {
     const url = BASE_URL + ServiceMapping.LOGIN_URL;
+    const body = JSON.stringify(credentials);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.http.post(url, body, httpOptions);
+  }
+  
+  loginjti(credentials: any): Observable<any> {
+    const url = SSO_URL + ServiceMapping.LOGIN_URL;
     const body = JSON.stringify(credentials);
 
     const httpOptions = {

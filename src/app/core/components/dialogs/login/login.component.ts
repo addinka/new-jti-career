@@ -21,7 +21,7 @@ export class LoginComponent {
   public showError = false;
   loginFailed = false;
   showPassword=true;
-
+  btndisable=true;
 
   constructor(
     private dialog: MatDialog,
@@ -48,16 +48,54 @@ export class LoginComponent {
   
     if (example.includes(ourSubstring)) {
       this.showPassword=false;
-     
+      this.btndisable=false;
     }else {
-     
+      this.showPassword=true;
+      this.btndisable=true;
     }   
     console.log("show password:",this.showPassword);
   }
+  checkpassword(pass: string): void{
+    let passlength=pass.length;
+    console.log(passlength);
+    if(passlength>0){
+      this.btndisable=false;
+    }else{
+      this.btndisable=true;
+    }
+  }
   doLogin() {
     this.loginFailed = false;
+    let email=this.loginForm.value['email'];
+    let ourSubstring = "ibm-jti.com";
+    if(email.includes(ourSubstring)){
+      console.log("email jti");
+      //fungsi kalo email ibm-jti.com
+      this.authService.loginjti(this.loginForm.value).toPromise()
+      .then(
+        response => {
+          console.log(response);
+          /*if (response.auth) {
+            const token = response.token;
+            const tokenDecoded = this.getDecodedAccessToken(token);
+            const role = tokenDecoded.type;
+            // console.log('Login as ' + role);
+            this.authService.setSession(token);
 
-    this.authService.login(this.loginForm.value).toPromise()
+            this.dialogRef.close({role: role, token: token });
+          } else {
+
+          }*/
+        },
+        error => {
+          console.log(error);
+          this.loginFailed = true;
+        }
+      );
+    }else{
+      console.log("email bukan jti");
+      //fungsi kalo email bukan ibm-jti.com
+      this.authService.login(this.loginForm.value).toPromise()
       .then(
         response => {
           if (response.auth) {
@@ -77,6 +115,7 @@ export class LoginComponent {
           this.loginFailed = true;
         }
       );
+    }
   }
 
   private loginByTestUser(data: any) {
