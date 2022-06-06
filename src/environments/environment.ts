@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://jti-ats-api-dev.au-syd.mybluemix.net/api/v1/'
+  baseURL: 'https://jti-ats-api-dev.au-syd.mybluemix.net/api/v1/',
+  ssoURL:  'https://jti-cloud-sso-login-dev.au-syd.mybluemix.net/api/v1/auth/login-sso-angular/dev/jti-career'
 };
 
 /*

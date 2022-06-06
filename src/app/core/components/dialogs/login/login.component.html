@@ -19,11 +19,11 @@
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="loginForm" class="login-form-margin">
 
       <input type="email" class="form-control form-control-borderless" required name="email" placeholder="Email"
-        formControlName="email" (focusin)="showError = false" (focusout)="showError = true" (keydown.enter)="this.doLogin">
+        formControlName="email" (focusin)="showError = false" (focusout)="showError = true" (keydown.enter)="this.doLogin"  (input)="checkemail($event.target.value);">
 
-      <div class="input-group mt-3">
+      <div *ngIf="showPassword" class="input-group mt-3">
         <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control form-control-borderless" required
-          name="password" formControlName="password" placeholder="Password" (keydown.enter)="this.doLogin()">
+          name="password" formControlName="password" placeholder="Password" (keydown.enter)="this.doLogin()" (input)="checkpassword($event.target.value);">
         <div class="px-3 d-flex vertical-align-center" id="password-visibility">
           <img [src]="isPasswordVisible ? 'assets/images/ic_visibility.svg' : 'assets/images/ic_visibility_hidden.svg'"
             (click)="isPasswordVisible = !isPasswordVisible" style="cursor: pointer">
@@ -41,6 +41,18 @@
         (click)="doLogin()">Login</button>
 
       <div class="mb-3" id="sign-up" [routerLink]="['/sign-up']" (click)="this.dialogRef.close()">Sign Up</div>
+
+      
     </form>
+    <!--<div class="landing-btn">
+            <button class="btn btn-primary btn-landing btn-landing-try" routerLink="/create">
+              Try Now
+            </button>
+            <a href="{{ ssoURL }}">
+              <button class="btn btn-primary btn-landing btn-landing-login">
+                Login
+              </button>
+            </a>
+          </div>-->
   </div>
 </div>

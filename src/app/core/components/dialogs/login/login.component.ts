@@ -20,6 +20,8 @@ export class LoginComponent {
   public isPasswordVisible = false;
   public showError = false;
   loginFailed = false;
+  showPassword=true;
+
 
   constructor(
     private dialog: MatDialog,
@@ -40,15 +42,22 @@ export class LoginComponent {
   close(next: any): void {
     this.dialogRef.close({ next: next });
   }
-
+ checkemail(email: string): void{
+    let example = email;
+    let ourSubstring = "ibm-jti.com";
+  
+    if (example.includes(ourSubstring)) {
+      this.showPassword=false;
+     
+    }else {
+     
+    }   
+    console.log("show password:",this.showPassword);
+  }
   doLogin() {
     this.loginFailed = false;
-    var email=this.loginForm.controls['email'].value.loginForm; 
-    var potong=email.split('@');
-    if(potong[1]=="ibm-jti.com"){
-      console.log('Wrong password!');
-    }else {
-      this.authService.login(this.loginForm.value).toPromise()
+
+    this.authService.login(this.loginForm.value).toPromise()
       .then(
         response => {
           if (response.auth) {
@@ -68,9 +77,6 @@ export class LoginComponent {
           this.loginFailed = true;
         }
       );
-    }
-
-    
   }
 
   private loginByTestUser(data: any) {
