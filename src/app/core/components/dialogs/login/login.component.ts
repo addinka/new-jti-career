@@ -9,6 +9,7 @@ import * as jwt_decode from 'jwt-decode';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { Overlay } from '@angular/cdk/overlay';
 
+import { SSO_URL } from 'src/app/core/utils/constant';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +22,7 @@ export class LoginComponent {
   public showError = false;
   loginFailed = false;
   showPassword=true;
-  btndisable=true;
+  btnDisable=true;
 
   constructor(
     private dialog: MatDialog,
@@ -42,57 +43,42 @@ export class LoginComponent {
   close(next: any): void {
     this.dialogRef.close({ next: next });
   }
+
  checkemail(email: string): void{
     let example = email;
-    let ourSubstring = "ibm-jti.com";
+    let ourSubstring = "ibm-jti.comc";
   
     if (example.includes(ourSubstring)) {
-      this.showPassword=false;
-      this.btndisable=false;
-    }else {
-      this.showPassword=true;
-      this.btndisable=true;
-    }   
+      this.showPassword = false;
+      this.btnDisable = false;
+    } else {
+      this.showPassword = true;
+      this.btnDisable = true;
+    }
+
     console.log("show password:",this.showPassword);
   }
+
   checkpassword(pass: string): void{
-    let passlength=pass.length;
-    console.log(passlength);
-    if(passlength>0){
-      this.btndisable=false;
-    }else{
-      this.btndisable=true;
+    let passLength = pass.length;
+
+    console.log(passLength);
+    if(passLength>0){
+      this.btnDisable=false;
+    } else {
+      this.btnDisable=true;
     }
   }
+
   doLogin() {
     this.loginFailed = false;
-    let email=this.loginForm.value['email'];
-    let ourSubstring = "ibm-jti.com";
-    if(email.includes(ourSubstring)){
+    let email = this.loginForm.value['email'];
+    let ourSubstring = "ibm-jti.comc";
+
+    if (email.includes(ourSubstring)){
       console.log("email jti");
-      //fungsi kalo email ibm-jti.com
-      this.authService.loginjti(this.loginForm.value).toPromise()
-      .then(
-        response => {
-          console.log(response);
-          /*if (response.auth) {
-            const token = response.token;
-            const tokenDecoded = this.getDecodedAccessToken(token);
-            const role = tokenDecoded.type;
-            // console.log('Login as ' + role);
-            this.authService.setSession(token);
-
-            this.dialogRef.close({role: role, token: token });
-          } else {
-
-          }*/
-        },
-        error => {
-          console.log(error);
-          this.loginFailed = true;
-        }
-      );
-    }else{
+      window.location.href = SSO_URL;
+    } else {
       console.log("email bukan jti");
       //fungsi kalo email bukan ibm-jti.com
       this.authService.login(this.loginForm.value).toPromise()
