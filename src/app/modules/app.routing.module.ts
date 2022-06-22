@@ -26,6 +26,7 @@ import { AllCandidateComponent } from '../core/components/pages-admin/all-candid
 import { ViewBlueformComponent } from '../core/components/pages/view-blueform/view-blueform.component';
 import { ViewOnboardformComponent } from '../core/components/pages/view-onboardform/view-onboardform.component';
 import { SubmitOnboardingFormComponent } from '../core/components/pages/submit-onboarding-form/submit-onboarding-form.component';
+import { ChatComponent } from '../core/components/pages/chat/chat.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -83,6 +84,7 @@ const appRoutes: Routes = [
     { path: 'view-blueform/:id', component: ViewBlueformComponent },
     { path: 'view-onboardform/:id', component: ViewOnboardformComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'chat', component: ChatComponent },
     { path: 'not-found', component: NotFoundComponent },
     // { path: '**', redirectTo: 'not-found' }
 ];
